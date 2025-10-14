@@ -256,6 +256,283 @@ section h2 {
   background: #000000;
 }
 
+/* Camp Status Styles */
+.camp-status {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid #333;
+  border-radius: 8px;
+}
+
+.status-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* Available Spots Styles */
+.available-spots {
+  padding: 0.8rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: center;
+  min-width: 180px;
+  transition: all 0.3s ease;
+}
+
+.available-spots.available {
+  background: rgba(34, 197, 94, 0.2);
+  border: 2px solid #22c55e;
+  color: #22c55e;
+}
+
+.available-spots.full {
+  background: rgba(239, 68, 68, 0.2);
+  border: 2px solid #ef4444;
+  color: #ef4444;
+}
+
+.spots-text {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Countdown Timer Styles */
+.countdown-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+.countdown-label {
+  color: #cccccc;
+  font-size: 0.9rem;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+}
+
+.live-indicator {
+  color: #22c55e;
+  animation: blink 1s infinite;
+  margin-left: 0.3rem;
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0.3;
+  }
+}
+
+.countdown-timer {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.countdown-timer.active {
+  animation: pulse 2s infinite;
+}
+
+.countdown-timer.expired {
+  opacity: 0.6;
+}
+
+.time-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 50px;
+}
+
+.time-value {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1;
+  font-family: 'Courier New', monospace;
+  transition: all 0.3s ease;
+  display: inline-block;
+  min-width: 2ch;
+  text-align: center;
+}
+
+.time-value:hover {
+  transform: scale(1.05);
+  color: #22c55e;
+}
+
+/* Special styling for seconds to show real-time updates */
+.seconds-unit {
+  position: relative;
+}
+
+.seconds-value {
+  animation: tick 1s infinite;
+  color: #22c55e !important;
+  font-weight: 700;
+}
+
+@keyframes tick {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Pulse animation for active countdown */
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.time-label {
+  font-size: 0.7rem;
+  color: #cccccc;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 0.2rem;
+}
+
+/* Subscription Section Styles */
+.subscription-section {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid #333;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.subscription-section h4 {
+  color: #ffffff;
+  font-size: 1.3rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.5px;
+}
+
+.subscription-section p {
+  color: #cccccc;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Subscription Form Styles */
+.subscription-form {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.form-group {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.email-input {
+  flex: 1;
+  padding: 0.8rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid #333;
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.email-input:focus {
+  outline: none;
+  border-color: #555;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.email-input::placeholder {
+  color: #666;
+}
+
+.subscribe-button {
+  padding: 0.8rem 1.5rem;
+  background: #ffffff;
+  color: #000000;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.subscribe-button:hover:not(:disabled) {
+  background: #e0e0e0;
+  transform: translateY(-1px);
+}
+
+.subscribe-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.error-message {
+  color: #ef4444;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+/* Subscription Success Styles */
+.subscription-success {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  padding: 1rem;
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid #22c55e;
+  border-radius: 6px;
+  color: #22c55e;
+}
+
+.success-icon {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.subscription-success p {
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Subscriber Count */
+.subscriber-count {
+  margin-top: 1rem;
+  color: #888;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
 .journey-card {
   background: #0a0a0a;
   border: 1px solid #333;
@@ -516,6 +793,46 @@ section h2 {
     gap: 2rem;
   }
 
+  /* Camp Status Mobile */
+  .status-row {
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .countdown-container {
+    align-items: center;
+  }
+
+  .countdown-timer {
+    gap: 0.8rem;
+  }
+
+  .time-value {
+    font-size: 1.5rem;
+  }
+
+  .available-spots {
+    min-width: 160px;
+    padding: 0.7rem 1.2rem;
+  }
+
+  /* Subscription Mobile */
+  .subscription-section {
+    padding: 1.2rem;
+    margin-top: 1.5rem;
+  }
+
+  .form-group {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .subscribe-button {
+    width: 100%;
+    padding: 0.9rem 1.5rem;
+  }
+
   .journey-details {
     padding: 1.5rem;
   }
@@ -644,6 +961,54 @@ section h2 {
 
   .journey-subtitle {
     font-size: 1rem;
+  }
+
+  /* Camp Status Small Mobile */
+  .camp-status {
+    padding: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .countdown-timer {
+    gap: 0.6rem;
+  }
+
+  .time-value {
+    font-size: 1.3rem;
+  }
+
+  .time-label {
+    font-size: 0.6rem;
+  }
+
+  .available-spots {
+    min-width: 140px;
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  /* Subscription Small Mobile */
+  .subscription-section {
+    padding: 1rem;
+    margin-top: 1rem;
+  }
+
+  .subscription-section h4 {
+    font-size: 1.1rem;
+  }
+
+  .subscription-section p {
+    font-size: 0.9rem;
+  }
+
+  .email-input {
+    padding: 0.7rem 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .subscribe-button {
+    padding: 0.8rem 1.2rem;
+    font-size: 0.9rem;
   }
 
   .journey-details {

@@ -1,8 +1,185 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 
+// Countdown Timer Component
+const CountdownTimer = ({ targetDate, onExpired }) => {
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0
+  })
+  const [isActive, setIsActive] = useState(true)
+
+  useEffect(() => {
+    const calculateTimeLeft = () => {
+      const now = new Date().getTime()
+      const target = new Date(targetDate).getTime()
+      const difference = target - now
+
+      if (difference > 0) {
+        const totalSeconds = Math.floor(difference / 1000)
+        const days = Math.floor(totalSeconds / (24 * 60 * 60))
+        const hours = Math.floor((totalSeconds % (24 * 60 * 60)) / (60 * 60))
+        const minutes = Math.floor((totalSeconds % (60 * 60)) / 60)
+        const seconds = totalSeconds % 60
+
+        setTimeLeft({ days, hours, minutes, seconds })
+        setIsActive(true)
+      } else {
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 })
+        setIsActive(false)
+        if (onExpired) onExpired()
+      }
+    }
+
+    // Calculate immediately to show correct time on load
+    calculateTimeLeft()
+    
+    // Set up interval for real-time updates every second
+    const timer = setInterval(calculateTimeLeft, 1000)
+
+    return () => clearInterval(timer)
+  }, [targetDate, onExpired])
+
+  return (
+    <div className={`countdown-timer ${isActive ? 'active' : 'expired'}`}>
+      <div className="time-unit">
+        <span className="time-value">{String(timeLeft.days).padStart(2, '0')}</span>
+        <span className="time-label">days</span>
+      </div>
+      <div className="time-unit">
+        <span className="time-value">{String(timeLeft.hours).padStart(2, '0')}</span>
+        <span className="time-label">hours</span>
+      </div>
+      <div className="time-unit">
+        <span className="time-value">{String(timeLeft.minutes).padStart(2, '0')}</span>
+        <span className="time-label">minutes</span>
+      </div>
+      <div className="time-unit seconds-unit">
+        <span className="time-value seconds-value">{String(timeLeft.seconds).padStart(2, '0')}</span>
+        <span className="time-label">seconds</span>
+      </div>
+    </div>
+  )
+}
+
+// Available Spots Component
+const AvailableSpots = ({ current, max }) => {
+  const isFull = current >= max
+  const spotsLeft = max - current
+  
+  return (
+    <div className={`available-spots ${isFull ? 'full' : 'available'}`}>
+      <span className="spots-text">
+        {isFull ? 'FULL' : `${spotsLeft}/${max} spots available`}
+      </span>
+    </div>
+  )
+}
+
+// Subscription Form Component
+const SubscriptionForm = ({ onSubscribe, isSubscribed }) => {
+  const [email, setEmail] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState('')
+
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    return emailRegex.test(email)
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setError('')
+    
+    if (!email.trim()) {
+      setError('Please enter your email address')
+      return
+    }
+    
+    if (!validateEmail(email)) {
+      setError('Please enter a valid email address')
+      return
+    }
+
+    setIsLoading(true)
+    
+    try {
+      // Simulate API call - in real implementation, this would save to backend
+      await new Promise(resolve => setTimeout(resolve, 1000))
+      
+      // Save to localStorage for demo purposes
+      const subscribers = JSON.parse(localStorage.getItem('wineCampSubscribers') || '[]')
+      if (!subscribers.includes(email)) {
+        subscribers.push(email)
+        localStorage.setItem('wineCampSubscribers', JSON.stringify(subscribers))
+      }
+      
+      onSubscribe(email)
+      setEmail('')
+    } catch (err) {
+      setError('Something went wrong. Please try again.')
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  if (isSubscribed) {
+    return (
+      <div className="subscription-success">
+        <div className="success-icon">✓</div>
+        <p>You're subscribed! We'll notify you about updates.</p>
+      </div>
+    )
+  }
+
+  return (
+    <form className="subscription-form" onSubmit={handleSubmit}>
+      <div className="form-group">
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Enter your email"
+          className="email-input"
+          disabled={isLoading}
+        />
+        <button 
+          type="submit" 
+          className="subscribe-button"
+          disabled={isLoading}
+        >
+          {isLoading ? 'Subscribing...' : 'Subscribe'}
+        </button>
+      </div>
+      {error && <p className="error-message">{error}</p>}
+    </form>
+  )
+}
+
 function App() {
   const [activeSection, setActiveSection] = useState('hero')
+  const [subscribers, setSubscribers] = useState([])
+  const [currentUserSubscribed, setCurrentUserSubscribed] = useState(false)
+  
+  // Camp data with dates and participant limits
+  const campData = {
+    launchDate: new Date(Date.now() + 8 * 24 * 60 * 60 * 1000).toISOString(), // 8 days from now
+    currentParticipants: 8,
+    maxParticipants: 12
+  }
+
+  // Load subscribers from localStorage on component mount
+  useEffect(() => {
+    const savedSubscribers = JSON.parse(localStorage.getItem('wineCampSubscribers') || '[]')
+    setSubscribers(savedSubscribers)
+  }, [])
+
+  const handleSubscribe = (email) => {
+    setSubscribers(prev => [...prev, email])
+    setCurrentUserSubscribed(true)
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -104,6 +281,37 @@ function App() {
             <div className="journey-header">
               <h3>The Penedés Rebellion</h3>
               <p className="journey-subtitle">Catalonia's Heartland | <em>The New Guard and the Resurrection of Xarel·lo</em></p>
+              
+              {/* Countdown Timer and Available Spots */}
+              <div className="camp-status">
+                <div className="status-row">
+                  <AvailableSpots 
+                    current={campData.currentParticipants} 
+                    max={campData.maxParticipants} 
+                  />
+                  <div className="countdown-container">
+                    <span className="countdown-label">
+                      Time remaining: <span className="live-indicator">●</span>
+                    </span>
+                    <CountdownTimer targetDate={campData.launchDate} />
+                  </div>
+                </div>
+                
+                {/* Subscription Section */}
+                <div className="subscription-section">
+                  <h4>Stay Updated</h4>
+                  <p>Get notified about camp updates, new dates, and exclusive offers.</p>
+                  <SubscriptionForm 
+                    onSubscribe={handleSubscribe}
+                    isSubscribed={currentUserSubscribed}
+                  />
+                  {subscribers.length > 0 && (
+                    <p className="subscriber-count">
+                      {subscribers.length} people are already interested
+                    </p>
+                  )}
+                </div>
+              </div>
             </div>
             
             <div className="journey-content">
