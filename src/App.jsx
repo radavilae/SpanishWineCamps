@@ -129,7 +129,7 @@ const SubscriptionForm = ({ onSubscribe, isSubscribed }) => {
     return (
       <div className="subscription-success">
         <div className="success-icon">✓</div>
-        <p>You're subscribed! We'll notify you about updates.</p>
+        <p>You're signed up! We'll notify you about updates.</p>
       </div>
     )
   }
@@ -150,7 +150,7 @@ const SubscriptionForm = ({ onSubscribe, isSubscribed }) => {
           className="subscribe-button"
           disabled={isLoading}
         >
-          {isLoading ? 'Subscribing...' : 'Subscribe'}
+          {isLoading ? 'Signing up...' : 'Sign up'}
         </button>
       </div>
       {error && <p className="error-message">{error}</p>}
@@ -158,10 +158,129 @@ const SubscriptionForm = ({ onSubscribe, isSubscribed }) => {
   )
 }
 
+// Registration Modal Component
+const RegistrationModal = ({ isOpen, onClose, onSubmit }) => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    partySize: '1',
+    phone: '',
+    message: ''
+  })
+  const [error, setError] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitted, setSubmitted] = useState(false)
+
+  useEffect(() => {
+    if (!isOpen) {
+      setFormData({ name: '', email: '', partySize: '1', phone: '', message: '' })
+      setError('')
+      setIsSubmitting(false)
+      setSubmitted(false)
+    }
+  }, [isOpen])
+
+  const validate = () => {
+    if (!formData.name.trim()) return 'Please enter your name'
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(formData.email)) return 'Please enter a valid email'
+    const size = Number(formData.partySize)
+    if (!Number.isInteger(size) || size < 1 || size > 12) return 'Group size must be 1–12'
+    return ''
+  }
+
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setFormData(prev => ({ ...prev, [name]: value }))
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const validationError = validate()
+    if (validationError) {
+      setError(validationError)
+      return
+    }
+    setError('')
+    setIsSubmitting(true)
+    try {
+      await new Promise(r => setTimeout(r, 600))
+      onSubmit({ ...formData, createdAt: new Date().toISOString() })
+      setSubmitted(true)
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
+  if (!isOpen) return null
+
+  return (
+    <div className="modal-overlay" role="dialog" aria-modal="true">
+      <div className="modal">
+        <div className="modal-header">
+          <h3>Sign up for our next Wine Camp</h3>
+          <button className="modal-close" onClick={onClose} aria-label="Close">×</button>
+        </div>
+
+        {submitted ? (
+          <div className="modal-success">
+            <div className="success-icon">✓</div>
+            <h4>Sign-up received</h4>
+            <p>We'll email you with confirmation and details shortly.</p>
+            <button className="primary-button" onClick={onClose}>Close</button>
+          </div>
+        ) : (
+          <form className="modal-form" onSubmit={handleSubmit}>
+            <div className="form-row">
+              <div className="form-field">
+                <label htmlFor="reg-name">Full name</label>
+                <input id="reg-name" name="name" type="text" value={formData.name} onChange={handleChange} placeholder="Your name" />
+              </div>
+              <div className="form-field">
+                <label htmlFor="reg-email">Email</label>
+                <input id="reg-email" name="email" type="email" value={formData.email} onChange={handleChange} placeholder="you@example.com" />
+              </div>
+            </div>
+            <div className="form-row">
+              <div className="form-field">
+                <label htmlFor="reg-party">Group size</label>
+                <select id="reg-party" name="partySize" value={formData.partySize} onChange={handleChange}>
+                  {Array.from({ length: 12 }).map((_, i) => (
+                    <option key={i + 1} value={String(i + 1)}>{i + 1}</option>
+                  ))}
+                </select>
+              </div>
+              <div className="form-field">
+                <label htmlFor="reg-phone">Phone (optional)</label>
+                <input id="reg-phone" name="phone" type="tel" value={formData.phone} onChange={handleChange} placeholder="+34 600 000 000" />
+              </div>
+            </div>
+            <div className="form-field">
+              <label htmlFor="reg-message">Message (optional)</label>
+              <textarea id="reg-message" name="message" rows="3" value={formData.message} onChange={handleChange} placeholder="Dietary needs, preferred dates, etc."></textarea>
+            </div>
+
+            {error && <p className="form-error">{error}</p>}
+
+            <div className="modal-actions">
+              <button type="button" className="secondary-button" onClick={onClose}>Cancel</button>
+              <button type="submit" className="primary-button" disabled={isSubmitting}>
+                {isSubmitting ? 'Submitting…' : 'Sign up'}
+              </button>
+            </div>
+          </form>
+        )}
+      </div>
+    </div>
+  )
+}
+
 function App() {
   const [activeSection, setActiveSection] = useState('hero')
   const [subscribers, setSubscribers] = useState([])
   const [currentUserSubscribed, setCurrentUserSubscribed] = useState(false)
+  const [isRegOpen, setIsRegOpen] = useState(false)
+  const [registrations, setRegistrations] = useState([])
   
   // Camp data with dates and participant limits
   const campData = {
@@ -174,11 +293,21 @@ function App() {
   useEffect(() => {
     const savedSubscribers = JSON.parse(localStorage.getItem('wineCampSubscribers') || '[]')
     setSubscribers(savedSubscribers)
+    const savedRegistrations = JSON.parse(localStorage.getItem('wineCampRegistrations') || '[]')
+    setRegistrations(savedRegistrations)
   }, [])
 
   const handleSubscribe = (email) => {
     setSubscribers(prev => [...prev, email])
     setCurrentUserSubscribed(true)
+  }
+
+  const handleRegistrationSubmit = (payload) => {
+    const existing = JSON.parse(localStorage.getItem('wineCampRegistrations') || '[]')
+    const updated = [...existing, payload]
+    localStorage.setItem('wineCampRegistrations', JSON.stringify(updated))
+    setIsRegOpen(false)
+    setRegistrations(updated)
   }
 
   useEffect(() => {
@@ -241,6 +370,9 @@ function App() {
           <button className="cta-button" onClick={() => scrollToSection('journeys')}>
             Discover Our Journeys
           </button>
+          <button className="cta-button primary" onClick={() => setIsRegOpen(true)}>
+            Sign up for our next Wine Camp
+          </button>
         </div>
         <div className="hero-image">
           <div className="placeholder-image">
@@ -286,7 +418,7 @@ function App() {
               <div className="camp-status">
                 <div className="status-row">
                   <AvailableSpots 
-                    current={campData.currentParticipants} 
+                    current={campData.currentParticipants + registrations.length} 
                     max={campData.maxParticipants} 
                   />
                   <div className="countdown-container">
@@ -299,17 +431,10 @@ function App() {
                 
                 {/* Subscription Section */}
                 <div className="subscription-section">
-                  <h4>Stay Updated</h4>
-                  <p>Get notified about camp updates, new dates, and exclusive offers.</p>
-                  <SubscriptionForm 
-                    onSubscribe={handleSubscribe}
-                    isSubscribed={currentUserSubscribed}
-                  />
-                  {subscribers.length > 0 && (
-                    <p className="subscriber-count">
-                      {subscribers.length} people are already interested
-                    </p>
-                  )}
+                  <h4>Sign up for our next Wine Camp</h4>
+                  <div className="reg-cta">
+                    <button className="primary-button" onClick={() => setIsRegOpen(true)}>Sign up for our next Wine Camp</button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -431,6 +556,13 @@ function App() {
           </div>
         </div>
       </footer>
+
+      {/* Registration Modal */}
+      <RegistrationModal 
+        isOpen={isRegOpen}
+        onClose={() => setIsRegOpen(false)}
+        onSubmit={handleRegistrationSubmit}
+      />
     </div>
   )
 }
