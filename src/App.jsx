@@ -478,9 +478,14 @@ function App() {
             </div>
             
             <div className="journey-map">
-              <div className="placeholder-map">
-                <span>Penedés Region Map</span>
-              </div>
+              <iframe
+                className="map-embed"
+                title="Penedès Region Map"
+                src="https://www.google.com/maps?q=Pened%C3%A8s%2C+Catalonia&output=embed"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
             </div>
           </div>
         </div>
