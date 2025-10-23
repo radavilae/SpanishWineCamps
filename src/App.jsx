@@ -281,6 +281,7 @@ function App() {
   const [currentUserSubscribed, setCurrentUserSubscribed] = useState(false)
   const [isRegOpen, setIsRegOpen] = useState(false)
   const [registrations, setRegistrations] = useState([])
+  const [showJourneyDetails, setShowJourneyDetails] = useState(false)
   
   // Camp data with dates and participant limits
   const campData = {
@@ -331,6 +332,26 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Handle click outside to close journey details
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (showJourneyDetails) {
+        const journeyCard = document.querySelector('.journey-card')
+        if (journeyCard && !journeyCard.contains(event.target)) {
+          setShowJourneyDetails(false)
+        }
+      }
+    }
+
+    if (showJourneyDetails) {
+      document.addEventListener('mousedown', handleClickOutside)
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [showJourneyDetails])
+
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId)
     if (element) {
@@ -357,59 +378,73 @@ function App() {
       </nav>
 
       {/* Hero Section */}
-      <section id="hero" className="hero">
-        <div className="hero-content">
-          <h1>Spanish Wine Camps</h1>
-          <h2>Catalunya Natural Revolution</h2>
-          <div className="hero-text">
-            <p>Journey alongside <strong>vignerons</strong>, cellar masters, and the singular new voices of Spanish winemaking for the deepest exploration of unparalleled terroirs.</p>
-            <p>Created with professional rigor and unparalleled access, Spanish Wine Camps moves beyond the classical tourist route, bringing small, intimate groups together to discover Spain through its most <strong>defiant and delicious wines</strong>.</p>
-            <p>We don't just visit vineyards; we work the land, taste from barrels deep within the <em>bodegas</em>, and sit at the kitchen tables of the families rewriting the rules of Spanish viticulture, from the granite slopes of Gredos to the salt-laced fog of the Atlantic coast.</p>
-            <p className="cta-text">These are intimate, ethical, intense, and unlike any other wine experience of their kind. <strong>Space is limited.</strong></p>
-          </div>
-          <button className="cta-button" onClick={() => scrollToSection('journeys')}>
-            Discover Our Journeys
-          </button>
-          <button className="cta-button primary" onClick={() => setIsRegOpen(true)}>
-            Sign up for our next Wine Camp
-          </button>
-        </div>
-        <div className="hero-image">
-          <div className="placeholder-image">
-            <span>Vineyard Landscape</span>
+      <section id="hero" className="hero hero-bg-1">
+        <div className="hero-overlay">
+          <div className="hero-content">
+            <h1>Spanish Wine Camps</h1>
+            <h2>Catalunya Natural Revolution</h2>
+            <div className="hero-text">
+              <p>Journey alongside <strong>vignerons</strong>, cellar masters, and the singular new voices of Spanish winemaking for the deepest exploration of unparalleled terroirs.</p>
+              <p>Created with professional rigor and unparalleled access, Spanish Wine Camps moves beyond the classical tourist route, bringing small, intimate groups together to discover Spain through its most <strong>defiant and delicious wines</strong>.</p>
+              <p>We don't just visit vineyards; we work the land, taste from barrels deep within the <em>bodegas</em>, and sit at the kitchen tables of the families rewriting the rules of Spanish viticulture, from the granite slopes of Gredos to the salt-laced fog of the Atlantic coast.</p>
+              <p className="cta-text">These are intimate, ethical, intense, and unlike any other wine experience of their kind. <strong>Space is limited.</strong></p>
+            </div>
+            <div className="hero-buttons">
+              <button className="cta-button" onClick={() => scrollToSection('journeys')}>
+                Discover Our Journeys
+              </button>
+              <button className="cta-button primary" onClick={() => setIsRegOpen(true)}>
+                Sign up for our next Wine Camp
+              </button>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Why Travel Deeper Section */}
-      <section id="why-travel" className="why-travel">
-        <div className="container">
-          <h2>Why Travel Deeper</h2>
-          <p className="section-intro">Every wine has a story. We bring you the hand-picked vineyard and their winemakers, the hidden cellars, and the dramatic landscapes. Our voyages are:</p>
-          
-          <div className="features-grid">
-            <div className="feature">
-              <h3>Boutique & Intimate</h3>
-              <p>Only small groups, never more than 12 guests.</p>
-            </div>
-            <div className="feature">
-              <h3>Authentic & Immersive</h3>
-              <p>From vine to bottle, full access to producers, solo barrel rooms, tastings not open to the general public.</p>
-            </div>
-            <div className="feature">
-              <h3>Story-led Travel</h3>
-              <p>Learned guides, regional experts, winemaking families, tasting traditions passed down generations.</p>
+      <section id="why-travel" className="why-travel why-travel-bg-2">
+        <div className="section-overlay">
+          <div className="container">
+            <h2>Why Travel Deeper</h2>
+            <p className="section-intro">Every wine has a story. We bring you the hand-picked vineyard and their winemakers, the hidden cellars, and the dramatic landscapes. Our voyages are:</p>
+            
+            <div className="features-grid">
+              <div className="feature">
+                <h3>Boutique & Intimate</h3>
+                <p>Only small groups, never more than 12 guests.</p>
+              </div>
+              <div className="feature">
+                <h3>Authentic & Immersive</h3>
+                <p>From vine to bottle, full access to producers, solo barrel rooms, tastings not open to the general public.</p>
+              </div>
+              <div className="feature">
+                <h3>Story-led Travel</h3>
+                <p>Learned guides, regional experts, winemaking families, tasting traditions passed down generations.</p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Upcoming Journeys Section */}
-      <section id="journeys" className="journeys">
-        <div className="container">
-          <h2>Upcoming Journeys</h2>
-          
-          <div className="journey-card">
+      <section id="journeys" className="journeys journeys-bg-3">
+        <div className="section-overlay">
+          <div className="container">
+            <h2>Upcoming Journeys</h2>
+            
+            {!showJourneyDetails ? (
+              <div className="journey-preview">
+                <h3>The Penedés Rebellion</h3>
+                <p className="journey-subtitle">Catalonia's Heartland | <em>The New Guard and the Resurrection of Xarel·lo</em></p>
+                <button 
+                  className="cta-button" 
+                  onClick={() => setShowJourneyDetails(true)}
+                >
+                  Discover This Journey
+                </button>
+              </div>
+            ) : (
+              <div className="journey-card">
             <div className="journey-header">
               <h3>The Penedés Rebellion</h3>
               <p className="journey-subtitle">Catalonia's Heartland | <em>The New Guard and the Resurrection of Xarel·lo</em></p>
@@ -480,20 +515,32 @@ function App() {
             <div className="journey-map">
               <iframe
                 className="map-embed"
-                title="Penedès Region Map"
-                src="https://www.google.com/maps?q=Pened%C3%A8s%2C+Catalonia&output=embed"
+                title="Penedès Region Topographic Map"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3070.5!2d1.7!3d41.4!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4c8b8b8b8b8b8%3A0x12a4c8b8b8b8b8b8!2sPened%C3%A8s%2C%20Catalonia%2C%20Spain!5e0!3m2!1sen!2sus!4v1234567890!5m2!1sen!2sus&t=k"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 allowFullScreen
               />
             </div>
+            
+            <div className="journey-actions">
+              <button 
+                className="cta-button secondary" 
+                onClick={() => setShowJourneyDetails(false)}
+              >
+                Back to Overview
+              </button>
+            </div>
+              </div>
+            )}
           </div>
         </div>
       </section>
 
       {/* What's Included Section */}
-      <section id="included" className="included">
-        <div className="container">
+      <section id="included" className="included included-bg-4">
+        <div className="section-overlay">
+          <div className="container">
           <h2>What's Included</h2>
           <div className="included-grid">
             <div className="included-item">
@@ -518,11 +565,13 @@ function App() {
             </div>
           </div>
         </div>
+        </div>
       </section>
 
       {/* Our Guides & Hosts Section */}
-      <section id="guides" className="guides">
-        <div className="container">
+      <section id="guides" className="guides guides-bg-5">
+        <div className="section-overlay">
+          <div className="container">
           <h2>Our Guides & Hosts</h2>
           <p className="section-intro">Meet the people who make the stories possible.</p>
           
@@ -540,6 +589,7 @@ function App() {
               <p>Historians, chefs, elder locals who share food, music, lore, and each region's unique identity.</p>
             </div>
           </div>
+        </div>
         </div>
       </section>
 
