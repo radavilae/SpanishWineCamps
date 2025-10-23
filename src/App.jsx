@@ -381,7 +381,6 @@ function App() {
       <section id="hero" className="hero hero-bg-1">
         <div className="hero-overlay">
           <div className="hero-content">
-            <h1>Spanish Wine Camps</h1>
             <h2>Catalunya Natural Revolution</h2>
             <div className="hero-text">
               <p>Journey alongside <strong>vignerons</strong>, cellar masters, and the singular new voices of Spanish winemaking for the deepest exploration of unparalleled terroirs.</p>
