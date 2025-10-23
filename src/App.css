@@ -19,6 +19,13 @@ body {
 
 .app {
   min-height: 100vh;
+  min-width: 1200px; /* Force minimum width to maintain desktop layout */
+}
+
+/* Ensure desktop layout on all devices */
+body {
+  min-width: 1200px;
+  overflow-x: auto; /* Allow horizontal scrolling on smaller devices */
 }
 
 /* Floating Hamburger Menu */
@@ -1163,7 +1170,7 @@ section h2 {
   }
 }
 
-/* Tablets */
+/* Tablets - Maintain desktop layout */
 @media (max-width: 768px) {
   .floating-hamburger-menu {
     top: 15px;
@@ -1173,42 +1180,10 @@ section h2 {
   }
   
   .hero {
-    padding: 6rem 1rem 3rem; /* More padding to keep text visible on tablet */
+    padding: 8rem 2rem 6rem; /* Keep same padding as desktop */
   }
 
-  .nav-menu {
-    gap: 1.5rem;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .hero {
-    padding: 7rem 1rem 3rem;
-  }
-
-  .hero-content {
-    flex-direction: column;
-    text-align: center;
-    gap: 2rem;
-  }
-
-  .hero h1 {
-    font-size: 2.8rem;
-  }
-
-  .hero-buttons {
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .hero h2 {
-    font-size: 1.3rem;
-  }
-
-  .hero-text p {
-    font-size: 1rem;
-  }
+  /* Keep desktop layout - no changes to content structure */
 
   .journey-content {
     grid-template-columns: 1fr;
@@ -1326,7 +1301,7 @@ section h2 {
   }
 }
 
-/* Mobile phones */
+/* Mobile phones - Maintain desktop layout */
 @media (max-width: 480px) {
   .floating-hamburger-menu {
     top: 10px;
@@ -1341,7 +1316,7 @@ section h2 {
   }
   
   .hero {
-    padding: 5rem 0.5rem 2rem; /* More padding to keep text visible on mobile */
+    padding: 8rem 2rem 6rem; /* Keep same padding as desktop */
   }
 
   .nav-menu {
@@ -1353,7 +1328,7 @@ section h2 {
   }
 }
 
-/* Small mobile phones */
+/* Small mobile phones - Maintain desktop layout */
 @media (max-width: 360px) {
   .floating-hamburger-menu {
     top: 8px;
@@ -1368,7 +1343,7 @@ section h2 {
   }
   
   .hero {
-    padding: 4rem 0.3rem 1.5rem; /* More padding to keep text visible on small mobile */
+    padding: 8rem 2rem 6rem; /* Keep same padding as desktop */
   }
 
   .nav-menu a {
