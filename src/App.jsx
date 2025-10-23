@@ -282,6 +282,7 @@ function App() {
   const [isRegOpen, setIsRegOpen] = useState(false)
   const [registrations, setRegistrations] = useState([])
   const [showJourneyDetails, setShowJourneyDetails] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   
   // Camp data with dates and participant limits
   const campData = {
@@ -361,21 +362,27 @@ function App() {
 
   return (
     <div className="app">
-      {/* Navigation */}
-      <nav className="navbar">
-        <div className="nav-container">
-          <div className="logo">
-            <h2>Spanish Wine Camps</h2>
-          </div>
-          <ul className="nav-menu">
-            <li><a href="#hero" onClick={() => scrollToSection('hero')} className={activeSection === 'hero' ? 'active' : ''}>Home</a></li>
-            <li><a href="#why-travel" onClick={() => scrollToSection('why-travel')} className={activeSection === 'why-travel' ? 'active' : ''}>Why Travel</a></li>
-            <li><a href="#journeys" onClick={() => scrollToSection('journeys')} className={activeSection === 'journeys' ? 'active' : ''}>Journeys</a></li>
-            <li><a href="#included" onClick={() => scrollToSection('included')} className={activeSection === 'included' ? 'active' : ''}>What's Included</a></li>
-            <li><a href="#guides" onClick={() => scrollToSection('guides')} className={activeSection === 'guides' ? 'active' : ''}>Guides</a></li>
-          </ul>
-        </div>
-      </nav>
+      {/* Floating Hamburger Menu */}
+      <button 
+        className="floating-hamburger-menu"
+        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        aria-label="Toggle menu"
+      >
+        <span className={`hamburger-line ${isMobileMenuOpen ? 'active' : ''}`}></span>
+        <span className={`hamburger-line ${isMobileMenuOpen ? 'active' : ''}`}></span>
+        <span className={`hamburger-line ${isMobileMenuOpen ? 'active' : ''}`}></span>
+      </button>
+      
+      {/* Mobile Menu Overlay */}
+      <div className={`mobile-menu-overlay ${isMobileMenuOpen ? 'open' : ''}`}>
+        <ul className="mobile-nav-menu">
+          <li><a href="#hero" onClick={() => scrollToSection('hero')} className={activeSection === 'hero' ? 'active' : ''}>Home</a></li>
+          <li><a href="#why-travel" onClick={() => scrollToSection('why-travel')} className={activeSection === 'why-travel' ? 'active' : ''}>Why Travel</a></li>
+          <li><a href="#journeys" onClick={() => scrollToSection('journeys')} className={activeSection === 'journeys' ? 'active' : ''}>Journeys</a></li>
+          <li><a href="#included" onClick={() => scrollToSection('included')} className={activeSection === 'included' ? 'active' : ''}>What's Included</a></li>
+          <li><a href="#guides" onClick={() => scrollToSection('guides')} className={activeSection === 'guides' ? 'active' : ''}>Guides</a></li>
+        </ul>
+      </div>
 
       {/* Hero Section */}
       <section id="hero" className="hero hero-bg-1">

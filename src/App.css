@@ -21,17 +21,29 @@ body {
   min-height: 100vh;
 }
 
-/* Navigation */
-.navbar {
+/* Floating Hamburger Menu */
+.floating-hamburger-menu {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  background: rgba(0, 0, 0, 0.95);
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(10px);
-  z-index: 1000;
-  padding: 1rem 0;
-  border-bottom: 1px solid #333;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 1001;
+  transition: all 0.3s ease;
+}
+
+.floating-hamburger-menu:hover {
+  background: rgba(0, 0, 0, 0.8);
+  transform: scale(1.05);
 }
 
 .nav-container {
@@ -45,25 +57,186 @@ body {
 
 .logo h2 {
   color: #ffffff;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 300;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
+  margin: 0;
 }
 
 .nav-menu {
   display: flex;
   list-style: none;
-  gap: 2rem;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-menu a {
   color: #cccccc;
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: 300;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
   transition: color 0.3s ease;
   position: relative;
+  padding: 0.3rem 0;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+  color: #ffffff;
+}
+
+.nav-menu a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #ffffff;
+  transition: width 0.3s ease;
+}
+
+.nav-menu a:hover::after,
+.nav-menu a.active::after {
+  width: 100%;
+}
+
+/* Hamburger Menu Styles - Hidden by default, shown on mobile */
+.hamburger-menu {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1001;
+}
+
+/* Show hamburger menu on mobile */
+.mobile-only {
+  display: none;
+}
+
+.hamburger-line {
+  width: 20px;
+  height: 2px;
+  background: #ffffff;
+  margin: 2px 0;
+  transition: all 0.3s ease;
+  border-radius: 2px;
+}
+
+.hamburger-line.active:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger-line.active:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-line.active:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* Mobile Menu Overlay */
+.mobile-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.mobile-menu-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-nav-menu {
+  list-style: none;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+
+.mobile-nav-menu li {
+  margin: 2rem 0;
+}
+
+.mobile-nav-menu a {
+  color: #cccccc;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: 300;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
+  position: relative;
+  display: block;
+  padding: 1rem;
+}
+
+.mobile-nav-menu a:hover,
+.mobile-nav-menu a.active {
+  color: #ffffff;
+}
+
+.mobile-nav-menu a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: #ffffff;
+  transition: width 0.3s ease;
+}
+
+.mobile-nav-menu a:hover::after,
+.mobile-nav-menu a.active::after {
+  width: 80%;
+}
+
+.logo h2 {
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-menu a {
+  color: #cccccc;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 300;
+  letter-spacing: 0.3px;
+  transition: color 0.3s ease;
+  position: relative;
+  padding: 0.3rem 0;
 }
 
 .nav-menu a:hover,
@@ -92,7 +265,7 @@ body {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding: 10rem 2rem 6rem;
+  padding: 8rem 2rem 6rem; /* More padding to ensure text is visible */
   background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
   position: relative;
   background-size: cover;
@@ -285,6 +458,11 @@ section {
   display: flex;
   align-items: center;
   margin-bottom: 4rem;
+}
+
+/* Sections padding - no extra padding needed since no navbar */
+section:not(.hero) {
+  padding-top: 0; /* No extra padding needed */
 }
 
 section h2 {
@@ -987,11 +1165,15 @@ section h2 {
 
 /* Tablets */
 @media (max-width: 768px) {
-  .nav-container {
-    flex-direction: column;
-    gap: 1rem;
-    padding: 0 1rem;
-    justify-content: center;
+  .floating-hamburger-menu {
+    top: 15px;
+    right: 15px;
+    width: 45px;
+    height: 45px;
+  }
+  
+  .hero {
+    padding: 6rem 1rem 3rem; /* More padding to keep text visible on tablet */
   }
 
   .nav-menu {
@@ -1146,12 +1328,20 @@ section h2 {
 
 /* Mobile phones */
 @media (max-width: 480px) {
-  .navbar {
-    padding: 0.5rem 0;
+  .floating-hamburger-menu {
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
   }
-
-  .nav-container {
-    padding: 0 0.5rem;
+  
+  .hamburger-line {
+    width: 18px;
+    height: 2px;
+  }
+  
+  .hero {
+    padding: 5rem 0.5rem 2rem; /* More padding to keep text visible on mobile */
   }
 
   .nav-menu {
@@ -1160,6 +1350,25 @@ section h2 {
     width: 100%;
     justify-content: center;
     align-items: center;
+  }
+}
+
+/* Small mobile phones */
+@media (max-width: 360px) {
+  .floating-hamburger-menu {
+    top: 8px;
+    right: 8px;
+    width: 35px;
+    height: 35px;
+  }
+  
+  .hamburger-line {
+    width: 16px;
+    height: 2px;
+  }
+  
+  .hero {
+    padding: 4rem 0.3rem 1.5rem; /* More padding to keep text visible on small mobile */
   }
 
   .nav-menu a {
