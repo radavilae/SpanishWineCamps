@@ -1,0 +1,150 @@
+.floatingHamburgerMenu {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 1001;
+  transition: all 0.3s ease;
+}
+
+.floatingHamburgerMenu:hover {
+  background: rgba(0, 0, 0, 0.8);
+  transform: scale(1.05);
+}
+
+.hamburgerLine {
+  width: 20px;
+  height: 2px;
+  background: #ffffff;
+  margin: 2px 0;
+  transition: all 0.3s ease;
+  border-radius: 2px;
+}
+
+.hamburgerLine.active:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburgerLine.active:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburgerLine.active:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* Mobile Menu Overlay */
+.mobileMenuOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.mobileMenuOverlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobileNavMenu {
+  list-style: none;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+
+.mobileNavMenu li {
+  margin: 2rem 0;
+}
+
+.mobileNavMenu a {
+  color: #cccccc;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: 300;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
+  position: relative;
+  display: block;
+  padding: 1rem;
+}
+
+.mobileNavMenu a:hover,
+.mobileNavMenu a.active {
+  color: #ffffff;
+}
+
+.mobileNavMenu a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: #ffffff;
+  transition: width 0.3s ease;
+}
+
+.mobileNavMenu a:hover::after,
+.mobileNavMenu a.active::after {
+  width: 80%;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .floatingHamburgerMenu {
+    top: 15px;
+    right: 15px;
+    width: 45px;
+    height: 45px;
+  }
+}
+
+@media (max-width: 480px) {
+  .floatingHamburgerMenu {
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+  }
+  
+  .hamburgerLine {
+    width: 18px;
+    height: 2px;
+  }
+}
+
+@media (max-width: 360px) {
+  .floatingHamburgerMenu {
+    top: 8px;
+    right: 8px;
+    width: 35px;
+    height: 35px;
+  }
+  
+  .hamburgerLine {
+    width: 16px;
+    height: 2px;
+  }
+}

@@ -1,0 +1,509 @@
+.journeys {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  background-color: #000000;
+  margin-top: 4rem;
+  padding-top: 4rem;
+}
+
+.journeysBg3 {
+  background-image: url('/images/foto 3.jpg');
+}
+
+.sectionOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.journeys h2 {
+  font-size: 2.5rem;
+  font-weight: 300;
+  text-align: center;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  letter-spacing: 1px;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* Journey Preview */
+.journeyPreview {
+  text-align: center;
+  padding: 2rem 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  margin-top: 2rem;
+}
+
+.journeyPreview h3 {
+  font-size: 2.5rem;
+  font-weight: 300;
+  margin-bottom: 1rem;
+  color: #ffffff;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.journeyPreview .journeySubtitle {
+  font-size: 1.2rem;
+  color: #cccccc;
+  margin-bottom: 3rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.ctaButton {
+  background: transparent;
+  border: 2px solid #ffffff;
+  color: #ffffff;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 300;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+.ctaButton:hover {
+  background: #ffffff;
+  color: #000000;
+}
+
+.ctaButton.secondary {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: #ffffff;
+  margin-left: 1rem;
+}
+
+.ctaButton.secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.8);
+  transform: translateY(-2px);
+}
+
+/* Journey Card */
+.journeyCard {
+  background: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 3rem;
+  margin: 2rem 0;
+  min-height: 50vh;
+  max-height: 80vh;
+  position: relative;
+  z-index: 10;
+  cursor: default;
+  margin-top: 2rem;
+  border-radius: 8px;
+  overflow-y: auto;
+}
+
+.journeyHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #333;
+}
+
+.journeyHeader h3 {
+  font-size: 2.5rem;
+  font-weight: 300;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.journeySubtitle {
+  font-size: 1.2rem;
+  color: #cccccc;
+  font-style: italic;
+}
+
+/* Camp Status Styles */
+.campStatus {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid #333;
+  border-radius: 8px;
+  position: relative;
+  z-index: 3;
+}
+
+.statusRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  min-height: 80px;
+  width: 100%;
+}
+
+.countdownContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+  position: relative;
+  z-index: 3;
+}
+
+.countdownLabel {
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.liveIndicator {
+  color: #22c55e;
+  animation: blink 1s infinite;
+  margin-left: 0.3rem;
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0.3;
+  }
+}
+
+.regCta {
+  margin-top: 1rem;
+}
+
+.primaryButton {
+  background: #ffffff;
+  color: #000000;
+  border: none;
+  border-radius: 8px;
+  padding: 0.8rem 1.2rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.primaryButton:hover {
+  background: #e0e0e0;
+  transform: translateY(-1px);
+}
+
+.journeyContent {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 3rem;
+  margin-bottom: 3rem;
+  min-height: 30vh;
+}
+
+.journeyText p {
+  margin-bottom: 1.5rem;
+  color: #e0e0e0;
+  line-height: 1.8;
+}
+
+.journeyText strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.journeyText em {
+  color: #cccccc;
+  font-style: italic;
+}
+
+.journeyDetails {
+  background: transparent;
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.journeyDetails h4 {
+  color: #ffffff;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  font-weight: 400;
+}
+
+.journeyDetails p {
+  color: #cccccc;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.itinerary .day {
+  margin-bottom: 1rem;
+  color: #e0e0e0;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #333;
+}
+
+.journeyMap {
+  margin-top: 2rem;
+}
+
+.mapEmbed {
+  width: 100%;
+  height: 300px;
+  border: 1px solid #333;
+}
+
+.journeyActions {
+  text-align: center;
+  margin-top: 3rem;
+  padding: 2rem 0;
+}
+
+/* Responsive styles */
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+  
+  .journeyCard {
+    padding: 2rem;
+    min-height: 50vh;
+    max-height: 70vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .journeyCard {
+    padding: 1.5rem;
+    margin: 1rem 0;
+    min-height: 40vh;
+    max-height: 60vh;
+  }
+  
+  .journeyPreview {
+    padding: 1rem;
+  }
+  
+  .journeyPreview h3 {
+    font-size: 1.8rem;
+  }
+  
+  .journeyPreview .journey-subtitle {
+    font-size: 1rem;
+  }
+  
+  .journeyHeader h3 {
+    font-size: 1.8rem;
+  }
+  
+  .journeyHeader .journeySubtitle {
+    font-size: 1rem;
+  }
+  
+  .journeyContent {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .journeyMap {
+    margin: 1.5rem 0;
+  }
+  
+  .mapEmbed {
+    height: 250px;
+  }
+  
+  .statusRow {
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+  }
+  
+  .countdownContainer {
+    align-items: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .journeyCard {
+    padding: 1rem;
+    margin: 0.5rem 0;
+    min-height: 35vh;
+    max-height: 50vh;
+  }
+  
+  .journeyPreview {
+    padding: 0.5rem;
+  }
+  
+  .journeyPreview h3 {
+    font-size: 1.5rem;
+  }
+  
+  .journeyPreview .journeySubtitle {
+    font-size: 0.9rem;
+  }
+  
+  .journeyHeader h3 {
+    font-size: 1.5rem;
+  }
+  
+  .journeyHeader .journeySubtitle {
+    font-size: 0.9rem;
+  }
+  
+  .journeyContent {
+    gap: 1rem;
+  }
+  
+  .journeyMap {
+    margin: 1rem 0;
+  }
+  
+  .mapEmbed {
+    height: 200px;
+  }
+  
+  .campStatus {
+    padding: 1rem;
+  }
+  
+  .statusRow {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .countdownContainer {
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .journeyCard {
+    padding: 0.8rem;
+    margin: 0.3rem 0;
+    min-height: 30vh;
+    max-height: 45vh;
+  }
+  
+  .journeyPreview {
+    padding: 0.3rem;
+  }
+  
+  .journeyPreview h3 {
+    font-size: 1.3rem;
+  }
+  
+  .journeyPreview .journeySubtitle {
+    font-size: 0.8rem;
+  }
+  
+  .journeyHeader h3 {
+    font-size: 1.3rem;
+  }
+  
+  .journeyHeader .journeySubtitle {
+    font-size: 0.8rem;
+  }
+  
+  .journeyContent {
+    gap: 0.8rem;
+  }
+  
+  .journeyMap {
+    margin: 0.8rem 0;
+  }
+  
+  .mapEmbed {
+    height: 180px;
+  }
+  
+  .campStatus {
+    padding: 0.8rem;
+  }
+  
+  .journeyActions {
+    margin-top: 1.5rem;
+    padding: 1rem 0;
+  }
+  
+  .ctaButton {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .journeyCard {
+    padding: 0.5rem;
+    margin: 0.2rem 0;
+    min-height: 25vh;
+    max-height: 40vh;
+  }
+  
+  .journeyPreview {
+    padding: 0.2rem;
+  }
+  
+  .journeyPreview h3 {
+    font-size: 1.1rem;
+  }
+  
+  .journeyPreview .journeySubtitle {
+    font-size: 0.7rem;
+  }
+  
+  .journeyHeader h3 {
+    font-size: 1.1rem;
+  }
+  
+  .journeyHeader .journeySubtitle {
+    font-size: 0.7rem;
+  }
+  
+  .journeyContent {
+    gap: 0.5rem;
+  }
+  
+  .journeyMap {
+    margin: 0.5rem 0;
+  }
+  
+  .mapEmbed {
+    height: 150px;
+  }
+  
+  .campStatus {
+    padding: 0.5rem;
+  }
+  
+  .journeyActions {
+    margin-top: 1rem;
+    padding: 0.8rem 0;
+  }
+  
+  .ctaButton {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.8rem;
+  }
+}

@@ -1,0 +1,45 @@
+.availableSpots {
+  padding: 0.8rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: center;
+  min-width: 180px;
+  transition: all 0.3s ease;
+  display: block;
+  position: relative;
+  z-index: 3;
+}
+
+.availableSpots.available {
+  background: rgba(34, 197, 94, 0.2);
+  border: 2px solid #22c55e;
+  color: #22c55e;
+}
+
+.availableSpots.full {
+  background: rgba(239, 68, 68, 0.2);
+  border: 2px solid #ef4444;
+  color: #ef4444;
+}
+
+.spotsText {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .availableSpots {
+    min-width: 160px;
+    padding: 0.7rem 1.2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .availableSpots {
+    min-width: 140px;
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+}
