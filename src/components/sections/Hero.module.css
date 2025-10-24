@@ -227,3 +227,65 @@
     background-attachment: scroll;
   }
 }
+
+/* ===== ESTILOS PARA TÍTULO PRINCIPAL ===== */
+
+/* Título principal "Spanish Wine Camps" */
+.mainTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9);
+  margin-bottom: 0.75rem;
+  line-height: 1.1;
+  font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+/* Subtítulo "Catalunya Natural Revolution" */
+.subTitle {
+  font-size: 1.25rem;
+  font-weight: 300;
+  font-style: italic;
+  color: #ffffff;
+  opacity: 0.9;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  margin-bottom: 1.5rem;
+  line-height: 1.3;
+  letter-spacing: 0.05em;
+}
+
+/* Responsive para título principal */
+@media (max-width: 768px) {
+  .mainTitle {
+    font-size: 2rem;
+    letter-spacing: 0.1em;
+  }
+  
+  .subTitle {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .mainTitle {
+    font-size: 1.75rem;
+    letter-spacing: 0.08em;
+  }
+  
+  .subTitle {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .mainTitle {
+    font-size: 1.5rem;
+    letter-spacing: 0.05em;
+  }
+  
+  .subTitle {
+    font-size: 0.9rem;
+  }
+}
