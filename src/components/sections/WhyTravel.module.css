@@ -6,11 +6,10 @@
   background-attachment: scroll; /* Mobile: no parallax */
   min-height: 100vh;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   background-color: #0a0a0a;
-  margin-bottom: 4rem;
-  padding-top: 4rem;
-  padding-bottom: 4rem;
+  margin: 0;
+  padding: 0;
 }
 
 .whyTravelBg2 {

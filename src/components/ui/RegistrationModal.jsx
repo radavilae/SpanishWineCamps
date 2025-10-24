@@ -108,10 +108,10 @@ const RegistrationModal = ({ isOpen, onClose, onSubmit }) => {
             </button>
           </div>
         ) : (
-          <form className={styles.modalForm} onSubmit={handleSubmit}>
-            <div className={styles.formRow}>
-              <div className={styles.formField}>
-                <label htmlFor="reg-name">Full name *</label>
+          <form className={`mobile-form ${styles.modalForm}`} onSubmit={handleSubmit}>
+            <div className={`mobile-flex mobile-flex-col mobile-gap-md ${styles.formRow}`}>
+              <div className={`mobile-form-group ${styles.formField}`}>
+                <label htmlFor="reg-name" className={`mobile-form-label ${styles.formLabel}`}>Full name *</label>
                 <input 
                   id="reg-name" 
                   name="name" 
@@ -119,12 +119,15 @@ const RegistrationModal = ({ isOpen, onClose, onSubmit }) => {
                   value={formData.name} 
                   onChange={handleFieldChange} 
                   placeholder="Your name" 
+                  className={`mobile-form-input ${styles.formInput}`}
                   required
+                  autoComplete="name"
+                  autoCapitalize="words"
                   aria-describedby={error ? "form-error" : undefined}
                 />
               </div>
-              <div className={styles.formField}>
-                <label htmlFor="reg-email">Email *</label>
+              <div className={`mobile-form-group ${styles.formField}`}>
+                <label htmlFor="reg-email" className={`mobile-form-label ${styles.formLabel}`}>Email *</label>
                 <input 
                   id="reg-email" 
                   name="email" 
@@ -132,20 +135,24 @@ const RegistrationModal = ({ isOpen, onClose, onSubmit }) => {
                   value={formData.email} 
                   onChange={handleFieldChange} 
                   placeholder="you@example.com" 
+                  className={`mobile-form-input ${styles.formInput}`}
                   required
+                  autoComplete="email"
+                  autoCapitalize="none"
                   aria-describedby={error ? "form-error" : undefined}
                 />
               </div>
             </div>
             
-            <div className={styles.formRow}>
-              <div className={styles.formField}>
-                <label htmlFor="reg-party">Group size *</label>
+            <div className={`mobile-flex mobile-flex-col mobile-gap-md ${styles.formRow}`}>
+              <div className={`mobile-form-group ${styles.formField}`}>
+                <label htmlFor="reg-party" className={`mobile-form-label ${styles.formLabel}`}>Group size *</label>
                 <select 
                   id="reg-party" 
                   name="partySize" 
                   value={formData.partySize} 
                   onChange={handleFieldChange}
+                  className={`mobile-form-input ${styles.formInput}`}
                   required
                 >
                   {Array.from({ length: 12 }, (_, i) => (
@@ -155,8 +162,8 @@ const RegistrationModal = ({ isOpen, onClose, onSubmit }) => {
                   ))}
                 </select>
               </div>
-              <div className={styles.formField}>
-                <label htmlFor="reg-phone">Phone (optional)</label>
+              <div className={`mobile-form-group ${styles.formField}`}>
+                <label htmlFor="reg-phone" className={`mobile-form-label ${styles.formLabel}`}>Phone (optional)</label>
                 <input 
                   id="reg-phone" 
                   name="phone" 
@@ -164,12 +171,15 @@ const RegistrationModal = ({ isOpen, onClose, onSubmit }) => {
                   value={formData.phone} 
                   onChange={handleFieldChange} 
                   placeholder="+34 600 000 000" 
+                  className={`mobile-form-input ${styles.formInput}`}
+                  autoComplete="tel"
+                  inputMode="tel"
                 />
               </div>
             </div>
             
-            <div className={styles.formField}>
-              <label htmlFor="reg-message">Message (optional)</label>
+            <div className={`mobile-form-group ${styles.formField}`}>
+              <label htmlFor="reg-message" className={`mobile-form-label ${styles.formLabel}`}>Message (optional)</label>
               <textarea 
                 id="reg-message" 
                 name="message" 
@@ -177,26 +187,28 @@ const RegistrationModal = ({ isOpen, onClose, onSubmit }) => {
                 value={formData.message} 
                 onChange={handleFieldChange} 
                 placeholder="Dietary needs, preferred dates, etc."
+                className={`mobile-form-input ${styles.formInput}`}
+                style={{ minHeight: 'var(--touch-target-comfortable)' }}
               />
             </div>
 
             {error && (
-              <p id="form-error" className={styles.formError} role="alert">
+              <p id="form-error" className={`mobile-text-sm ${styles.formError}`} role="alert">
                 {error}
               </p>
             )}
 
-            <div className={styles.modalActions}>
+            <div className={`mobile-flex mobile-flex-col mobile-gap-md ${styles.modalActions}`}>
               <button 
                 type="button" 
-                className={styles.secondaryButton} 
+                className={`touch-button btn-secondary mobile-p-lg ${styles.secondaryButton}`}
                 onClick={onClose}
               >
                 Cancel
               </button>
               <button 
                 type="submit" 
-                className={styles.primaryButton} 
+                className={`touch-button-large btn-primary mobile-p-lg ${styles.primaryButton}`}
                 disabled={isSubmitting}
                 aria-describedby={isSubmitting ? "submitting-text" : undefined}
               >

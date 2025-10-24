@@ -21,6 +21,15 @@ import { useLocalStorage } from './hooks/useLocalStorage'
 import { getSubscribers, getRegistrations, addRegistration } from './utils/storage'
 import { CAMP_CONFIG } from './constants/campData'
 
+// Mobile optimization imports
+import { 
+  preloadCriticalResources, 
+  lazyLoadImages, 
+  optimizeViewport,
+  getConnectionType,
+  isMobileDevice 
+} from './utils/mobilePerformance'
+
 /**
  * Main App component with improved structure and error handling
  * Follows clean code principles with clear separation of concerns
@@ -50,8 +59,8 @@ function App() {
         const savedSubscribers = getSubscribers()
         const savedRegistrations = getRegistrations()
         
-    setSubscribers(savedSubscribers)
-    setRegistrations(savedRegistrations)
+        setSubscribers(savedSubscribers)
+        setRegistrations(savedRegistrations)
       } catch (error) {
         console.error('Error loading initial data:', error)
       }
@@ -59,6 +68,41 @@ function App() {
 
     loadInitialData()
   }, [setSubscribers, setRegistrations])
+
+  // Mobile optimization setup
+  useEffect(() => {
+    const setupMobileOptimizations = () => {
+      try {
+        // Optimizar viewport para móviles
+        optimizeViewport()
+        
+        // Detectar si es móvil
+        const isMobile = isMobileDevice()
+        const connectionType = getConnectionType()
+        
+        if (isMobile) {
+          // Preload recursos críticos solo en conexiones rápidas
+          if (connectionType === '4g' || connectionType === '5g') {
+            preloadCriticalResources([
+              { url: '/images/home-1.jpg', type: 'image' },
+              { url: '/images/foto2.jpeg', type: 'image' },
+              { url: '/images/foto 3.jpg', type: 'image' }
+            ], connectionType)
+          }
+          
+          // Lazy load de imágenes no críticas
+          lazyLoadImages('img[data-src]', {
+            rootMargin: '50px 0px',
+            threshold: 0.1
+          })
+        }
+      } catch (error) {
+        console.error('Error setting up mobile optimizations:', error)
+      }
+    }
+
+    setupMobileOptimizations()
+  }, [])
 
   /**
    * Handle subscription with error handling

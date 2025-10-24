@@ -6,6 +6,31 @@
   /* Ensure proper layout flow */
   display: flex;
   flex-direction: column;
+  /* Eliminar espacios entre secciones */
+  margin: 0;
+  padding: 0;
+}
+
+/* Eliminar espacios entre todas las secciones */
+.app > section {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  outline: none !important;
+  /* Transiciones suaves entre secciones */
+  transition: all 0.3s ease;
+}
+
+/* Transición suave entre secciones */
+.app > section:not(:first-child) {
+  position: relative;
+  z-index: 1;
+}
+
+/* Asegurar que las secciones se conecten perfectamente */
+.app > section + section {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
 }
 
 /* Responsive body */
@@ -21,7 +46,7 @@ section {
   width: 100%;
   position: relative;
   /* Ensure sections don't overlap */
-  min-height: auto;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -29,6 +54,9 @@ section {
   /* Prevent content overflow */
   overflow: hidden;
   box-sizing: border-box;
+  /* Eliminar espacios entre secciones */
+  margin: 0;
+  padding: 0;
 }
 
 /* Responsive section content */
@@ -48,15 +76,15 @@ section {
   min-height: auto;
 }
 
-/* Responsive headings */
+/* Responsive headings - Ultra pequeños */
 .heading-1 {
-  font-size: 2rem;
+  font-size: 1.125rem; /* Ultra pequeño: 18px */
   font-weight: 300;
   text-align: center;
-  margin-bottom: 1.5rem;
-  letter-spacing: 1px;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.25px;
   color: #ffffff;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
   /* Prevent text overflow */
   width: 100%;
   max-width: 100%;
@@ -66,13 +94,13 @@ section {
 }
 
 .heading-2 {
-  font-size: 1.75rem;
+  font-size: 1rem; /* Ultra pequeño: 16px */
   font-weight: 300;
   text-align: center;
-  margin-bottom: 1rem;
-  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.25px;
   color: #ffffff;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
   /* Prevent text overflow */
   width: 100%;
   max-width: 100%;
@@ -82,9 +110,9 @@ section {
 }
 
 .heading-3 {
-  font-size: 1.5rem;
+  font-size: 0.875rem; /* Ultra pequeño: 14px */
   font-weight: 400;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.25rem;
   color: #ffffff;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
   /* Prevent text overflow */
@@ -97,98 +125,98 @@ section {
 
 /* Responsive Design - Mobile First */
 
-/* Mobile (320px+) */
+/* Mobile (320px+) - Ultra pequeños mantenidos */
 @media (min-width: 320px) {
+  .section-content {
+    padding: 0 0.75rem;
+  }
+
+  .heading-1 {
+    font-size: 1.125rem;
+  }
+
+  .heading-2 {
+    font-size: 1rem;
+  }
+
+  .heading-3 {
+    font-size: 0.875rem;
+  }
+}
+
+/* Small Mobile (480px+) - Incremento mínimo */
+@media (min-width: 480px) {
   .section-content {
     padding: 0 1rem;
   }
-  
+
   .heading-1 {
-    font-size: 2rem;
+    font-size: 1.25rem;
   }
-  
+
   .heading-2 {
-    font-size: 1.75rem;
+    font-size: 1.125rem;
   }
-  
+
   .heading-3 {
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
 }
 
-/* Small Mobile (480px+) */
-@media (min-width: 480px) {
+/* Tablet (768px+) - Incremento moderado */
+@media (min-width: 768px) {
   .section-content {
     padding: 0 1.5rem;
   }
-  
+
   .heading-1 {
-    font-size: 2.5rem;
+    font-size: 1.5rem;
   }
-  
+
   .heading-2 {
-    font-size: 2rem;
+    font-size: 1.25rem;
   }
-  
+
   .heading-3 {
-    font-size: 1.75rem;
+    font-size: 1.125rem;
   }
 }
 
-/* Tablet (768px+) */
-@media (min-width: 768px) {
+/* Desktop (1024px+) - Incremento controlado */
+@media (min-width: 1024px) {
   .section-content {
     padding: 0 2rem;
   }
-  
+
   .heading-1 {
-    font-size: 3rem;
+    font-size: 1.75rem;
   }
-  
+
   .heading-2 {
-    font-size: 2.5rem;
+    font-size: 1.5rem;
   }
-  
+
   .heading-3 {
-    font-size: 2rem;
+    font-size: 1.25rem;
   }
 }
 
-/* Desktop (1024px+) */
-@media (min-width: 1024px) {
+/* Large Desktop (1200px+) - Tamaño máximo ultra controlado */
+@media (min-width: 1200px) {
   .section-content {
     padding: 0 2.5rem;
   }
-  
-  .heading-1 {
-    font-size: 3.5rem;
-  }
-  
-  .heading-2 {
-    font-size: 3rem;
-  }
-  
-  .heading-3 {
-    font-size: 2.25rem;
-  }
-}
 
-/* Large Desktop (1200px+) */
-@media (min-width: 1200px) {
-  .section-content {
-    padding: 0 3rem;
-  }
-  
   .heading-1 {
-    font-size: 4rem;
+    font-size: 2rem;
   }
-  
+
   .heading-2 {
-    font-size: 3.5rem;
+    font-size: 1.75rem;
   }
-  
+
   .heading-3 {
-    font-size: 2.5rem;
+    font-size: 1.5rem;
   }
 }
 

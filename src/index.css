@@ -1,6 +1,7 @@
 /* Import responsive system first */
 @import './styles/responsive.css';
 @import './styles/responsive-images.css';
+@import './styles/mobile-optimization.css';
 @import './styles/utilities.css';
 
 @tailwind base;

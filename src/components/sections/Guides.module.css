@@ -8,6 +8,8 @@
   display: flex;
   align-items: center;
   background-color: #000000;
+  margin: 0;
+  padding: 0;
 }
 
 .guidesBg5 {

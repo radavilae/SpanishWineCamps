@@ -1,0 +1,63 @@
+/**
+ * Touch Gestures Module CSS
+ * Estilos para gestos táctiles
+ */
+
+.touchContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  /* Mejorar la respuesta táctil */
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+.touchContainer.dragging {
+  /* Feedback visual durante el drag */
+  cursor: grabbing;
+}
+
+.touchContainer.dragging * {
+  /* Prevenir selección de texto durante drag */
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+/* Optimizaciones para dispositivos táctiles */
+@media (hover: none) and (pointer: coarse) {
+  .touchContainer {
+    /* Mejorar la respuesta táctil */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+}
+
+/* Optimizaciones para dispositivos con stylus */
+@media (pointer: fine) {
+  .touchContainer {
+    /* Permitir selección de texto con stylus */
+    user-select: text;
+  }
+}
+
+/* Reducir animaciones para usuarios que lo prefieren */
+@media (prefers-reduced-motion: reduce) {
+  .touchContainer {
+    transition: none;
+  }
+}
+
+/* Optimizaciones de rendimiento */
+.touchContainer {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}

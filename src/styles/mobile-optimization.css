@@ -1,0 +1,400 @@
+/**
+ * Optimización Móvil Completa
+ * Mejoras específicas para dispositivos móviles
+ */
+
+/* ===== VARIABLES MÓVILES ===== */
+:root {
+  /* Touch targets - Mínimo 44px según Apple/Google */
+  --touch-target-min: 44px;
+  --touch-target-comfortable: 48px;
+  --touch-target-large: 56px;
+  
+  /* Spacing móvil optimizado - Ultra compacto */
+  --mobile-spacing-xs: 0.0625rem; /* 1px */
+  --mobile-spacing-sm: 0.125rem; /* 2px */
+  --mobile-spacing-md: 0.25rem; /* 4px */
+  --mobile-spacing-lg: 0.5rem; /* 8px */
+  --mobile-spacing-xl: 0.75rem; /* 12px */
+  
+  /* Font sizes móviles - Ultra pequeños */
+  --mobile-font-xs: 0.5rem; /* 8px */
+  --mobile-font-sm: 0.625rem; /* 10px */
+  --mobile-font-base: 0.75rem; /* 12px */
+  --mobile-font-lg: 0.875rem; /* 14px */
+  --mobile-font-xl: 1rem; /* 16px */
+  --mobile-font-2xl: 1.125rem; /* 18px */
+  
+  /* Safe areas para dispositivos con notch */
+  --safe-area-top: env(safe-area-inset-top);
+  --safe-area-bottom: env(safe-area-inset-bottom);
+  --safe-area-left: env(safe-area-inset-left);
+  --safe-area-right: env(safe-area-inset-right);
+}
+
+/* ===== OPTIMIZACIÓN DE TOUCH TARGETS ===== */
+
+/* Botones táctiles optimizados - Ultra pequeños */
+.touch-button {
+  min-height: 28px; /* Ultra pequeño */
+  min-width: 28px;
+  padding: var(--mobile-spacing-xs) var(--mobile-spacing-sm);
+  border-radius: 4px;
+  font-size: var(--mobile-font-xs);
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  /* Mejorar la respuesta táctil */
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.touch-button:active {
+  transform: scale(0.98);
+  transition: transform 0.1s ease;
+}
+
+/* Botones grandes para acciones importantes - Ultra pequeños */
+.touch-button-large {
+  min-height: 32px; /* Ultra pequeño */
+  min-width: 32px;
+  padding: var(--mobile-spacing-sm) var(--mobile-spacing-md);
+  font-size: var(--mobile-font-sm);
+}
+
+/* ===== NAVEGACIÓN MÓVIL OPTIMIZADA ===== */
+
+/* Hamburger menu mejorado */
+.mobile-hamburger {
+  position: fixed;
+  top: var(--safe-area-top, 1rem);
+  right: var(--safe-area-right, 1rem);
+  z-index: 1001;
+  width: var(--touch-target-comfortable);
+  height: var(--touch-target-comfortable);
+  background: rgba(0, 0, 0, 0.8);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.mobile-hamburger:active {
+  transform: scale(0.95);
+}
+
+/* Líneas del hamburger */
+.hamburger-line {
+  width: 20px;
+  height: 2px;
+  background: #ffffff;
+  margin: 2px 0;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+.hamburger-line.active:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger-line.active:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-line.active:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* Menu overlay optimizado */
+.mobile-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(20px);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  /* Safe area support */
+  padding-top: var(--safe-area-top);
+  padding-bottom: var(--safe-area-bottom);
+  padding-left: var(--safe-area-left);
+  padding-right: var(--safe-area-right);
+}
+
+.mobile-menu-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Lista de navegación móvil */
+.mobile-nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.mobile-nav-item {
+  margin: var(--mobile-spacing-lg) 0;
+}
+
+.mobile-nav-link {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: var(--mobile-font-xl);
+  font-weight: 300;
+  padding: var(--mobile-spacing-md) var(--mobile-spacing-xl);
+  display: block;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  min-height: var(--touch-target-comfortable);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link.active {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+/* ===== FORMULARIOS MÓVILES OPTIMIZADOS ===== */
+
+.mobile-form {
+  width: 100%;
+  max-width: 100%;
+}
+
+.mobile-form-group {
+  margin-bottom: var(--mobile-spacing-lg);
+}
+
+.mobile-form-label {
+  display: block;
+  font-size: var(--mobile-font-base);
+  font-weight: 500;
+  color: #ffffff;
+  margin-bottom: var(--mobile-spacing-sm);
+}
+
+.mobile-form-input {
+  width: 100%;
+  min-height: var(--touch-target-comfortable);
+  padding: var(--mobile-spacing-md);
+  font-size: var(--mobile-font-base);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  transition: all 0.3s ease;
+  /* Mejorar la experiencia de escritura */
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.mobile-form-input:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.08);
+  transform: scale(1.02);
+}
+
+.mobile-form-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* ===== SCROLLING SUAVE MÓVIL ===== */
+
+.smooth-scroll-mobile {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ===== GESTOS TÁCTILES ===== */
+
+/* Swipe gestures */
+.swipe-container {
+  touch-action: pan-x pan-y;
+  overflow: hidden;
+}
+
+.swipe-item {
+  transition: transform 0.3s ease;
+}
+
+/* Pull to refresh */
+.pull-to-refresh {
+  position: relative;
+  overflow: hidden;
+}
+
+.pull-to-refresh-indicator {
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: top 0.3s ease;
+}
+
+/* ===== PERFORMANCE MÓVIL ===== */
+
+.mobile-optimized {
+  /* Mejorar el rendimiento de pintura */
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Lazy loading para móviles */
+.mobile-lazy {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.mobile-lazy.loaded {
+  opacity: 1;
+}
+
+/* ===== RESPONSIVE BREAKPOINTS MÓVILES ===== */
+
+/* Mobile First - Base styles */
+@media (max-width: 767px) {
+  /* Typography móvil */
+  .mobile-text-xs { font-size: var(--mobile-font-xs); }
+  .mobile-text-sm { font-size: var(--mobile-font-sm); }
+  .mobile-text-base { font-size: var(--mobile-font-base); }
+  .mobile-text-lg { font-size: var(--mobile-font-lg); }
+  .mobile-text-xl { font-size: var(--mobile-font-xl); }
+  .mobile-text-2xl { font-size: var(--mobile-font-2xl); }
+  
+  /* Spacing móvil */
+  .mobile-p-xs { padding: var(--mobile-spacing-xs); }
+  .mobile-p-sm { padding: var(--mobile-spacing-sm); }
+  .mobile-p-md { padding: var(--mobile-spacing-md); }
+  .mobile-p-lg { padding: var(--mobile-spacing-lg); }
+  .mobile-p-xl { padding: var(--mobile-spacing-xl); }
+  
+  .mobile-m-xs { margin: var(--mobile-spacing-xs); }
+  .mobile-m-sm { margin: var(--mobile-spacing-sm); }
+  .mobile-m-md { margin: var(--mobile-spacing-md); }
+  .mobile-m-lg { margin: var(--mobile-spacing-lg); }
+  .mobile-m-xl { margin: var(--mobile-spacing-xl); }
+  
+  /* Layout móvil */
+  .mobile-flex-col { flex-direction: column; }
+  .mobile-flex-row { flex-direction: row; }
+  .mobile-justify-center { justify-content: center; }
+  .mobile-items-center { align-items: center; }
+  .mobile-text-center { text-align: center; }
+  
+  /* Grid móvil */
+  .mobile-grid-1 { grid-template-columns: 1fr; }
+  .mobile-grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .mobile-gap-sm { gap: var(--mobile-spacing-sm); }
+  .mobile-gap-md { gap: var(--mobile-spacing-md); }
+  .mobile-gap-lg { gap: var(--mobile-spacing-lg); }
+}
+
+/* Small Mobile (320px - 480px) */
+@media (max-width: 480px) {
+  .mobile-hamburger {
+    top: var(--safe-area-top, 0.5rem);
+    right: var(--safe-area-right, 0.5rem);
+    width: var(--touch-target-min);
+    height: var(--touch-target-min);
+  }
+  
+  .mobile-nav-link {
+    font-size: var(--mobile-font-lg);
+    padding: var(--mobile-spacing-sm) var(--mobile-spacing-lg);
+  }
+  
+  .mobile-form-input {
+    min-height: var(--touch-target-min);
+    font-size: var(--mobile-font-sm);
+  }
+}
+
+/* Large Mobile (481px - 767px) */
+@media (min-width: 481px) and (max-width: 767px) {
+  .mobile-hamburger {
+    width: var(--touch-target-comfortable);
+    height: var(--touch-target-comfortable);
+  }
+  
+  .mobile-nav-link {
+    font-size: var(--mobile-font-xl);
+    padding: var(--mobile-spacing-md) var(--mobile-spacing-xl);
+  }
+}
+
+/* ===== OPTIMIZACIONES DE RENDIMIENTO MÓVIL ===== */
+
+/* Reducir animaciones en móviles de bajo rendimiento */
+@media (prefers-reduced-motion: reduce) {
+  .mobile-optimized,
+  .touch-button,
+  .mobile-nav-link,
+  .mobile-form-input {
+    transition: none;
+    animation: none;
+  }
+}
+
+/* Optimización para conexiones lentas */
+@media (prefers-reduced-data: reduce) {
+  .mobile-lazy {
+    opacity: 1;
+  }
+}
+
+/* ===== ACCESIBILIDAD MÓVIL ===== */
+
+/* Focus visible para navegación por teclado */
+.mobile-nav-link:focus-visible,
+.touch-button:focus-visible,
+.mobile-form-input:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .mobile-nav-link,
+  .touch-button,
+  .mobile-form-input {
+    border: 2px solid #ffffff;
+  }
+}
+
+/* ===== UTILIDADES MÓVILES ===== */
+
+/* Safe area utilities */
+.safe-area-top { padding-top: var(--safe-area-top); }
+.safe-area-bottom { padding-bottom: var(--safe-area-bottom); }
+.safe-area-left { padding-left: var(--safe-area-left); }
+.safe-area-right { padding-right: var(--safe-area-right); }
+
+/* Touch utilities */
+.touch-manipulation { touch-action: manipulation; }
+.touch-pan-x { touch-action: pan-x; }
+.touch-pan-y { touch-action: pan-y; }
+
+/* Viewport utilities */
+.mobile-viewport-height { height: 100vh; height: 100dvh; }
+.mobile-viewport-width { width: 100vw; width: 100dvw; }
