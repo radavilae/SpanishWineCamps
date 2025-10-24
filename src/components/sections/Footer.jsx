@@ -2,20 +2,24 @@ import styles from './Footer.module.css'
 
 const Footer = () => {
   return (
-    <footer className={`${styles.footer} bg-gray-900 border-t border-gray-600 py-12`}>
-      <div className={`${styles.container} max-w-6xl mx-auto px-8`}>
-        <div className={`${styles.footerContent} grid grid-cols-1 md:grid-cols-2 gap-8 mb-8`}>
-          <div className={styles.footerSection}>
-            <h3 className="text-white mb-4 font-normal text-xl">Spanish Wine Camps</h3>
-            <p className="text-gray-300 leading-relaxed">Catalunya Natural Revolution</p>
+    <footer className={`${styles.footer} bg-gray-900 border-t border-gray-600`}>
+      <div className="responsive-container">
+        <div className="flex-grid">
+          <div className="col-1 col-2">
+            <div className="flex flex-col gap-sm">
+              <h3 className="heading-3 text-white">Spanish Wine Camps</h3>
+              <p className="text-base text-gray-300">Catalunya Natural Revolution</p>
+            </div>
           </div>
-          <div className={styles.footerSection}>
-            <h4 className="text-white mb-4 font-normal text-lg">Contact</h4>
-            <p className="text-gray-300 leading-relaxed">Space is limited. Scroll to learn more.</p>
+          <div className="col-1 col-2">
+            <div className="flex flex-col gap-sm">
+              <h4 className="heading-3 text-white">Contact</h4>
+              <p className="text-base text-gray-300">Space is limited. Scroll to learn more.</p>
+            </div>
           </div>
         </div>
-        <div className={`${styles.footerBottom} text-center pt-8 border-t border-gray-600`}>
-          <p className="text-gray-500 text-sm">&copy; 2024 Spanish Wine Camps. All rights reserved.</p>
+        <div className="flex justify-center items-center pt-lg border-t border-gray-600 mt-lg">
+          <p className="text-sm text-gray-500">&copy; 2024 Spanish Wine Camps. All rights reserved.</p>
         </div>
       </div>
     </footer>

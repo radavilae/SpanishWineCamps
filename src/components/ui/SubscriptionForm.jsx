@@ -1,26 +1,38 @@
+/**
+ * Subscription Form Component
+ * Refactored for better error handling and validation
+ */
 import { useState } from 'react'
+import { isValidEmail } from '../../utils/validation'
+import { addSubscriber } from '../../utils/storage'
 import styles from './SubscriptionForm.module.css'
 
+/**
+ * Subscription form with improved validation and error handling
+ * @param {Function} onSubscribe - Callback when subscription is successful
+ * @param {boolean} isSubscribed - Whether user is already subscribed
+ */
 const SubscriptionForm = ({ onSubscribe, isSubscribed }) => {
+  // Form state management
   const [email, setEmail] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
 
-  const validateEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    return emailRegex.test(email)
-  }
-
-  const handleSubmit = async (e) => {
-    e.preventDefault()
+  /**
+   * Handle form submission with improved validation
+   * @param {Event} event - Form submit event
+   */
+  const handleSubmit = async (event) => {
+    event.preventDefault()
     setError('')
     
+    // Input validation
     if (!email.trim()) {
       setError('Please enter your email address')
       return
     }
     
-    if (!validateEmail(email)) {
+    if (!isValidEmail(email)) {
       setError('Please enter a valid email address')
       return
     }
@@ -28,25 +40,36 @@ const SubscriptionForm = ({ onSubscribe, isSubscribed }) => {
     setIsLoading(true)
     
     try {
-      // Simulate API call - in real implementation, this would save to backend
+      // Simulate API call with proper error handling
       await new Promise(resolve => setTimeout(resolve, 1000))
       
-      // Save to localStorage for demo purposes
-      const subscribers = JSON.parse(localStorage.getItem('wineCampSubscribers') || '[]')
-      if (!subscribers.includes(email)) {
-        subscribers.push(email)
-        localStorage.setItem('wineCampSubscribers', JSON.stringify(subscribers))
+      // Save to storage with error handling
+      const success = addSubscriber(email)
+      if (success) {
+        onSubscribe(email)
+        setEmail('')
+      } else {
+        setError('Failed to save subscription. Please try again.')
       }
-      
-      onSubscribe(email)
-      setEmail('')
-    } catch (err) {
+    } catch (error) {
+      console.error('Subscription error:', error)
       setError('Something went wrong. Please try again.')
     } finally {
       setIsLoading(false)
     }
   }
 
+  /**
+   * Handle input change with validation
+   * @param {Event} event - Input change event
+   */
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value)
+    // Clear error when user starts typing
+    if (error) setError('')
+  }
+
+  // Success state component
   if (isSubscribed) {
     return (
       <div className={styles.subscriptionSuccess}>
@@ -62,20 +85,27 @@ const SubscriptionForm = ({ onSubscribe, isSubscribed }) => {
         <input
           type="email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={handleEmailChange}
           placeholder="Enter your email"
           className={styles.emailInput}
           disabled={isLoading}
+          aria-label="Email address"
+          required
         />
         <button 
           type="submit" 
           className={styles.subscribeButton}
           disabled={isLoading}
+          aria-label={isLoading ? 'Signing up...' : 'Sign up'}
         >
           {isLoading ? 'Signing up...' : 'Sign up'}
         </button>
       </div>
-      {error && <p className={styles.errorMessage}>{error}</p>}
+      {error && (
+        <p className={styles.errorMessage} role="alert">
+          {error}
+        </p>
+      )}
     </form>
   )
 }

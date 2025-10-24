@@ -1,128 +1,163 @@
+/**
+ * Main App Component
+ * Refactored for better maintainability and clean code principles
+ */
 import { useState, useEffect } from 'react'
 import './App.css'
 
-// Import components
+// Component imports - organized by type
 import MobileMenu from './components/ui/MobileMenu'
+import RegistrationModal from './components/ui/RegistrationModal'
 import Hero from './components/sections/Hero'
 import WhyTravel from './components/sections/WhyTravel'
 import Journeys from './components/sections/Journeys'
 import Included from './components/sections/Included'
 import Guides from './components/sections/Guides'
 import Footer from './components/sections/Footer'
-import RegistrationModal from './components/ui/RegistrationModal'
 
+// Utility imports
+import { useScrollNavigation } from './hooks/useScrollNavigation'
+import { useLocalStorage } from './hooks/useLocalStorage'
+import { getSubscribers, getRegistrations, addRegistration } from './utils/storage'
+import { CAMP_CONFIG } from './constants/campData'
+
+/**
+ * Main App component with improved structure and error handling
+ * Follows clean code principles with clear separation of concerns
+ */
 function App() {
-  const [activeSection, setActiveSection] = useState('hero')
-  const [subscribers, setSubscribers] = useState([])
-  const [currentUserSubscribed, setCurrentUserSubscribed] = useState(false)
-  const [isRegOpen, setIsRegOpen] = useState(false)
-  const [registrations, setRegistrations] = useState([])
+  // State management with descriptive names
+  const [isRegistrationModalOpen, setIsRegistrationModalOpen] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [currentUserSubscribed, setCurrentUserSubscribed] = useState(false)
   
-  // Camp data with dates and participant limits
+  // Custom hooks for better logic separation
+  const { activeSection, scrollToSection } = useScrollNavigation()
+  const [subscribers, setSubscribers] = useLocalStorage(CAMP_CONFIG.STORAGE_KEYS.SUBSCRIBERS, [])
+  const [registrations, setRegistrations] = useLocalStorage(CAMP_CONFIG.STORAGE_KEYS.REGISTRATIONS, [])
+
+  // Camp data configuration - centralized and maintainable
   const campData = {
-    launchDate: new Date(Date.now() + 8 * 24 * 60 * 60 * 1000).toISOString(), // 8 days from now
-    currentParticipants: 8,
-    maxParticipants: 12
+    launchDate: new Date(Date.now() + CAMP_CONFIG.LAUNCH_DATE_OFFSET_DAYS * 24 * 60 * 60 * 1000).toISOString(),
+    currentParticipants: CAMP_CONFIG.CURRENT_PARTICIPANTS,
+    maxParticipants: CAMP_CONFIG.MAX_PARTICIPANTS
   }
 
-  // Load subscribers from localStorage on component mount
+  // Load initial data from localStorage on component mount
   useEffect(() => {
-    const savedSubscribers = JSON.parse(localStorage.getItem('wineCampSubscribers') || '[]')
+    const loadInitialData = () => {
+      try {
+        const savedSubscribers = getSubscribers()
+        const savedRegistrations = getRegistrations()
+        
     setSubscribers(savedSubscribers)
-    const savedRegistrations = JSON.parse(localStorage.getItem('wineCampRegistrations') || '[]')
     setRegistrations(savedRegistrations)
-  }, [])
-
-  const handleSubscribe = (email) => {
-    setSubscribers(prev => [...prev, email])
-    setCurrentUserSubscribed(true)
-  }
-
-  const handleRegistrationSubmit = (payload) => {
-    const existing = JSON.parse(localStorage.getItem('wineCampRegistrations') || '[]')
-    const updated = [...existing, payload]
-    localStorage.setItem('wineCampRegistrations', JSON.stringify(updated))
-    setIsRegOpen(false)
-    setRegistrations(updated)
-  }
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = ['hero', 'why-travel', 'journeys', 'included', 'guides']
-      const scrollPosition = window.scrollY + 100
-
-      for (const section of sections) {
-        const element = document.getElementById(section)
-        if (element) {
-          const { offsetTop, offsetHeight } = element
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section)
-            break
-          }
-        }
+      } catch (error) {
+        console.error('Error loading initial data:', error)
       }
     }
 
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+    loadInitialData()
+  }, [setSubscribers, setRegistrations])
 
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
+  /**
+   * Handle subscription with error handling
+   * @param {string} email - Subscriber email
+   */
+  const handleSubscribe = (email) => {
+    try {
+    setSubscribers(prev => [...prev, email])
+    setCurrentUserSubscribed(true)
+    } catch (error) {
+      console.error('Error handling subscription:', error)
     }
-    setIsMobileMenuOpen(false)
   }
 
+  /**
+   * Handle registration submission with validation
+   * @param {Object} registrationData - Registration form data
+   */
+  const handleRegistrationSubmit = (registrationData) => {
+    try {
+      const success = addRegistration(registrationData)
+      if (success) {
+        setRegistrations(prev => [...prev, registrationData])
+        setIsRegistrationModalOpen(false)
+      } else {
+        console.error('Failed to save registration')
+      }
+    } catch (error) {
+      console.error('Error handling registration:', error)
+    }
+  }
+
+  /**
+   * Handle opening registration modal
+   * Centralized modal state management
+   */
   const handleOpenRegistration = () => {
-    setIsRegOpen(true)
+    setIsRegistrationModalOpen(true)
   }
 
-  const handleCloseMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen)
+  /**
+   * Handle closing registration modal
+   * Centralized modal state management
+   */
+  const handleCloseRegistration = () => {
+    setIsRegistrationModalOpen(false)
+  }
+
+  /**
+   * Handle mobile menu toggle
+   * Centralized menu state management
+   */
+  const handleToggleMobileMenu = () => {
+    setIsMobileMenuOpen(prev => !prev)
+  }
+
+  /**
+   * Handle navigation with mobile menu closure
+   * @param {string} sectionId - Target section ID
+   */
+  const handleNavigation = (sectionId) => {
+    scrollToSection(sectionId)
+    setIsMobileMenuOpen(false)
   }
 
   return (
     <div className="app">
-      {/* Mobile Menu */}
+      {/* Mobile Navigation */}
       <MobileMenu 
         isOpen={isMobileMenuOpen}
-        onClose={handleCloseMobileMenu}
+        onClose={handleToggleMobileMenu}
         activeSection={activeSection}
-        onScrollToSection={scrollToSection}
+        onScrollToSection={handleNavigation}
       />
 
-      {/* Hero Section */}
+      {/* Main Content Sections */}
       <Hero 
         onScrollToSection={scrollToSection}
         onOpenRegistration={handleOpenRegistration}
       />
 
-      {/* Why Travel Deeper Section */}
       <WhyTravel />
 
-      {/* Upcoming Journeys Section */}
       <Journeys 
         campData={campData}
         registrations={registrations}
         onOpenRegistration={handleOpenRegistration}
       />
 
-      {/* What's Included Section */}
       <Included />
 
-      {/* Our Guides & Hosts Section */}
       <Guides />
 
-      {/* Footer */}
       <Footer />
 
       {/* Registration Modal */}
       <RegistrationModal 
-        isOpen={isRegOpen}
-        onClose={() => setIsRegOpen(false)}
+        isOpen={isRegistrationModalOpen}
+        onClose={handleCloseRegistration}
         onSubmit={handleRegistrationSubmit}
       />
     </div>

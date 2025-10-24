@@ -7,22 +7,23 @@ const Journeys = ({ campData, registrations, onOpenRegistration }) => {
   const [showJourneyDetails, setShowJourneyDetails] = useState(false)
 
   return (
-    <section id="journeys" className={`${styles.journeys} ${styles.journeysBg3} min-h-screen flex items-start relative bg-cover bg-center bg-no-repeat`}>
+    <section id="journeys" className={`${styles.journeys} ${styles.journeysBg3} section`}>
       <div className={styles.sectionOverlay}>
-        <div className={`${styles.container} max-w-6xl mx-auto px-8 relative z-10 w-full`}>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-center mb-8 mt-8 tracking-wider text-white">Upcoming Journeys</h2>
-          
-          {!showJourneyDetails ? (
-            <div className={`${styles.journeyPreview} text-center p-8 max-w-4xl mx-auto mt-8`}>
-              <h3 className="text-4xl md:text-5xl font-light mb-4 text-white">The Penedés Rebellion</h3>
-              <p className={`${styles.journeySubtitle} text-xl text-gray-300 mb-12`}>Catalonia's Heartland | <em>The New Guard and the Resurrection of Xarel·lo</em></p>
-              <button 
-                className={`${styles.ctaButton} bg-transparent border-2 border-white text-white px-8 py-4 text-base font-light tracking-wider cursor-pointer transition-all duration-300 uppercase hover:bg-white hover:text-black`} 
-                onClick={() => setShowJourneyDetails(true)}
-              >
-                Discover This Journey
-              </button>
-            </div>
+        <div className="section-content">
+          <div className="flex flex-col items-center text-center gap-lg">
+            <h2 className="heading-1 text-white">Upcoming Journeys</h2>
+            
+            {!showJourneyDetails ? (
+              <div className="flex flex-col items-center text-center gap-lg max-w-4xl">
+                <h3 className="heading-1 text-white">The Penedés Rebellion</h3>
+                <p className="text-lg text-gray-300 italic">Catalonia's Heartland | <em>The New Guard and the Resurrection of Xarel·lo</em></p>
+                <button 
+                  className="btn btn-secondary" 
+                  onClick={() => setShowJourneyDetails(true)}
+                >
+                  Discover This Journey
+                </button>
+              </div>
           ) : (
             <div className={styles.journeyCard}>
               <div className={styles.journeyHeader}>
@@ -110,6 +111,7 @@ const Journeys = ({ campData, registrations, onOpenRegistration }) => {
               </div>
             </div>
           )}
+          </div>
         </div>
       </div>
     </section>

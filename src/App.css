@@ -1,124 +1,201 @@
-/* App-level styles */
+/* App-level styles - Responsive */
 .app {
   min-height: 100vh;
-  min-width: 1200px;
-  overflow-x: auto;
-}
-
-/* Ensure desktop layout on all devices */
-body {
-  min-width: 1200px;
-  overflow-x: auto;
-}
-
-/* Global section styles */
-section {
-  padding: 8rem 0;
-  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+  /* Ensure proper layout flow */
   display: flex;
+  flex-direction: column;
+}
+
+/* Responsive body */
+body {
+  width: 100%;
+  overflow-x: hidden;
+  /* Prevent content overflow */
+  box-sizing: border-box;
+}
+
+/* Global section styles - Responsive */
+section {
+  width: 100%;
+  position: relative;
+  /* Ensure sections don't overlap */
+  min-height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  margin-bottom: 4rem;
+  /* Prevent content overflow */
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
-/* Sections padding - no extra padding needed since no navbar */
-section:not(.hero) {
-  padding-top: 0;
+/* Responsive section content */
+.section-content {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  position: relative;
+  z-index: 2;
+  /* Ensure content doesn't overflow */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: auto;
 }
 
-/* Global section headings */
-section h2 {
-  font-size: 2.5rem;
+/* Responsive headings */
+.heading-1 {
+  font-size: 2rem;
   font-weight: 300;
   text-align: center;
-  margin-bottom: 2rem;
-  margin-top: 2rem;
+  margin-bottom: 1.5rem;
   letter-spacing: 1px;
   color: #ffffff;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  /* Prevent text overflow */
+  width: 100%;
+  max-width: 100%;
+  word-wrap: break-word;
+  hyphens: auto;
+  line-height: 1.2;
 }
 
-/* Global section intro text */
-.section-intro {
+.heading-2 {
+  font-size: 1.75rem;
+  font-weight: 300;
   text-align: center;
-  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
   color: #ffffff;
-  margin-bottom: 3rem;
-  margin-top: 0;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  /* Prevent text overflow */
+  width: 100%;
+  max-width: 100%;
+  word-wrap: break-word;
+  hyphens: auto;
+  line-height: 1.3;
 }
 
-/* Responsive Design */
+.heading-3 {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-bottom: 0.75rem;
+  color: #ffffff;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  /* Prevent text overflow */
+  width: 100%;
+  max-width: 100%;
+  word-wrap: break-word;
+  hyphens: auto;
+  line-height: 1.4;
+}
 
-/* Large tablets and small desktops */
-@media (max-width: 1024px) {
-  .app {
-    min-width: 100%;
+/* Responsive Design - Mobile First */
+
+/* Mobile (320px+) */
+@media (min-width: 320px) {
+  .section-content {
+    padding: 0 1rem;
   }
   
-  body {
-    min-width: 100%;
-  }
-}
-
-/* Tablets - Maintain desktop layout */
-@media (max-width: 768px) {
-  section {
-    padding: 4rem 0;
-    min-height: 80vh;
-  }
-}
-
-/* Mobile landscape and small tablets */
-@media (max-width: 640px) {
-  section h2 {
+  .heading-1 {
     font-size: 2rem;
   }
-
-  .section-intro {
-    font-size: 1.1rem;
+  
+  .heading-2 {
+    font-size: 1.75rem;
   }
-}
-
-/* Mobile phones - Maintain desktop layout */
-@media (max-width: 480px) {
-  section {
-    padding: 3rem 0;
-    min-height: 70vh;
-  }
-
-  section h2 {
-    font-size: 1.8rem;
-  }
-
-  .section-intro {
-    font-size: 1rem;
-  }
-}
-
-/* Small mobile phones - Maintain desktop layout */
-@media (max-width: 360px) {
-  section {
-    padding: 2rem 0;
-    min-height: 60vh;
-  }
-
-  section h2 {
+  
+  .heading-3 {
     font-size: 1.5rem;
   }
+}
 
-  .section-intro {
-    font-size: 0.9rem;
+/* Small Mobile (480px+) */
+@media (min-width: 480px) {
+  .section-content {
+    padding: 0 1.5rem;
+  }
+  
+  .heading-1 {
+    font-size: 2.5rem;
+  }
+  
+  .heading-2 {
+    font-size: 2rem;
+  }
+  
+  .heading-3 {
+    font-size: 1.75rem;
+  }
+}
+
+/* Tablet (768px+) */
+@media (min-width: 768px) {
+  .section-content {
+    padding: 0 2rem;
+  }
+  
+  .heading-1 {
+    font-size: 3rem;
+  }
+  
+  .heading-2 {
+    font-size: 2.5rem;
+  }
+  
+  .heading-3 {
+    font-size: 2rem;
+  }
+}
+
+/* Desktop (1024px+) */
+@media (min-width: 1024px) {
+  .section-content {
+    padding: 0 2.5rem;
+  }
+  
+  .heading-1 {
+    font-size: 3.5rem;
+  }
+  
+  .heading-2 {
+    font-size: 3rem;
+  }
+  
+  .heading-3 {
+    font-size: 2.25rem;
+  }
+}
+
+/* Large Desktop (1200px+) */
+@media (min-width: 1200px) {
+  .section-content {
+    padding: 0 3rem;
+  }
+  
+  .heading-1 {
+    font-size: 4rem;
+  }
+  
+  .heading-2 {
+    font-size: 3.5rem;
+  }
+  
+  .heading-3 {
+    font-size: 2.5rem;
   }
 }
 
 /* Landscape orientation for mobile */
 @media (max-height: 500px) and (orientation: landscape) {
-  section {
-    padding: 2rem 0;
-    min-height: 60vh;
+  .section {
+    min-height: 80vh;
   }
 }
 
@@ -129,12 +206,21 @@ section h2 {
 
 /* Touch device optimizations */
 @media (hover: none) and (pointer: coarse) {
-  /* Touch-specific styles if needed */
+  .btn {
+    min-height: 48px;
+    padding: 1rem 1.5rem;
+  }
 }
 
 /* High contrast mode support */
 @media (prefers-contrast: high) {
-  /* High contrast styles if needed */
+  .card {
+    border: 2px solid #ffffff;
+  }
+  
+  .btn {
+    border: 2px solid #ffffff;
+  }
 }
 
 /* Reduced motion support */

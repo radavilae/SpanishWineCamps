@@ -1,3 +1,7 @@
+/* Import responsive system first */
+@import './styles/responsive.css';
+@import './styles/utilities.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
