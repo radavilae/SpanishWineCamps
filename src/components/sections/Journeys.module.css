@@ -3,6 +3,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-attachment: scroll; /* Mobile: no parallax */
   min-height: 100vh;
   display: flex;
   align-items: flex-start;
@@ -13,6 +14,11 @@
 
 .journeysBg3 {
   background-image: url('/images/foto 3.jpg');
+  /* Responsive background positioning */
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
 }
 
 .sectionOverlay {
@@ -505,5 +511,47 @@
   .ctaButton {
     padding: 0.6rem 1.2rem;
     font-size: 0.8rem;
+  }
+}
+
+/* ===== RESPONSIVE IMAGE SYSTEM ===== */
+
+/* Mobile - No parallax */
+@media (max-width: 767px) {
+  .journeys {
+    background-attachment: scroll;
+  }
+  
+  .journeysBg3 {
+    background-attachment: scroll;
+    background-position: center center;
+  }
+}
+
+/* Tablet and Desktop - Parallax effect */
+@media (min-width: 768px) {
+  .journeys {
+    background-attachment: fixed;
+  }
+  
+  .journeysBg3 {
+    background-attachment: fixed;
+    background-position: center center;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .journeysBg3 {
+    background-size: cover;
+    background-position: center center;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .journeys,
+  .journeysBg3 {
+    background-attachment: scroll;
   }
 }

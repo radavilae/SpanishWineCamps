@@ -3,6 +3,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-attachment: scroll; /* Mobile: no parallax */
   min-height: 100vh;
   display: flex;
   align-items: flex-start;
@@ -14,6 +15,11 @@
 
 .whyTravelBg2 {
   background-image: url('/images/foto2.jpeg');
+  /* Responsive background positioning */
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
 }
 
 .sectionOverlay {
@@ -153,5 +159,47 @@
 
   .feature p {
     font-size: 0.9rem;
+  }
+}
+
+/* ===== RESPONSIVE IMAGE SYSTEM ===== */
+
+/* Mobile - No parallax */
+@media (max-width: 767px) {
+  .whyTravel {
+    background-attachment: scroll;
+  }
+  
+  .whyTravelBg2 {
+    background-attachment: scroll;
+    background-position: center center;
+  }
+}
+
+/* Tablet and Desktop - Parallax effect */
+@media (min-width: 768px) {
+  .whyTravel {
+    background-attachment: fixed;
+  }
+  
+  .whyTravelBg2 {
+    background-attachment: fixed;
+    background-position: center center;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .whyTravelBg2 {
+    background-size: cover;
+    background-position: center center;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .whyTravel,
+  .whyTravelBg2 {
+    background-attachment: scroll;
   }
 }

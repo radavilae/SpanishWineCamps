@@ -3,6 +3,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-attachment: scroll; /* Mobile: no parallax */
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -11,6 +12,11 @@
 
 .guidesBg5 {
   background-image: url('/images/foto 5.jpg');
+  /* Responsive background positioning */
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
 }
 
 .sectionOverlay {
@@ -146,5 +152,47 @@
 
   .guideCategory p {
     font-size: 0.9rem;
+  }
+}
+
+/* ===== RESPONSIVE IMAGE SYSTEM ===== */
+
+/* Mobile - No parallax */
+@media (max-width: 767px) {
+  .guides {
+    background-attachment: scroll;
+  }
+  
+  .guidesBg5 {
+    background-attachment: scroll;
+    background-position: center center;
+  }
+}
+
+/* Tablet and Desktop - Parallax effect */
+@media (min-width: 768px) {
+  .guides {
+    background-attachment: fixed;
+  }
+  
+  .guidesBg5 {
+    background-attachment: fixed;
+    background-position: center center;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .guidesBg5 {
+    background-size: cover;
+    background-position: center center;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .guides,
+  .guidesBg5 {
+    background-attachment: scroll;
   }
 }

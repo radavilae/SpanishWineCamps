@@ -5,13 +5,20 @@
   padding: 8rem 2rem 6rem;
   background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
   position: relative;
+  /* Responsive background image system */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-attachment: scroll; /* Mobile: no parallax */
 }
 
 .heroBg1 {
   background-image: url('/images/home-1.jpg');
+  /* Responsive background positioning */
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
 }
 
 .heroOverlay {
@@ -175,5 +182,47 @@
   .ctaButton {
     padding: 0.7rem 1.2rem;
     font-size: 0.85rem;
+  }
+}
+
+/* ===== RESPONSIVE IMAGE SYSTEM ===== */
+
+/* Mobile - No parallax */
+@media (max-width: 767px) {
+  .hero {
+    background-attachment: scroll;
+  }
+  
+  .heroBg1 {
+    background-attachment: scroll;
+    background-position: center center;
+  }
+}
+
+/* Tablet and Desktop - Parallax effect */
+@media (min-width: 768px) {
+  .hero {
+    background-attachment: fixed;
+  }
+  
+  .heroBg1 {
+    background-attachment: fixed;
+    background-position: center center;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .heroBg1 {
+    background-size: cover;
+    background-position: center center;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero,
+  .heroBg1 {
+    background-attachment: scroll;
   }
 }
