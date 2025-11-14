@@ -131,7 +131,7 @@
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  background-color: #ffffff;
+  background-color: #000000;
   border: 3px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -342,21 +342,34 @@
     padding: 1.5rem;
   }
 
+  .journeyContent {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
   .journeyTitle {
     font-size: 2.5rem;
+    letter-spacing: 1.5px;
   }
 
   .journeyDescription {
     font-size: 1.1rem;
+    line-height: 1.7;
   }
 
   .guestsSection {
-    gap: 1.75rem;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    justify-content: flex-start;
   }
 
   .guestImage {
-    width: 110px;
-    height: 110px;
+    width: 100px;
+    height: 100px;
+  }
+
+  .guestName {
+    font-size: 0.9rem;
   }
 }
 
@@ -377,8 +390,8 @@
 
   .journeyContent {
     max-width: 100%;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 
   .journeyTitle {
@@ -404,12 +417,12 @@
   }
 
   .guestImage {
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
   }
 
   .guestName {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
 
   .journeyActions {
@@ -433,6 +446,7 @@
   .includedModalContent {
     padding: 2rem;
     max-width: 100%;
+    max-height: 85vh;
   }
 
   .modalJourneyTitle {
@@ -460,39 +474,32 @@
   .includedItem p {
     font-size: 0.9rem;
   }
-
-  .guestsSection {
-    gap: 1rem;
-    margin-bottom: 2rem;
-  }
-
-  .guestImage {
-    width: 80px;
-    height: 80px;
-  }
-
-  .guestName {
-    font-size: 0.85rem;
-  }
 }
 
 @media (max-width: 480px) {
   .journeySection {
     min-height: 70vh;
+    background-attachment: scroll !important;
+  }
+
+  .journeySection.cinematic::before,
+  .journeySection.cinematic::after {
+    height: 8%;
   }
 
   .journeyOverlay {
-    padding: 0.5rem;
+    padding: 1rem 0.5rem;
   }
 
   .journeyContent {
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
   }
 
   .journeyTitle {
     font-size: 1.5rem;
     margin-bottom: 0.8rem;
+    letter-spacing: 0.5px;
     line-height: 1.2;
   }
 
@@ -507,7 +514,7 @@
   }
 
   .guestsSection {
-    gap: 0.75rem;
+    gap: 1rem;
     margin-bottom: 1.5rem;
     justify-content: center;
   }
@@ -515,16 +522,22 @@
   .guestImage {
     width: 70px;
     height: 70px;
+    border-width: 2px;
   }
 
   .guestName {
     font-size: 0.75rem;
   }
 
+  .journeyActions {
+    gap: 0.75rem;
+  }
+
   .inquireButton,
   .itineraryButton {
     padding: 0.9rem 1.5rem;
     font-size: 0.85rem;
+    letter-spacing: 1px;
   }
 
   .includedModal {
@@ -533,6 +546,7 @@
 
   .includedModalContent {
     padding: 1.5rem;
+    max-height: 90vh;
   }
 
   .closeButton {
@@ -577,20 +591,102 @@
 
 /* Mobile - No parallax */
 @media (max-width: 767px) {
-  .journeysSection {
-    background-attachment: scroll;
-    min-height: 80vh;
+  .journeySection {
+    background-attachment: scroll !important;
   }
 
-  .journeySection {
-    background-attachment: scroll;
+  #catalunya-roussellon {
+    background-attachment: scroll !important;
   }
 }
 
-/* Tablet and Desktop - Parallax effect */
-@media (min-width: 768px) {
+/* Tablet - Conditional parallax */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .journeySection {
+    background-attachment: scroll;
+  }
+
+  #catalunya-roussellon {
+    background-attachment: scroll !important;
+  }
+}
+
+/* Desktop - Parallax effect */
+@media (min-width: 1025px) {
   .journeySection {
     background-attachment: fixed;
+  }
+
+  #catalunya-roussellon {
+    background-attachment: fixed !important;
+  }
+}
+
+/* Tablet Landscape */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  .journeySection {
+    min-height: 100vh;
+  }
+
+  .journeyTitle {
+    font-size: 2.8rem;
+  }
+
+  .guestsSection {
+    gap: 1.75rem;
+  }
+
+  .guestImage {
+    width: 110px;
+    height: 110px;
+  }
+}
+
+/* Large Desktop */
+@media (min-width: 1440px) {
+  .journeyContent {
+    max-width: 1000px;
+  }
+
+  .journeyTitle {
+    font-size: 4rem;
+  }
+
+  .journeyDescription {
+    font-size: 1.4rem;
+  }
+
+  .guestsSection {
+    gap: 2.5rem;
+  }
+
+  .guestImage {
+    width: 140px;
+    height: 140px;
+  }
+
+  .guestName {
+    font-size: 1.1rem;
+  }
+}
+
+/* Mobile Landscape */
+@media (max-width: 767px) and (orientation: landscape) {
+  .journeySection {
+    min-height: 100vh;
+  }
+
+  .journeyTitle {
+    font-size: 1.8rem;
+  }
+
+  .guestsSection {
+    gap: 1.25rem;
+  }
+
+  .guestImage {
+    width: 80px;
+    height: 80px;
   }
 }
 
