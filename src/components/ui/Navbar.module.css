@@ -90,11 +90,28 @@
   .navList {
     gap: 0.5rem;
     flex-wrap: wrap;
+    justify-content: center;
   }
 
   .navLink {
     font-size: 0.75rem;
     padding: 0.4rem 0.5rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .navbar {
+    padding: 0.5rem 0.5rem;
+  }
+
+  .navList {
+    gap: 0.25rem;
+  }
+
+  .navLink {
+    font-size: 0.7rem;
+    padding: 0.35rem 0.4rem;
+    letter-spacing: 0.3px;
   }
 }
 
