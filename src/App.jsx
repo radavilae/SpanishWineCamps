@@ -6,12 +6,11 @@ import { useState, useEffect } from 'react'
 import './App.css'
 
 // Component imports - organized by type
-import MobileMenu from './components/ui/MobileMenu'
+import Navbar from './components/ui/Navbar'
 import RegistrationModal from './components/ui/RegistrationModal'
 import Hero from './components/sections/Hero'
 import WhyTravel from './components/sections/WhyTravel'
 import Journeys from './components/sections/Journeys'
-import Included from './components/sections/Included'
 import Guides from './components/sections/Guides'
 import Footer from './components/sections/Footer'
 
@@ -37,7 +36,6 @@ import {
 function App() {
   // State management with descriptive names
   const [isRegistrationModalOpen, setIsRegistrationModalOpen] = useState(false)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [currentUserSubscribed, setCurrentUserSubscribed] = useState(false)
   
   // Custom hooks for better logic separation
@@ -152,28 +150,17 @@ function App() {
   }
 
   /**
-   * Handle mobile menu toggle
-   * Centralized menu state management
-   */
-  const handleToggleMobileMenu = () => {
-    setIsMobileMenuOpen(prev => !prev)
-  }
-
-  /**
-   * Handle navigation with mobile menu closure
+   * Handle navigation
    * @param {string} sectionId - Target section ID
    */
   const handleNavigation = (sectionId) => {
     scrollToSection(sectionId)
-    setIsMobileMenuOpen(false)
   }
 
   return (
     <div className="app">
-      {/* Mobile Navigation */}
-      <MobileMenu 
-        isOpen={isMobileMenuOpen}
-        onClose={handleToggleMobileMenu}
+      {/* Navigation Bar */}
+      <Navbar 
         activeSection={activeSection}
         onScrollToSection={handleNavigation}
       />
@@ -191,8 +178,6 @@ function App() {
         registrations={registrations}
         onOpenRegistration={handleOpenRegistration}
       />
-
-      <Included />
 
       <Guides />
 

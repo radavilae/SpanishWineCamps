@@ -2,7 +2,7 @@ import styles from './Footer.module.css'
 
 const Footer = () => {
   return (
-    <footer className={`${styles.footer} bg-gray-900 border-t border-gray-600`}>
+    <footer id="contact" className={`${styles.footer} bg-gray-900 border-t border-gray-600`}>
       <div className="responsive-container">
         <div className="flex-grid">
           <div className="col-1 col-2">

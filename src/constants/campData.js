@@ -19,9 +19,9 @@ export const CAMP_CONFIG = {
 export const NAVIGATION_SECTIONS = [
   'hero',
   'why-travel', 
-  'journeys',
-  'included',
-  'guides'
+  'catalunya-priorat',
+  'guides',
+  'contact'
 ]
 
 /**
