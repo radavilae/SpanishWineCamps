@@ -1,10 +1,13 @@
-import { useState } from 'react'
+import { useState, Fragment } from 'react'
+import { useJourneys } from '../../hooks/useStrapiData'
 import styles from './Journeys.module.css'
 
 const Journeys = ({ campData, registrations, onOpenRegistration }) => {
   const [selectedJourney, setSelectedJourney] = useState(null)
+  const { journeys: strapiJourneys, loading } = useJourneys()
 
-  const journeys = [
+  // Fallback journeys if Strapi is not available
+  const fallbackJourneys = [
     {
       id: 1,
       sectionId: 'catalunya-priorat',
@@ -77,6 +80,22 @@ const Journeys = ({ campData, registrations, onOpenRegistration }) => {
     }
   ]
 
+  // Use Strapi journeys if available, otherwise use fallback
+  const journeys = loading || !strapiJourneys || strapiJourneys.length === 0 
+    ? fallbackJourneys 
+    : strapiJourneys.map(journey => ({
+        ...journey,
+        date: journey.dateText || (journey.date ? new Date(journey.date).toLocaleDateString() : 'Coming Soon'),
+        guests: journey.guests || [],
+        includedItems: journey.includedItems || [
+          { title: 'Accommodation', description: 'Hotels (casa rural, etc)' },
+          { title: 'All Meals', description: 'Including dinners paired with local wines' },
+          { title: 'Guided Tours', description: 'Vineyards, cellars, barrel rooms' },
+          { title: 'Private Tastings', description: 'Masterclasses with local winemakers / sommeliers' },
+          { title: 'Transportation', description: 'During the journey' },
+        ],
+      }))
+
   const handleJourneyClick = (journey) => {
     setSelectedJourney(journey)
   }
@@ -93,7 +112,7 @@ const Journeys = ({ campData, registrations, onOpenRegistration }) => {
           id={journey.sectionId}
           className={`${styles.journeySection} ${!journey.image ? styles.noImage : ''} ${journey.image ? styles.cinematic : ''}`}
           style={journey.image ? { 
-            backgroundImage: `url("${journey.image}")`,
+            backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.6) 55%, rgba(0, 0, 0, 0.2) 100%), url("${journey.image}")`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
@@ -151,28 +170,47 @@ const Journeys = ({ campData, registrations, onOpenRegistration }) => {
               </svg>
             </button>
             <h3 className={styles.modalJourneyTitle}>{selectedJourney.title}</h3>
+            {selectedJourney.price && (
+              <div className={styles.journeyPrice}>
+                <span className={styles.priceLabel}>Price:</span>
+                <span className={styles.priceValue}>
+                  {selectedJourney.price} {selectedJourney.priceCurrency || 'EUR'}
+                </span>
+              </div>
+            )}
             <h4 className={styles.includedTitle}>What's Included</h4>
             <div className={styles.includedItems}>
-              <div className={styles.includedItem}>
-                <h5>Accommodation</h5>
-                <p>Hotels (casa rural, etc)</p>
-              </div>
-              <div className={styles.includedItem}>
-                <h5>All Meals</h5>
-                <p>Including dinners paired with local wines</p>
-              </div>
-              <div className={styles.includedItem}>
-                <h5>Guided Tours</h5>
-                <p>Vineyards, cellars, barrel rooms</p>
-              </div>
-              <div className={styles.includedItem}>
-                <h5>Private Tastings</h5>
-                <p>Masterclasses with local winemakers / sommeliers</p>
-              </div>
-              <div className={styles.includedItem}>
-                <h5>Transportation</h5>
-                <p>During the journey</p>
-              </div>
+              {selectedJourney.includedItems && selectedJourney.includedItems.length > 0 ? (
+                selectedJourney.includedItems.map((item, index) => (
+                  <div key={index} className={styles.includedItem}>
+                    <h5>{item.title}</h5>
+                    <p>{item.description}</p>
+                  </div>
+                ))
+              ) : (
+                <>
+                  <div className={styles.includedItem}>
+                    <h5>Accommodation</h5>
+                    <p>Hotels (casa rural, etc)</p>
+                  </div>
+                  <div className={styles.includedItem}>
+                    <h5>All Meals</h5>
+                    <p>Including dinners paired with local wines</p>
+                  </div>
+                  <div className={styles.includedItem}>
+                    <h5>Guided Tours</h5>
+                    <p>Vineyards, cellars, barrel rooms</p>
+                  </div>
+                  <div className={styles.includedItem}>
+                    <h5>Private Tastings</h5>
+                    <p>Masterclasses with local winemakers / sommeliers</p>
+                  </div>
+                  <div className={styles.includedItem}>
+                    <h5>Transportation</h5>
+                    <p>During the journey</p>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </div>

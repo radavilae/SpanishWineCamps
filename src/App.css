@@ -27,6 +27,8 @@
   z-index: 1;
 }
 
+/* Soft fade between sections */
+
 /* Asegurar que las secciones se conecten perfectamente */
 .app > section + section {
   margin-top: 0 !important;
@@ -45,8 +47,8 @@ body {
 section {
   width: 100%;
   position: relative;
-  /* Ensure sections don't overlap */
-  min-height: 100vh;
+  /* Reduce vertical spacing between sections */
+  min-height: 75vh;
   display: flex;
   flex-direction: column;
   justify-content: center;

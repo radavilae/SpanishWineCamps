@@ -16,3 +16,4 @@ const WhyTravel = () => {
 }
 
 export default WhyTravel
+

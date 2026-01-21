@@ -68,6 +68,7 @@
   line-height: 1.8;
   color: #ffffff;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  font-family: 'Montserrat', Arial, sans-serif;
 }
 
 .heroText strong {
@@ -93,8 +94,8 @@
   background: transparent;
   border: 2px solid #ffffff;
   color: #ffffff;
-  padding: 1rem 2rem;
-  font-size: 1rem;
+  padding: 1.4rem 3rem;
+  font-size: 1.2rem;
   font-weight: 300;
   letter-spacing: 1px;
   cursor: pointer;
@@ -117,9 +118,203 @@
 .heroButtons {
   display: flex;
   gap: 1rem;
-  margin-top: 2rem;
+  margin-top: 3rem;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+/* Bigger secondary CTA in Home ("Discover Our Journeys") */
+.heroSecondaryButton {
+  padding: 1.8rem 3.6rem !important;
+  font-size: 1.3rem !important;
+  letter-spacing: 1.5px;
+}
+
+/* Bigger primary CTA in Home ("Sign up for our next Wine Camp") */
+.heroPrimaryWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.heroPrimaryBadge {
+  font-size: 0.75rem;
+  letter-spacing: 0.18rem;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: linear-gradient(120deg, #b31217, #e52d27);
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  box-shadow: 0 8px 18px rgba(229, 45, 39, 0.35);
+}
+
+.heroPrimaryButton {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: #ffffff;
+  font-size: 1.1rem;
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  padding: 0.6rem 1.6rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.heroPrimaryButton:hover {
+  background: #ffffff;
+  color: #000000;
+}
+
+/* Journeys preview modal */
+.journeyPreviewBackdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 1.5rem;
+}
+
+.journeyPreviewPanel {
+  width: min(900px, 100%);
+  background: rgba(10, 10, 10, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 18px;
+  padding: 1.5rem;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6);
+  max-height: 85vh;
+  overflow: hidden;
+}
+
+.journeyPreviewHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.journeyPreviewTitle {
+  margin: 0;
+  font-size: 1.1rem;
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.journeyPreviewClose {
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  letter-spacing: 0.08rem;
+  text-transform: uppercase;
+}
+
+.journeyPreviewScroll {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  scroll-snap-type: x mandatory;
+}
+
+.journeyPreviewCard {
+  flex: 0 0 auto;
+  min-width: 180px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  border-radius: 14px;
+  color: #ffffff;
+  text-align: left;
+  cursor: pointer;
+  scroll-snap-align: start;
+  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+}
+
+.journeyPreviewThumb {
+  width: 100%;
+  height: 140px;
+  border-radius: 10px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.journeyPreviewThumb::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0) 60%);
+}
+
+.journeyPreviewCard:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.35);
+  transform: translateY(-4px);
+}
+
+.journeyPreviewCardTitle {
+  position: absolute;
+  left: 0.75rem;
+  right: 0.75rem;
+  bottom: 0.75rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08rem;
+  font-weight: 500;
+  display: block;
+  z-index: 1;
+  line-height: 1.2;
+  text-align: left;
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.journeyPreviewThumb:hover .journeyPreviewCardTitle {
+  opacity: 1;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .journeyPreviewCardTitle {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 640px) {
+  .journeyPreviewPanel {
+    padding: 1rem;
+  }
+
+  .journeyPreviewScroll {
+    gap: 0.75rem;
+  }
+
+  .journeyPreviewCard {
+    min-width: 150px;
+  }
+
+  .journeyPreviewThumb {
+    height: 120px;
+  }
+
+  .journeyPreviewCardTitle {
+    font-size: 0.7rem;
+    letter-spacing: 0.06rem;
+  }
 }
 
 /* Responsive styles */
@@ -163,8 +358,18 @@
   }
 
   .ctaButton {
-    padding: 0.8rem 1.5rem;
-    font-size: 0.9rem;
+    padding: 1.1rem 2.2rem;
+    font-size: 1rem;
+  }
+
+  .heroSecondaryButton {
+    padding: 1.5rem 2.9rem !important;
+    font-size: 1.15rem !important;
+  }
+
+  .heroPrimaryButton {
+    padding: 1.5rem 2.9rem !important;
+    font-size: 1.15rem !important;
   }
 }
 
@@ -183,8 +388,18 @@
   }
 
   .ctaButton {
-    padding: 0.7rem 1.2rem;
-    font-size: 0.85rem;
+    padding: 1rem 2rem;
+    font-size: 0.95rem;
+  }
+
+  .heroSecondaryButton {
+    padding: 1.4rem 2.7rem !important;
+    font-size: 1.1rem !important;
+  }
+
+  .heroPrimaryButton {
+    padding: 1.4rem 2.7rem !important;
+    font-size: 1.1rem !important;
   }
 }
 
@@ -232,7 +447,9 @@
 
 /* ===== ESTILOS PARA TÍTULO PRINCIPAL ===== */
 
-/* Fuente Higuen Elegant Serif */
+/* Fuente Higuen Elegant Serif - Comentado porque los archivos no existen */
+/* Si necesitas usar esta fuente, agrega los archivos a /public/fonts/ */
+/*
 @font-face {
   font-family: 'Higuen Elegant Serif';
   src: url('/fonts/Higuen-Elegant-Serif.woff2') format('woff2'),
@@ -248,22 +465,23 @@
   src: url('/fonts/Higuen-Elegant-Serif-Bold.woff2') format('woff2'),
        url('/fonts/Higuen-Elegant-Serif-Bold.woff') format('woff'),
        url('/fonts/Higuen-Elegant-Serif-Bold.otf') format('opentype');
-  font-weight: 700;
+  font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
+*/
 
 /* Título principal "Spanish Wine Camps" */
 .mainTitle {
   font-size: 2.5rem;
-  font-weight: 700;
+  font-weight: 300;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: #ffffff;
   text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9);
   margin-bottom: 0.75rem;
   line-height: 1.1;
-  font-family: 'Higuen Elegant Serif', 'Playfair Display', 'Cormorant Garamond', 'Georgia', serif;
+  font-family: 'Montserrat', Arial, sans-serif;
 }
 
 /* Subtítulo "Catalunya Natural Revolution" */

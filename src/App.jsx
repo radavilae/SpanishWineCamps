@@ -13,12 +13,14 @@ import WhyTravel from './components/sections/WhyTravel'
 import Journeys from './components/sections/Journeys'
 import Guides from './components/sections/Guides'
 import Footer from './components/sections/Footer'
+import Partners from './components/sections/Partners'
 
 // Utility imports
 import { useScrollNavigation } from './hooks/useScrollNavigation'
 import { useLocalStorage } from './hooks/useLocalStorage'
 import { getSubscribers, getRegistrations, addRegistration } from './utils/storage'
 import { CAMP_CONFIG } from './constants/campData'
+import { useStrapiData } from './hooks/useStrapiData'
 
 // Mobile optimization imports
 import { 
@@ -43,11 +45,20 @@ function App() {
   const [subscribers, setSubscribers] = useLocalStorage(CAMP_CONFIG.STORAGE_KEYS.SUBSCRIBERS, [])
   const [registrations, setRegistrations] = useLocalStorage(CAMP_CONFIG.STORAGE_KEYS.REGISTRATIONS, [])
 
-  // Camp data configuration - centralized and maintainable
+  // Fetch Strapi CMS data
+  const { data: strapiData } = useStrapiData()
+
+  // Camp data configuration - use Strapi config if available, otherwise fallback to constants
+  const campConfig = strapiData?.campConfig || {
+    launchDateOffsetDays: CAMP_CONFIG.LAUNCH_DATE_OFFSET_DAYS,
+    defaultMaxParticipants: CAMP_CONFIG.MAX_PARTICIPANTS,
+    defaultCurrentParticipants: CAMP_CONFIG.CURRENT_PARTICIPANTS,
+  }
+  
   const campData = {
-    launchDate: new Date(Date.now() + CAMP_CONFIG.LAUNCH_DATE_OFFSET_DAYS * 24 * 60 * 60 * 1000).toISOString(),
-    currentParticipants: CAMP_CONFIG.CURRENT_PARTICIPANTS,
-    maxParticipants: CAMP_CONFIG.MAX_PARTICIPANTS
+    launchDate: new Date(Date.now() + (campConfig.launchDateOffsetDays || CAMP_CONFIG.LAUNCH_DATE_OFFSET_DAYS) * 24 * 60 * 60 * 1000).toISOString(),
+    currentParticipants: campConfig.defaultCurrentParticipants || CAMP_CONFIG.CURRENT_PARTICIPANTS,
+    maxParticipants: campConfig.defaultMaxParticipants || CAMP_CONFIG.MAX_PARTICIPANTS
   }
 
   // Load initial data from localStorage on component mount
@@ -65,7 +76,8 @@ function App() {
     }
 
     loadInitialData()
-  }, [setSubscribers, setRegistrations])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []) // Solo ejecutar una vez al montar el componente
 
   // Mobile optimization setup
   useEffect(() => {
@@ -182,6 +194,8 @@ function App() {
       <Guides />
 
       <Footer />
+
+      <Partners />
 
       {/* Registration Modal */}
       <RegistrationModal 
