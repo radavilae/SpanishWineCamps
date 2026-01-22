@@ -1,9 +1,11 @@
-import { useState, Fragment } from 'react'
+import { useMemo, useState } from 'react'
 import { useJourneys } from '../../hooks/useStrapiData'
 import styles from './Journeys.module.css'
 
 const Journeys = ({ campData, registrations, onOpenRegistration }) => {
   const [selectedJourney, setSelectedJourney] = useState(null)
+  const [showMap, setShowMap] = useState(false)
+  const [activeMapId, setActiveMapId] = useState(null)
   const { journeys: strapiJourneys, loading } = useJourneys()
 
   // Fallback journeys if Strapi is not available
@@ -96,6 +98,19 @@ const Journeys = ({ campData, registrations, onOpenRegistration }) => {
         ],
       }))
 
+  const mapLocations = useMemo(() => (
+    journeys.map(journey => ({
+      id: journey.sectionId || journey.id,
+      title: journey.title,
+      query: journey.mapQuery || journey.location || `${journey.title} Spain`,
+    }))
+  ), [journeys])
+
+  const activeMap = useMemo(() => {
+    if (!mapLocations.length) return null
+    return mapLocations.find(location => location.id === activeMapId) || mapLocations[0]
+  }, [activeMapId, mapLocations])
+
   const handleJourneyClick = (journey) => {
     setSelectedJourney(journey)
   }
@@ -127,16 +142,6 @@ const Journeys = ({ campData, registrations, onOpenRegistration }) => {
                 <span className={styles.journeyDate}>{journey.date}</span>
               </div>
               <p className={styles.journeyDescription}>{journey.description}</p>
-              {journey.guests && (
-                <div className={styles.guestsSection}>
-                  {journey.guests.map((guest, index) => (
-                    <div key={index} className={styles.guestCircle}>
-                      <div className={styles.guestImage} />
-                      <p className={styles.guestName}>{guest.name}</p>
-                    </div>
-                  ))}
-                </div>
-              )}
               <div className={styles.journeyActions}>
                 <button 
                   className={styles.inquireButton}
@@ -149,6 +154,16 @@ const Journeys = ({ campData, registrations, onOpenRegistration }) => {
                   onClick={() => handleJourneyClick(journey)}
                 >
                   What's Included
+                </button>
+                <button
+                  className={styles.mapButton}
+                  onClick={() => {
+                    setActiveMapId(journey.sectionId || journey.id)
+                    setShowMap(true)
+                  }}
+                  type="button"
+                >
+                  MAP
                 </button>
               </div>
             </div>
@@ -211,6 +226,46 @@ const Journeys = ({ campData, registrations, onOpenRegistration }) => {
                   </div>
                 </>
               )}
+            </div>
+          </div>
+        </div>
+      )}
+      {showMap && (
+        <div className={styles.mapModal} onClick={() => setShowMap(false)}>
+          <div className={styles.mapModalContent} onClick={(event) => event.stopPropagation()}>
+            <div className={styles.mapHeader}>
+              <h3 className={styles.mapTitle}>Camp Locations</h3>
+              <button
+                type="button"
+                className={styles.mapClose}
+                onClick={() => setShowMap(false)}
+              >
+                Close
+              </button>
+            </div>
+            <div className={styles.mapLayout}>
+              <div className={styles.mapList}>
+                {mapLocations.map(location => (
+                  <button
+                    key={location.id}
+                    type="button"
+                    className={`${styles.mapListButton} ${activeMap?.id === location.id ? styles.mapListButtonActive : ''}`}
+                    onClick={() => setActiveMapId(location.id)}
+                  >
+                    {location.title}
+                  </button>
+                ))}
+              </div>
+              <div className={styles.mapFrame}>
+                {activeMap && (
+                  <iframe
+                    title={`Map for ${activeMap.title}`}
+                    src={`https://www.google.com/maps?q=${encodeURIComponent(activeMap.query)}&output=embed`}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
+                )}
+              </div>
             </div>
           </div>
         </div>
