@@ -12,8 +12,8 @@ const Journeys = ({ onOpenRegistration }) => {
   const fallbackJourneys = [
     {
       id: 1,
-      sectionId: 'catalunya-priorat',
-      title: 'Catalunya Priorat Revolution II',
+      sectionId: 'catalunya-revolution',
+      title: 'Catalunya Revolution II',
       image: '/images/fotopaginados.jpg',
       date: 'Coming Soon',
       description: 'Two days on the chalky, sun-drenched Mediterranean slopes, tasting the region\'s most interesting producers.',

@@ -10,7 +10,7 @@ const Hero = ({ onScrollToSection, onOpenRegistration, campData }) => {
   const { hero, loading } = useHero()
   const { journeys } = useJourneys()
   const [showJourneyPreview, setShowJourneyPreview] = useState(false)
-  const nextCampLabel = hero?.nextCampLabel || 'Next Wine Camp: Catalunya Priorat Revolution II'
+  const nextCampLabel = hero?.nextCampLabel || 'Next Wine Camp: Catalunya Revolution II'
 
   const previewJourneys = useMemo(() => {
     if (journeys && journeys.length) {
