@@ -15,7 +15,7 @@
 /* Visible top fade for transition from Journeys */
 
 .guidesBg5 {
-  background-image: url('/images/foto 5.jpg');
+  background-image: url("/images/foto 5.jpg");
   /* Responsive background positioning */
   background-size: cover;
   background-position: center center;
@@ -385,7 +385,7 @@
   .guides {
     background-attachment: scroll;
   }
-  
+
   .guidesBg5 {
     background-attachment: scroll;
     background-position: center center;
@@ -397,7 +397,7 @@
   .guides {
     background-attachment: fixed;
   }
-  
+
   .guidesBg5 {
     background-attachment: fixed;
     background-position: center center;

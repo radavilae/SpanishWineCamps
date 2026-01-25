@@ -101,7 +101,7 @@ const useMobileOptimization = () => {
   const getOptimizedImageSrc = useCallback((src, options = {}) => {
     if (!src) return src
 
-    const { quality = 'auto', format = 'auto' } = options
+    const { } = options
     
     // Para conexiones lentas, usar imágenes más pequeñas
     if (connectionType === 'slow-2g' || connectionType === '2g') {
@@ -132,7 +132,7 @@ const useMobileOptimization = () => {
 
     const observerOptions = { ...defaultOptions, ...options }
     
-    return new IntersectionObserver((entries) => {
+    return new IntersectionObserver((entries, observer) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           callback(entry)

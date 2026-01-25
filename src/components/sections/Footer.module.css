@@ -13,13 +13,18 @@
 }
 
 .footer::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 180px;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(26, 26, 26, 0.85) 55%, rgba(26, 26, 26, 0) 100%);
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(26, 26, 26, 0.85) 55%,
+    rgba(26, 26, 26, 0) 100%
+  );
   pointer-events: none;
   z-index: 1;
 }
@@ -55,39 +60,56 @@
 
 .founderShowcase {
   display: grid;
-  gap: 0.75rem;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   width: 100%;
-  max-width: 720px;
-  margin: 0.5rem auto 0;
+  max-width: 800px;
+  margin: 2rem auto 0;
 }
 
 .founderCard {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.9rem;
-  padding: 1rem;
+  gap: 1rem;
+  padding: 1.5rem;
   border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid transparent;
+  background: transparent;
   text-align: center;
-  transition: all 0.25s ease;
+  transition: all 0.3s ease-in-out;
 }
 
 .founderCard:hover {
-  border-color: rgba(255, 255, 255, 0.5);
-  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-5px);
 }
 
 .founderAvatar {
-  width: 120px;
-  height: 120px;
+  width: 130px;
+  height: 130px;
   border-radius: 50%;
   background-size: cover;
   background-position: center;
-  border: 3px solid rgba(255, 255, 255, 0.35);
+  border: 3px solid rgba(255, 255, 255, 0.1);
   flex-shrink: 0;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.founderCard:hover .founderAvatar {
+  border-color: rgba(255, 255, 255, 0.7);
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.founderCard:nth-child(1) .founderAvatar {
+  background-image: url("/images/foto-atair.jpg");
+}
+
+.founderCard:nth-child(2) .founderAvatar {
+  background-image: url("/images/foto-victor.jpg");
 }
 
 .founderMeta {
@@ -98,23 +120,25 @@
 }
 
 .founderName {
-  font-size: 0.95rem;
+  font-size: 1.1rem;
   font-weight: 600;
   color: #ffffff;
+  margin-top: 0.5rem;
 }
 
 .founderRole {
-  font-size: 0.75rem;
-  color: #cccccc;
-  letter-spacing: 0.04rem;
+  font-size: 0.8rem;
+  color: #b0b0b0;
+  letter-spacing: 0.05rem;
   text-transform: uppercase;
 }
 
 .founderBioText {
   font-size: 0.9rem;
-  line-height: 1.6;
+  line-height: 1.7;
   color: #dcdcdc;
-  margin-top: 0.4rem;
+  margin-top: 0.75rem;
+  max-width: 280px;
 }
 
 .aboutCards {

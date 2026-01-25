@@ -64,7 +64,7 @@ export const getHero = async () => {
       ...data.data,
       backgroundImage: getStrapiImageUrl(data.data?.backgroundImage?.data?.attributes),
     }
-  } catch (error) {
+  } catch {
     // Strapi no está disponible, usar datos de fallback
     return null
   }

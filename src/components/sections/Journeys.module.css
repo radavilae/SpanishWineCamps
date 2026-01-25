@@ -663,7 +663,8 @@
   }
 
   .inquireButton,
-  .itineraryButton {
+  .itineraryButton,
+  .mapButton {
     width: 100%;
     max-width: 300px;
     padding: 1rem 2rem;
@@ -791,7 +792,8 @@
   }
 
   .inquireButton,
-  .itineraryButton {
+  .itineraryButton,
+  .mapButton {
     padding: 0.9rem 1.5rem;
     font-size: 0.85rem;
     letter-spacing: 1px;
@@ -962,12 +964,14 @@
   }
 
   .inquireButton,
-  .itineraryButton {
+  .itineraryButton,
+  .mapButton {
     transition: none;
   }
 
   .inquireButton:hover,
-  .itineraryButton:hover {
+  .itineraryButton:hover,
+  .mapButton:hover {
     transform: none;
   }
 }

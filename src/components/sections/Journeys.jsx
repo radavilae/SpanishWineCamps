@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import { useJourneys } from '../../hooks/useStrapiData'
 import styles from './Journeys.module.css'
 
-const Journeys = ({ campData, registrations, onOpenRegistration }) => {
+const Journeys = ({ onOpenRegistration }) => {
   const [selectedJourney, setSelectedJourney] = useState(null)
   const [showMap, setShowMap] = useState(false)
   const [activeMapId, setActiveMapId] = useState(null)
@@ -90,11 +90,12 @@ const Journeys = ({ campData, registrations, onOpenRegistration }) => {
         date: journey.dateText || (journey.date ? new Date(journey.date).toLocaleDateString() : 'Coming Soon'),
         guests: journey.guests || [],
         includedItems: journey.includedItems || [
-          { title: 'Accommodation', description: 'Hotels (casa rural, etc)' },
-          { title: 'All Meals', description: 'Including dinners paired with local wines' },
-          { title: 'Guided Tours', description: 'Vineyards, cellars, barrel rooms' },
-          { title: 'Private Tastings', description: 'Masterclasses with local winemakers / sommeliers' },
-          { title: 'Transportation', description: 'During the journey' },
+          { title: 'Accommodation in boutique hotels & casa rurales', description: '' },
+          { title: 'All meals paired with local wines', description: '' },
+          { title: 'Dinners at gastronomic restaurants aligned with producer profiles', description: '' },
+          { title: 'Guided tours of vineyards, cellars & barrel rooms', description: '' },
+          { title: 'Private tastings & masterclasses with winemakers', description: '' },
+          { title: 'All transportation during the journey', description: '' },
         ],
       }))
 
@@ -206,24 +207,28 @@ const Journeys = ({ campData, registrations, onOpenRegistration }) => {
               ) : (
                 <>
                   <div className={styles.includedItem}>
-                    <h5>Accommodation</h5>
-                    <p>Hotels (casa rural, etc)</p>
+                    <h5>Accommodation in boutique hotels & casa rurales</h5>
+                    <p></p>
                   </div>
                   <div className={styles.includedItem}>
-                    <h5>All Meals</h5>
-                    <p>Including dinners paired with local wines</p>
+                    <h5>All meals paired with local wines</h5>
+                    <p></p>
                   </div>
                   <div className={styles.includedItem}>
-                    <h5>Guided Tours</h5>
-                    <p>Vineyards, cellars, barrel rooms</p>
+                    <h5>Dinners at gastronomic restaurants aligned with producer profiles</h5>
+                    <p></p>
                   </div>
                   <div className={styles.includedItem}>
-                    <h5>Private Tastings</h5>
-                    <p>Masterclasses with local winemakers / sommeliers</p>
+                    <h5>Guided tours of vineyards, cellars & barrel rooms</h5>
+                    <p></p>
                   </div>
                   <div className={styles.includedItem}>
-                    <h5>Transportation</h5>
-                    <p>During the journey</p>
+                    <h5>Private tastings & masterclasses with winemakers</h5>
+                    <p></p>
+                  </div>
+                  <div className={styles.includedItem}>
+                    <h5>All transportation during the journey</h5>
+                    <p></p>
                   </div>
                 </>
               )}

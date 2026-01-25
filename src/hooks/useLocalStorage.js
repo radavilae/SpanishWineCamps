@@ -2,7 +2,7 @@
  * Custom hook for localStorage management
  * Provides reactive localStorage with error handling
  */
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 /**
  * Hook to manage localStorage with React state synchronization

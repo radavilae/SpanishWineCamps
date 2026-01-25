@@ -25,8 +25,7 @@ const Navbar = ({ activeSection, onScrollToSection }) => {
     { id: 'why-travel', label: 'Travel Deeper' },
     { id: 'catalunya-priorat', label: 'Journeys' },
     { id: 'guides', label: 'Guides' },
-    { id: 'contact', label: 'About Us' },
-    { id: 'contact', label: 'Contact' }
+    { id: 'contact', label: 'About Us' }
   ]
 
   return (

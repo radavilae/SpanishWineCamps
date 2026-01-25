@@ -187,8 +187,6 @@ function App() {
       <WhyTravel />
 
       <Journeys 
-        campData={campData}
-        registrations={registrations}
         onOpenRegistration={handleOpenRegistration}
       />
 

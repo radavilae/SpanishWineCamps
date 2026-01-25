@@ -133,7 +133,7 @@ const TouchGestures = ({
       setTouchEnd(null)
       setIsDragging(false)
     }, 100)
-  }, [isTouchDevice, touchStart, touchEnd, swipeThreshold, tapTimeout, lastTap, onSwipeLeft, onSwipeRight, onSwipeUp, onSwipeDown, onTap, onDoubleTap])
+  }, [isTouchDevice, touchStart, swipeThreshold, tapTimeout, lastTap, onSwipeLeft, onSwipeRight, onSwipeUp, onSwipeDown, onTap, onDoubleTap])
 
   // Manejar clics del mouse (fallback)
   const handleClick = useCallback((e) => {
