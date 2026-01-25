@@ -1,6 +1,6 @@
 .footer {
-  background: #000000;
-  border-top: 1px solid #333;
+  background: #1a1a1a;
+  border-top: none;
   padding: 0;
   margin: 0;
   margin-bottom: 0;
@@ -8,13 +8,183 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 180px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(26, 26, 26, 0.85) 55%, rgba(26, 26, 26, 0) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.footer .responsive-container {
+  position: relative;
+  z-index: 2;
+}
+
+.aboutSection {
+  gap: 0.75rem;
+  text-align: center;
+  margin-top: 10rem;
+}
+
+.aboutSection :global(.heading-2) {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.aboutSection :global(.heading-3) {
+  font-size: 1.25rem;
+  letter-spacing: 0.08rem;
+  margin-top: 1rem;
+  margin-bottom: 0.35rem;
+}
+
+.aboutSection :global(.text-base) {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 0.75rem;
+}
+
+.founderShowcase {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  width: 100%;
+  max-width: 720px;
+  margin: 0.5rem auto 0;
+}
+
+.founderCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 1rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.03);
+  text-align: center;
+  transition: all 0.25s ease;
+}
+
+.founderCard:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.founderAvatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  border: 3px solid rgba(255, 255, 255, 0.35);
+  flex-shrink: 0;
+}
+
+.founderMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  align-items: center;
+}
+
+.founderName {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.founderRole {
+  font-size: 0.75rem;
+  color: #cccccc;
+  letter-spacing: 0.04rem;
+  text-transform: uppercase;
+}
+
+.founderBioText {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #dcdcdc;
+  margin-top: 0.4rem;
+}
+
+.aboutCards {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  margin-top: 0.5rem;
+}
+
+.aboutCard {
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 14px;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.aboutCardHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  text-align: left;
+  cursor: pointer;
+  padding: 0;
+}
+
+.aboutAvatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  flex-shrink: 0;
+}
+
+.aboutIdentity {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.aboutName {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.aboutRole {
+  font-size: 0.8rem;
+  color: #cccccc;
+}
+
+.aboutToggle {
+  margin-left: auto;
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+
+.aboutBio {
+  margin-top: 0.75rem;
 }
 
 .footer .responsive-container {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 4rem 2rem;
+  padding: 6rem 2rem 4rem;
 }
 
 .container {

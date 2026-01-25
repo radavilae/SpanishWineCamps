@@ -22,10 +22,11 @@ const Navbar = ({ activeSection, onScrollToSection }) => {
 
   const navItems = [
     { id: 'hero', label: 'Home' },
-    { id: 'why-travel', label: 'Why Travel' },
+    { id: 'why-travel', label: 'Travel Deeper' },
     { id: 'catalunya-priorat', label: 'Journeys' },
     { id: 'guides', label: 'Guides' },
-    { id: 'contact', label: 'About Us' }
+    { id: 'contact', label: 'About Us' },
+    { id: 'contact', label: 'Contact' }
   ]
 
   return (

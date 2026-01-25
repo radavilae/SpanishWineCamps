@@ -170,6 +170,7 @@ const Journeys = ({ campData, registrations, onOpenRegistration }) => {
           </div>
         </section>
       ))}
+      <div className={styles.journeysBottomSpacer} aria-hidden="true" />
 
       {/* What's Included Modal */}
       {selectedJourney && (

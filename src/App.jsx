@@ -181,6 +181,7 @@ function App() {
       <Hero 
         onScrollToSection={scrollToSection}
         onOpenRegistration={handleOpenRegistration}
+        campData={campData}
       />
 
       <WhyTravel />
@@ -192,6 +193,8 @@ function App() {
       />
 
       <Guides />
+
+      <div className="guides-footer-spacer" aria-hidden="true" />
 
       <Footer />
 

@@ -1,10 +1,11 @@
 import { useCallback, useMemo, useState } from 'react'
 import TouchGestures from '../ui/TouchGestures'
 import useMobileOptimization from '../../hooks/useMobileOptimization'
+import CountdownTimer from '../ui/CountdownTimer'
 import { useHero, useJourneys } from '../../hooks/useStrapiData'
 import styles from './Hero.module.css'
 
-const Hero = ({ onScrollToSection, onOpenRegistration }) => {
+const Hero = ({ onScrollToSection, onOpenRegistration, campData }) => {
   const { isMobile, optimizeScroll } = useMobileOptimization()
   const { hero, loading } = useHero()
   const { journeys } = useJourneys()
@@ -58,21 +59,23 @@ const Hero = ({ onScrollToSection, onOpenRegistration }) => {
         <div className={styles.heroOverlay}>
         <div className="section-content">
           <div className="flex flex-col items-center text-center gap-lg">
-            <h1 className={`${styles.mainTitle} text-white`}>
-              {loading ? 'Loading...' : (hero?.title || 'Spanish Wine Camps')}
-            </h1>
+            <p className="text-lg">Wine Immersion Journeys</p>
+            <h1 className={`${styles.mainTitle} text-white`}>Spanish Wine Camps</h1>
             <div className="flex flex-col gap-md text-white max-w-4xl">
-                <p className="text-lg">
-                  {loading ? 'Loading...' : (hero?.subtitle || 'Created with professional rigor and unparalleled access, we move beyond the classical tourist route, bringing small, intimate groups together to discover Spain through its most defiant and delicious wines.')}
-                </p>
-              </div>
-              <div className="flex flex-col flex-row-tablet gap-md justify-center items-center">
+              <p className="text-lg">
+                Journey alongside vignerons, cellar masters, and the singular new voices of Spanish winemaking
+              </p>
+              <p className="text-lg">
+                Created with professional rigor and unparalleled access, Spanish Wine Camps moves beyond the classical tourist route, bringing small, intimate groups together to discover Spain through its most defiant and delicious wines.
+              </p>
+            </div>
+              <div className={`flex flex-col flex-row-tablet gap-md justify-center items-center ${styles.heroButtonsRow}`}>
                 <button 
                   className={`touch-button btn-secondary mobile-p-lg ${styles.heroSecondaryButton}`}
                   onClick={() => setShowJourneyPreview(true)}
                   type="button"
                 >
-                  {hero?.secondaryButtonText || 'Discover Our Journeys'}
+                  {hero?.secondaryButtonText || 'Explore Journeys'}
                 </button>
                 <div className={styles.heroPrimaryWrapper}>
                   <span className={styles.heroPrimaryBadge}>{nextCampLabel}</span>
@@ -83,6 +86,11 @@ const Hero = ({ onScrollToSection, onOpenRegistration }) => {
                   >
                     {hero?.primaryButtonText || 'Sign Up'}
                   </button>
+                  {campData?.launchDate && (
+                    <div className={styles.heroCountdown}>
+                      <CountdownTimer targetDate={campData.launchDate} />
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

@@ -35,6 +35,14 @@
   padding-top: 0 !important;
 }
 
+/* Spacer between Guides and About Us */
+.guides-footer-spacer {
+  height: 6rem;
+  width: 100%;
+  background: #000000;
+}
+
+
 /* Responsive body */
 body {
   width: 100%;
