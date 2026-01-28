@@ -705,6 +705,8 @@
     flex-direction: column;
     gap: 1rem;
     width: 100%;
+    justify-content: center;
+    align-items: center;
   }
 
   .itineraryButton,
@@ -846,6 +848,8 @@
 
   .journeyActions {
     gap: 0.75rem;
+    justify-content: center;
+    align-items: center;
   }
 
   .itineraryButton,
