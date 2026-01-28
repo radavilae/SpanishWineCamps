@@ -130,8 +130,9 @@
   background: transparent;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   padding: 2rem;
+  padding-top: 80px; /* Alineación con HOME - espacio para navbar */
   z-index: 1;
 }
 
@@ -153,7 +154,7 @@
   z-index: 2;
   max-width: 900px;
   width: 100%;
-  text-align: left;
+  text-align: center;
   color: #ffffff;
   padding-left: 2rem;
   padding-right: 2rem;
@@ -161,12 +162,13 @@
 }
 
 .journeyHeader {
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   background: transparent;
   padding: 1.25rem 1rem;
-  display: inline-block;
+  display: block;
   position: relative;
   z-index: 2;
+  text-align: center;
 }
 
 
@@ -174,12 +176,12 @@
   font-size: 4.2rem;
   font-weight: 300;
   color: #ffffff;
-  margin: 0 0 1rem 0;
+  margin: 0 0 0.8rem 0;
   line-height: 1.2;
   letter-spacing: 2px;
   text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9);
   text-transform: none;
-  text-align: left;
+  text-align: center;
   font-family: 'Playfair Display', 'Cormorant Garamond', 'Georgia', serif;
 }
 
@@ -190,23 +192,60 @@
 
 .journeyDate {
   display: inline-block;
-  font-size: 1.2rem;
-  color: #cccccc;
-  font-weight: 300;
-  letter-spacing: 1px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-  font-family: 'Higuen Elegant Serif', 'Playfair Display', 'Cormorant Garamond', 'Georgia', serif;
+  font-size: 1rem;
+  color: #ffffff;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-shadow: none;
+  font-family: 'Montserrat', Arial, sans-serif;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
+/* Special style for Join our Wine Camp */
+.journeyDate.joinWineCamp {
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Button styles for Join our Wine Camp */
+.journeyDate.joinButton {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+.journeyDate.joinButton:hover {
+  background: linear-gradient(135deg, #b91c1c, #991b1b);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(220, 38, 38, 0.4);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.journeyDate.joinButton:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.3);
+}
 
 .journeyDescription {
   font-size: 1.3rem;
   line-height: 1.8;
   color: #ffffff;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
   max-width: 800px;
-  text-align: left;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .guestsSection {
@@ -252,8 +291,9 @@
 .journeyActions {
   display: flex;
   gap: 1.5rem;
-  justify-content: flex-start;
+  justify-content: center;
   flex-wrap: wrap;
+  margin-top: 0;
 }
 
 .inquireButton,
@@ -635,6 +675,11 @@
     font-size: 1rem;
   }
 
+  .journeyDate.joinButton {
+    font-size: 0.9rem;
+    padding: 0.6rem 1.2rem;
+  }
+
   .journeyDescription {
     font-size: 1rem;
     margin-bottom: 2rem;
@@ -662,9 +707,15 @@
     width: 100%;
   }
 
-  .inquireButton,
   .itineraryButton,
   .mapButton {
+    width: 100%;
+    max-width: 300px;
+    padding: 1rem 2rem;
+    font-size: 0.9rem;
+  }
+
+  .journeyDate.joinButton {
     width: 100%;
     max-width: 300px;
     padding: 1rem 2rem;
@@ -765,6 +816,12 @@
     font-size: 0.9rem;
   }
 
+  .journeyDate.joinButton {
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+  }
+
   .journeyDescription {
     font-size: 0.95rem;
     margin-bottom: 1.5rem;
@@ -791,9 +848,14 @@
     gap: 0.75rem;
   }
 
-  .inquireButton,
   .itineraryButton,
   .mapButton {
+    padding: 0.9rem 1.5rem;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+  }
+
+  .journeyDate.joinButton {
     padding: 0.9rem 1.5rem;
     font-size: 0.85rem;
     letter-spacing: 1px;
@@ -891,6 +953,11 @@
     font-size: 2.8rem;
   }
 
+  .journeyDate.joinButton {
+    font-size: 0.95rem;
+    padding: 0.5rem 1.1rem;
+  }
+
   .guestsSection {
     gap: 1.75rem;
   }
@@ -913,6 +980,11 @@
 
   .journeyDescription {
     font-size: 1.4rem;
+  }
+
+  .journeyDate.joinButton {
+    font-size: 1.1rem;
+    padding: 0.5rem 1.2rem;
   }
 
   .guestsSection {

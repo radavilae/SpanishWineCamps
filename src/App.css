@@ -42,7 +42,6 @@
   background: #000000;
 }
 
-
 /* Responsive body */
 body {
   width: 100%;
@@ -255,7 +254,7 @@ section {
   .card {
     border: 2px solid #ffffff;
   }
-  
+
   .btn {
     border: 2px solid #ffffff;
   }

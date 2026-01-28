@@ -15,7 +15,7 @@ const Journeys = ({ onOpenRegistration }) => {
       sectionId: 'catalunya-revolution',
       title: 'Catalunya Revolution II',
       image: '/images/fotopaginados.jpg',
-      date: 'Coming Soon',
+      date: 'Join our Wine Camp',
       description: 'Two days on the chalky, sun-drenched Mediterranean slopes, tasting the region\'s most interesting producers.',
       guests: [
         { name: 'Name', image: '/images/foto 2.jpeg' },
@@ -24,21 +24,7 @@ const Journeys = ({ onOpenRegistration }) => {
         { name: 'Name', image: '/images/foto 5.jpg' }
       ]
     },
-    {
-      id: 2,
-      sectionId: 'catalunya-roussellon',
-      title: 'Catalunya/Rousellón Revolution III',
-      image: '/images/fotopaginacuatro.jpeg',
-      date: 'Coming Soon',
-      description: 'Two days on the chalky, sun-drenched Mediterranean slopes, tasting the region\'s most interesting producers.',
-      guests: [
-        { name: 'Name', image: '/images/foto 2.jpeg' },
-        { name: 'Name', image: '/images/foto 3.jpg' },
-        { name: 'Name', image: '/images/foto 4.jpg' },
-        { name: 'Name', image: '/images/foto 5.jpg' }
-      ]
-    },
-    {
+        {
       id: 3,
       sectionId: 'new-visions-rioja',
       title: 'New Visions of la Rioja',
@@ -140,16 +126,19 @@ const Journeys = ({ onOpenRegistration }) => {
             <div className={styles.journeyContent}>
               <div className={styles.journeyHeader}>
                 <h3 className={styles.journeyTitle}>{journey.title}</h3>
-                <span className={styles.journeyDate}>{journey.date}</span>
+                {journey.date === 'Join our Wine Camp' ? (
+                  <button 
+                    className={`${styles.journeyDate} ${styles.joinWineCamp} ${styles.joinButton}`}
+                    onClick={onOpenRegistration}
+                  >
+                    {journey.date}
+                  </button>
+                ) : (
+                  <span className={styles.journeyDate}>{journey.date}</span>
+                )}
               </div>
               <p className={styles.journeyDescription}>{journey.description}</p>
               <div className={styles.journeyActions}>
-                <button 
-                  className={styles.inquireButton}
-                  onClick={onOpenRegistration}
-                >
-                  Inquire Now
-                </button>
                 <button 
                   className={styles.itineraryButton}
                   onClick={() => handleJourneyClick(journey)}

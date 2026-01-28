@@ -6,6 +6,7 @@
   background: #000000;
   margin: 0;
   padding: 0;
+  padding-top: 80px; /* Alineación con HOME - espacio para navbar */
 }
 
 /* Fade into Journeys at the bottom */
