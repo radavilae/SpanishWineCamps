@@ -38,7 +38,7 @@ const Guides = () => {
             </div>
             <div className={styles.makerCard}>
               <div className={styles.makerImage}>
-                <img src="/images/Joan-Rubió.jpg" alt="Joan Rubió" className={`${styles.guideImage} ${styles.joanRubioImage}`} />
+                <img src="/images/joan-rubio.jpg" alt="Joan Rubió" className={`${styles.guideImage} ${styles.joanRubioImage}`} />
               </div>
               <h3 className={styles.makerName}>Joan Rubió</h3>
               <p className={styles.makerBio}>

@@ -12,7 +12,7 @@
 /* Text container below timer */
 .textContainer {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
   max-width: 400px;
   gap: 2rem;
@@ -105,20 +105,20 @@
 
 /* Left text styling */
 .leftText {
-  font-size: 0.9rem;
+  font-size: 1.5rem;
   color: #ffffff;
-  font-weight: 500;
-  text-align: right;
+  font-weight: 700;
+  text-align: center;
   white-space: nowrap;
   opacity: 0.9;
 }
 
 /* Right text styling */
 .rightText {
-  font-size: 0.9rem;
+  font-size: 1.5rem;
   color: #ffffff;
-  font-weight: 500;
-  text-align: left;
+  font-weight: 700;
+  text-align: center;
   white-space: nowrap;
   opacity: 0.9;
 }
