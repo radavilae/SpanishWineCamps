@@ -12,8 +12,8 @@ const Journeys = ({ onOpenRegistration }) => {
   const fallbackJourneys = [
     {
       id: 1,
-      sectionId: 'catalunya-revolution',
-      title: 'Catalunya Revolution II',
+      sectionId: 'catalunya-priorat',
+      title: 'Catalunya Revolution',
       image: '/images/fotopaginados.jpg',
       date: 'Join our Wine Camp',
       description: 'Two days on the chalky, sun-drenched Mediterranean slopes, tasting the region\'s most interesting producers.',

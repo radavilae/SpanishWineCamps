@@ -1,3 +1,23 @@
+/* Container for the entire timer layout */
+.timerContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  position: relative;
+  z-index: 3;
+}
+
+/* Text container below timer */
+.textContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 400px;
+  gap: 2rem;
+}
+
 .countdownTimer {
   display: flex;
   gap: 1rem;
@@ -83,8 +103,38 @@
   margin-top: 0.2rem;
 }
 
+/* Left text styling */
+.leftText {
+  font-size: 0.9rem;
+  color: #ffffff;
+  font-weight: 500;
+  text-align: right;
+  white-space: nowrap;
+  opacity: 0.9;
+}
+
+/* Right text styling */
+.rightText {
+  font-size: 0.9rem;
+  color: #ffffff;
+  font-weight: 500;
+  text-align: left;
+  white-space: nowrap;
+  opacity: 0.9;
+}
+
 /* Responsive styles */
 @media (max-width: 768px) {
+  .textContainer {
+    max-width: 300px;
+    gap: 1rem;
+  }
+  
+  .leftText,
+  .rightText {
+    font-size: 0.8rem;
+  }
+  
   .countdownTimer {
     gap: 0.8rem;
   }
@@ -95,6 +145,22 @@
 }
 
 @media (max-width: 640px) {
+  .timerContainer {
+    gap: 0.8rem;
+  }
+  
+  .textContainer {
+    flex-direction: column;
+    gap: 0.5rem;
+    max-width: 200px;
+  }
+  
+  .leftText,
+  .rightText {
+    font-size: 0.7rem;
+    text-align: center;
+  }
+  
   .countdownTimer {
     gap: 0.6rem;
   }

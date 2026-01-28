@@ -86,29 +86,40 @@ const CountdownTimer = ({ targetDate, onExpired }) => {
   }
 
   return (
-    <div 
-      className={`${styles.countdownTimer} ${isActive ? styles.active : styles.expired}`}
-      role="timer"
-      aria-live="polite"
-      aria-label={`Time remaining: ${timeLeft.days} days, ${timeLeft.hours} hours, ${timeLeft.minutes} minutes, ${timeLeft.seconds} seconds`}
-    >
-      <div className={styles.timeUnit}>
-        <span className={styles.timeValue}>{formatTimeValue(timeLeft.days)}</span>
-        <span className={styles.timeLabel}>days</span>
+    <div className={styles.timerContainer}>
+      <div 
+        className={`${styles.countdownTimer} ${isActive ? styles.active : styles.expired}`}
+        role="timer"
+        aria-live="polite"
+        aria-label={`Time remaining: ${timeLeft.days} days, ${timeLeft.hours} hours, ${timeLeft.minutes} minutes, ${timeLeft.seconds} seconds`}
+      >
+        <div className={styles.timeUnit}>
+          <span className={styles.timeValue}>{formatTimeValue(timeLeft.days)}</span>
+          <span className={styles.timeLabel}>days</span>
+        </div>
+        <div className={styles.timeUnit}>
+          <span className={styles.timeValue}>{formatTimeValue(timeLeft.hours)}</span>
+          <span className={styles.timeLabel}>hours</span>
+        </div>
+        <div className={styles.timeUnit}>
+          <span className={styles.timeValue}>{formatTimeValue(timeLeft.minutes)}</span>
+          <span className={styles.timeLabel}>minutes</span>
+        </div>
+        <div className={`${styles.timeUnit} ${styles.secondsUnit}`}>
+          <span className={`${styles.timeValue} ${styles.secondsValue}`}>
+            {formatTimeValue(timeLeft.seconds)}
+          </span>
+          <span className={styles.timeLabel}>seconds</span>
+        </div>
       </div>
-      <div className={styles.timeUnit}>
-        <span className={styles.timeValue}>{formatTimeValue(timeLeft.hours)}</span>
-        <span className={styles.timeLabel}>hours</span>
-      </div>
-      <div className={styles.timeUnit}>
-        <span className={styles.timeValue}>{formatTimeValue(timeLeft.minutes)}</span>
-        <span className={styles.timeLabel}>minutes</span>
-      </div>
-      <div className={`${styles.timeUnit} ${styles.secondsUnit}`}>
-        <span className={`${styles.timeValue} ${styles.secondsValue}`}>
-          {formatTimeValue(timeLeft.seconds)}
-        </span>
-        <span className={styles.timeLabel}>seconds</span>
+      
+      <div className={styles.textContainer}>
+        <div className={styles.leftText}>
+          12 max. Small groups only
+        </div>
+        <div className={styles.rightText}>
+          5 days/15 cellars
+        </div>
       </div>
     </div>
   )

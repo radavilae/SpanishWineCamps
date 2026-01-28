@@ -15,7 +15,7 @@
 /* Visible top fade for transition from Journeys */
 
 .guidesBg5 {
-  background-image: url("/images/foto 5.jpg");
+  background-color: #000000;
   /* Responsive background positioning */
   background-size: cover;
   background-position: center center;
@@ -239,7 +239,7 @@
 }
 
 .guideCard {
-  background: rgba(255, 255, 255, 0.05);
+  background: #000000;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
   padding: 2rem;
@@ -254,12 +254,17 @@
 }
 
 .guideImage {
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   object-fit: cover;
-  margin: 0 auto 1.5rem;
   border: 3px solid rgba(255, 255, 255, 0.2);
+  margin: 0;
+}
+
+.joanRubioImage {
+  object-position: 10% 0%;
+  transform: scaleX(1);
 }
 
 .guideName {
