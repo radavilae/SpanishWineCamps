@@ -4,12 +4,12 @@
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: scroll; /* Mobile: no parallax */
-  min-height: 150vh;
+  min-height: 200vh;
   display: flex;
   align-items: center;
   background-color: #000000;
-  margin: 12rem 0;
-  padding: 8rem 0;
+  margin: 4rem 0;
+  padding: 16rem 0;
 }
 
 /* Visible top fade for transition from Journeys */
@@ -34,7 +34,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 6rem 2rem;
+  padding: 3rem 2rem;
   padding-top: 80px; /* Alineación con HOME - espacio para navbar */
 }
 
@@ -218,7 +218,7 @@
 }
 
 .makerName {
-  font-size: 1.2rem;
+  font-size: 0.95rem;
   margin: 0 0 0.75rem;
   color: #ffffff;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
@@ -229,13 +229,15 @@
   color: #dddddd;
   line-height: 1.6;
   margin-bottom: 0.75rem;
+  font-size: 0.8rem;
 }
 
 .makerTags {
-  font-size: 0.85rem;
+  font-size: 0.65rem;
   text-transform: uppercase;
   letter-spacing: 0.08rem;
   color: #bbbbbb;
+  margin-top: 0.25rem;
 }
 
 .guideCard {
@@ -405,7 +407,7 @@
   }
 
   .sectionOverlay {
-    padding: 2.5rem 1rem 1rem;
+    padding: 1.5rem 1rem 1rem;
   }
 }
 
@@ -422,7 +424,7 @@
   }
 
   .sectionOverlay {
-    padding: 2rem 0.75rem 0.75rem;
+    padding: 1rem 0.75rem 0.75rem;
   }
 }
 
@@ -433,7 +435,10 @@
   }
 
   .sectionOverlay {
-    padding: 1.5rem 0.5rem 0.5rem;
+    padding: 1rem 0.5rem 0.5rem;
+    overflow-y: auto;
+    min-height: auto;
+    max-height: 90vh;
   }
 
   .guideCategory {
@@ -449,12 +454,76 @@
   }
 
   .guides {
-    padding: 3rem 0;
+    padding: 1rem 0 10rem 0;
     min-height: 70vh;
+    max-height: 100vh;
+    overflow-y: auto;
+    position: relative;
   }
 
   .container {
     padding: 0 0.5rem;
+  }
+}
+
+/* iPhone specific fix */
+@media (max-width: 375px) {
+  .guides {
+    padding: 0;
+    min-height: 100vh;
+    max-height: 100vh;
+    overflow-y: auto;
+    position: relative;
+  }
+  
+  .sectionOverlay {
+    padding: 1rem 0.25rem 4rem 0.25rem;
+    min-height: auto;
+    overflow-y: auto;
+    padding-top: 80px; /* Espacio para navbar */
+  }
+  
+  .makerCard {
+    padding: 0.75rem 0.75rem 1rem 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .guideCard {
+    padding: 1rem 1rem 1rem 1rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .makerName {
+    font-size: 0.65rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .makerBio {
+    font-size: 0.55rem;
+    margin-bottom: 0.25rem;
+    line-height: 1.3;
+  }
+  
+  .makerTags {
+    font-size: 0.4rem;
+    margin-top: 0.1rem;
+  }
+  
+  .guidesTitle {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    margin-top: 0;
+  }
+  
+  .sectionIntro {
+    font-size: 0.5rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+  
+  .guideImage {
+    width: 60px;
+    height: 60px;
   }
 }
 

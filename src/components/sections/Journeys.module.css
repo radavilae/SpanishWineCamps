@@ -15,7 +15,7 @@
 }
 
 .journeysBottomSpacer {
-  height: 10rem;
+  height: 2rem;
   background: #000000;
   width: 100%;
 }
@@ -795,7 +795,7 @@
   }
 
   .journeyOverlay {
-    padding: 1rem 0.5rem;
+    padding: 1rem 0.5rem 0.1rem 0.5rem;
   }
 
   .journeyContent {
