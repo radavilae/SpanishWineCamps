@@ -15,7 +15,7 @@
 }
 
 .heroBg1 {
-  background-image: url('/images/fotoprincipal.png');
+  background-image: url('/images/HOME-BANNER.png');
   /* Responsive background positioning */
   background-size: cover;
   background-position: center center;
