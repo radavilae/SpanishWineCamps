@@ -4,6 +4,7 @@
  */
 
 const STRAPI_URL = import.meta.env.VITE_STRAPI_URL || 'http://localhost:1337/api'
+const PREVIEW_SERVER_URL = import.meta.env.VITE_PREVIEW_SERVER_URL || 'http://localhost:3001'
 
 /**
  * Helper function to get full image URL from Strapi
@@ -144,5 +145,71 @@ export const getCampConfig = async () => {
       defaultMaxParticipants: 12,
       defaultCurrentParticipants: 8,
     }
+  }
+}
+
+/**
+ * Preview Server Integration
+ * Real-time updates from Strapi preview server
+ */
+
+let socket = null
+let updateCallbacks = []
+
+/**
+ * Initialize connection to preview server
+ * @param {Function} callback - Function to call when content updates
+ */
+export const initPreviewServer = (callback) => {
+  if (callback) updateCallbacks.push(callback)
+
+  // Load socket.io dynamically
+  import('socket.io-client').then(({ io }) => {
+    socket = io(PREVIEW_SERVER_URL)
+
+    socket.on('connect', () => {
+      console.log('🟢 Conectado al Preview Server')
+    })
+
+    socket.on('disconnect', () => {
+      console.log('🔴 Desconectado del Preview Server')
+    })
+
+    socket.on('content-update', (content) => {
+      console.log('📡 Contenido actualizado desde Preview Server')
+      updateCallbacks.forEach(callback => callback(content))
+    })
+
+    socket.on('connect_error', (error) => {
+      console.log('⚠️ Error conectando al Preview Server:', error.message)
+    })
+  }).catch(error => {
+    console.log('⚠️ Socket.IO no disponible, modo offline')
+  })
+}
+
+/**
+ * Disconnect from preview server
+ */
+export const disconnectPreviewServer = () => {
+  if (socket) {
+    socket.disconnect()
+    socket = null
+  }
+  updateCallbacks = []
+}
+
+/**
+ * Manual refresh from preview server
+ */
+export const refreshPreviewContent = async () => {
+  try {
+    const response = await fetch(`${PREVIEW_SERVER_URL}/api/refresh`, { 
+      method: 'POST' 
+    })
+    return await response.json()
+  } catch (error) {
+    console.error('Error refreshing preview content:', error)
+    throw error
   }
 }

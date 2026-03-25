@@ -1,8 +1,8 @@
 /**
  * Custom hook to fetch and manage Strapi CMS data
  */
-import { useState, useEffect } from 'react'
-import { getHero, getJourneys, getPartners, getGuides, getCampConfig } from '../services/strapi'
+import { useState, useEffect, useCallback } from 'react'
+import { getHero, getJourneys, getPartners, getGuides, getCampConfig, initPreviewServer, disconnectPreviewServer } from '../services/strapi'
 
 /**
  * Hook to fetch all CMS data
@@ -19,52 +19,67 @@ export const useStrapiData = () => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true)
-        setError(null)
+  // Function to refresh data from Strapi
+  const refreshData = useCallback(async () => {
+    try {
+      setLoading(true)
+      setError(null)
 
-        // Fetch all data in parallel
-        const [hero, journeys, partners, guides, campConfig] = await Promise.all([
-          getHero(),
-          getJourneys(),
-          getPartners(),
-          getGuides(),
-          getCampConfig(),
-        ])
+      // Fetch all data in parallel
+      const [hero, journeys, partners, guides, campConfig] = await Promise.all([
+        getHero(),
+        getJourneys(),
+        getPartners(),
+        getGuides(),
+        getCampConfig(),
+      ])
 
-        setData({
-          hero,
-          journeys,
-          partners,
-          guides,
-          campConfig,
-        })
-      } catch (err) {
-        // Strapi no está disponible, usar datos de fallback silenciosamente
-        setError(err)
-        // Fallback to empty data structure
-        setData({
-          hero: null,
-          journeys: [],
-          partners: [],
-          guides: [],
-          campConfig: {
-            launchDateOffsetDays: 8,
-            defaultMaxParticipants: 12,
-            defaultCurrentParticipants: 8,
-          },
-        })
-      } finally {
-        setLoading(false)
-      }
+      setData({
+        hero,
+        journeys,
+        partners,
+        guides,
+        campConfig,
+      })
+    } catch (err) {
+      // Strapi no está disponible, usar datos de fallback silenciosamente
+      setError(err)
+      // Fallback to empty data structure
+      setData({
+        hero: null,
+        journeys: [],
+        partners: [],
+        guides: [],
+        campConfig: {
+          launchDateOffsetDays: 8,
+          defaultMaxParticipants: 12,
+          defaultCurrentParticipants: 8,
+        },
+      })
+    } finally {
+      setLoading(false)
     }
-
-    fetchData()
   }, [])
 
-  return { data, loading, error }
+  useEffect(() => {
+    // Initial data fetch
+    refreshData()
+
+    // Initialize preview server connection for real-time updates
+    const handleContentUpdate = () => {
+      console.log('📡 Actualizando datos desde Preview Server')
+      refreshData()
+    }
+
+    initPreviewServer(handleContentUpdate)
+
+    // Cleanup
+    return () => {
+      disconnectPreviewServer()
+    }
+  }, [refreshData])
+
+  return { data, loading, error, refreshData }
 }
 
 /**
@@ -74,14 +89,35 @@ export const useHero = () => {
   const [hero, setHero] = useState(null)
   const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
-    getHero().then(data => {
+  const refreshHero = useCallback(async () => {
+    try {
+      const data = await getHero()
       setHero(data)
+    } catch (error) {
+      console.log('Hero data not available from Strapi')
+      setHero(null)
+    } finally {
       setLoading(false)
-    })
+    }
   }, [])
 
-  return { hero, loading }
+  useEffect(() => {
+    refreshHero()
+
+    // Initialize preview server connection for real-time updates
+    const handleContentUpdate = () => {
+      console.log('📡 Actualizando hero desde Preview Server')
+      refreshHero()
+    }
+
+    initPreviewServer(handleContentUpdate)
+
+    return () => {
+      disconnectPreviewServer()
+    }
+  }, [refreshHero])
+
+  return { hero, loading, refreshHero }
 }
 
 /**
@@ -91,14 +127,35 @@ export const useJourneys = () => {
   const [journeys, setJourneys] = useState([])
   const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
-    getJourneys().then(data => {
+  const refreshJourneys = useCallback(async () => {
+    try {
+      const data = await getJourneys()
       setJourneys(data)
+    } catch (error) {
+      console.log('Journeys data not available from Strapi')
+      setJourneys([])
+    } finally {
       setLoading(false)
-    })
+    }
   }, [])
 
-  return { journeys, loading }
+  useEffect(() => {
+    refreshJourneys()
+
+    // Initialize preview server connection for real-time updates
+    const handleContentUpdate = () => {
+      console.log('📡 Actualizando journeys desde Preview Server')
+      refreshJourneys()
+    }
+
+    initPreviewServer(handleContentUpdate)
+
+    return () => {
+      disconnectPreviewServer()
+    }
+  }, [refreshJourneys])
+
+  return { journeys, loading, refreshJourneys }
 }
 
 /**

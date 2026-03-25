@@ -62,11 +62,11 @@ const Hero = ({ onScrollToSection, onOpenRegistration, campData }) => {
             <p className="text-white text-center">Loading...</p>
           ) : (
             <div className="flex flex-col items-center text-center gap-lg">
-              <p className="text-lg">Wine Immersion Journeys</p>
+              <p className="text-lg">{hero?.title || 'Wine Immersion Journeys'}</p>
               <h1 className={`${styles.mainTitle} text-white`}>Spanish Wine Camps</h1>
               <div className="flex flex-col gap-md text-white max-w-4xl">
                 <p className="text-lg">
-                  Journey alongside vignerons, cellar masters, and the singular new voices of Spanish winemaking
+                  {hero?.subtitle || 'Journey alongside vignerons, cellar masters, and the singular new voices of Spanish winemaking'}
                 </p>
                 <p className="text-lg">
                   Created with professional rigor and unparalleled access, Spanish Wine Camps moves beyond the classical tourist route, bringing small, intimate groups together to discover Spain through its most defiant and delicious wines.
@@ -87,7 +87,7 @@ const Hero = ({ onScrollToSection, onOpenRegistration, campData }) => {
                     className={styles.heroPrimaryButton}
                     onClick={onOpenRegistration}
                   >
-                    {hero?.primaryButtonText || 'Sign Up'}
+                    {hero?.ctaText || 'Sign Up'}
                   </button>
                   {campData?.launchDate && (
                     <div className={styles.heroCountdown}>
