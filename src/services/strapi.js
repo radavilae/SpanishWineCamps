@@ -136,7 +136,7 @@ export const getGuides = async () => {
  */
 export const getCampConfig = async () => {
   try {
-    const data = await fetchStrapi('/camp-config')
+    const data = await fetchStrapi('/camp-configs')
     return data.data?.attributes || {}
   } catch (error) {
     // Strapi no está disponible, usar valores por defecto
