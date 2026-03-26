@@ -77,7 +77,7 @@ export const getHero = async () => {
  */
 export const getJourneys = async () => {
   try {
-    const data = await fetchStrapi('/journey?populate=*&sort=order:asc')
+    const data = await fetchStrapi('/journeys?populate=*&sort=order:asc')
     return data.data?.map(journey => ({
       ...journey.attributes,
       id: journey.id,
@@ -100,7 +100,7 @@ export const getJourneys = async () => {
  */
 export const getPartners = async () => {
   try {
-    const data = await fetchStrapi('/partner?populate=*&sort=order:asc')
+    const data = await fetchStrapi('/partners?populate=*&sort=order:asc')
     return data.data?.map(partner => ({
       ...partner.attributes,
       id: partner.id,
@@ -118,7 +118,7 @@ export const getPartners = async () => {
  */
 export const getGuides = async () => {
   try {
-    const data = await fetchStrapi('/guide?populate=*&sort=order:asc')
+    const data = await fetchStrapi('/guides?populate=*&sort=order:asc')
     return data.data?.map(guide => ({
       ...guide.attributes,
       id: guide.id,
