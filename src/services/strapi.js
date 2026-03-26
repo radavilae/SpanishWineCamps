@@ -15,6 +15,11 @@ export const getStrapiImageUrl = (image) => {
   if (!image) return null
   if (typeof image === 'string') return image
   if (image.url) {
+    // Si la URL empieza con /uploads/, concatenar con el host de la API
+    if (image.url.startsWith('/uploads/')) {
+      return `${STRAPI_URL.replace('/api', '')}${image.url}`
+    }
+    // Si ya es una URL completa, devolverla tal cual
     return image.url.startsWith('http') 
       ? image.url 
       : `${STRAPI_URL.replace('/api', '')}${image.url}`
@@ -61,9 +66,13 @@ const fetchStrapi = async (endpoint, options = {}) => {
 export const getHero = async () => {
   try {
     const data = await fetchStrapi('/hero?populate=*')
+    // Single Type: Strapi devuelve un objeto único, no un array
+    if (!data.data) {
+      return null
+    }
     return {
-      ...data.data,
-      backgroundImage: getStrapiImageUrl(data.data?.backgroundImage?.data?.attributes),
+      ...data.data.attributes,
+      backgroundImage: getStrapiImageUrl(data.data.attributes?.backgroundImage?.data?.attributes),
     }
   } catch {
     // Strapi no está disponible, usar datos de fallback
@@ -78,7 +87,11 @@ export const getHero = async () => {
 export const getJourneys = async () => {
   try {
     const data = await fetchStrapi('/journeys?populate=*&sort=order:asc')
-    return data.data?.map(journey => ({
+    // Defensa de datos: comprobar si data existe antes de mapear
+    if (!data.data || !Array.isArray(data.data)) {
+      return []
+    }
+    return data.data.map(journey => ({
       ...journey.attributes,
       id: journey.id,
       image: getStrapiImageUrl(journey.attributes?.image?.data?.attributes),
@@ -87,7 +100,7 @@ export const getJourneys = async () => {
         image: getStrapiImageUrl(guest.image?.data?.attributes),
       })) || [],
       includedItems: journey.attributes?.includedItems || [],
-    })) || []
+    }))
   } catch (error) {
     // Strapi no está disponible, usar datos de fallback
     return []
@@ -101,11 +114,15 @@ export const getJourneys = async () => {
 export const getPartners = async () => {
   try {
     const data = await fetchStrapi('/partners?populate=*&sort=order:asc')
-    return data.data?.map(partner => ({
+    // Defensa de datos: comprobar si data existe antes de mapear
+    if (!data.data || !Array.isArray(data.data)) {
+      return []
+    }
+    return data.data.map(partner => ({
       ...partner.attributes,
       id: partner.id,
       logo: getStrapiImageUrl(partner.attributes?.logo?.data?.attributes),
-    })) || []
+    }))
   } catch (error) {
     // Strapi no está disponible, usar datos de fallback
     return []
@@ -119,11 +136,15 @@ export const getPartners = async () => {
 export const getGuides = async () => {
   try {
     const data = await fetchStrapi('/guides?populate=*&sort=order:asc')
-    return data.data?.map(guide => ({
+    // Defensa de datos: comprobar si data existe antes de mapear
+    if (!data.data || !Array.isArray(data.data)) {
+      return []
+    }
+    return data.data.map(guide => ({
       ...guide.attributes,
       id: guide.id,
       image: getStrapiImageUrl(guide.attributes?.image?.data?.attributes),
-    })) || []
+    }))
   } catch (error) {
     // Strapi no está disponible, usar datos de fallback
     return []
@@ -136,7 +157,7 @@ export const getGuides = async () => {
  */
 export const getCampConfig = async () => {
   try {
-    const data = await fetchStrapi('/camp-configs')
+    const data = await fetchStrapi('/camp-config?populate=*')
     return data.data?.attributes || {}
   } catch (error) {
     // Strapi no está disponible, usar valores por defecto
