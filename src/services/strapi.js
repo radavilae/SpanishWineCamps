@@ -13,11 +13,17 @@ const PREVIEW_SERVER_URL = import.meta.env.VITE_PREVIEW_SERVER_URL || 'http://lo
  */
 export const getStrapiImageUrl = (image) => {
   if (!image) return null
-  if (typeof image === 'string') return image
+  if (typeof image === 'string') {
+    // Si empieza con /uploads/, añadir el prefijo del servidor
+    if (image.startsWith('/uploads/')) {
+      return `https://spanish-wine-camps-strapi.onrender.com${image}`
+    }
+    return image
+  }
   if (image.url) {
     return image.url.startsWith('http') 
       ? image.url 
-      : `${STRAPI_URL.replace('/api', '')}${image.url}`
+      : `https://spanish-wine-camps-strapi.onrender.com${image.url}`
   }
   return null
 }
@@ -33,6 +39,7 @@ const fetchStrapi = async (endpoint, options = {}) => {
     // Limpiar endpoint para evitar doble /api/
     const cleanEndpoint = endpoint.startsWith('/') ? endpoint : `/${endpoint}`
     const url = `${STRAPI_URL}${cleanEndpoint}`
+    console.log('🌐 Fetching Strapi:', url)
     const response = await fetch(url, {
       ...options,
       headers: {
@@ -40,18 +47,15 @@ const fetchStrapi = async (endpoint, options = {}) => {
         ...options.headers,
       },
     })
-
+    console.log('📊 Response status:', response.status)
     if (!response.ok) {
-      throw new Error(`Strapi API error: ${response.statusText}`)
+      throw new Error(`HTTP error! status: ${response.status}`)
     }
-
     const data = await response.json()
+    console.log('✅ Strapi data received:', data.data?.length || 'single item')
     return data
   } catch (error) {
-    // Solo mostrar error si no es un error de conexión (Strapi no está corriendo)
-    if (error.message && !error.message.includes('Failed to fetch') && !error.message.includes('ERR_CONNECTION_REFUSED')) {
-      console.error('Strapi fetch error:', error)
-    }
+    console.error('❌ Strapi fetch error:', error)
     throw error
   }
 }
