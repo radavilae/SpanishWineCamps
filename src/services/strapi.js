@@ -3,7 +3,7 @@
  * Handles all API calls to Strapi CMS backend
  */
 
-const STRAPI_URL = import.meta.env.VITE_STRAPI_URL || 'http://localhost:1337/api'
+const STRAPI_URL = import.meta.env.VITE_API_URL || 'http://localhost:1337'
 const PREVIEW_SERVER_URL = import.meta.env.VITE_PREVIEW_SERVER_URL || 'http://localhost:3001'
 
 /**
@@ -15,7 +15,7 @@ export const getStrapiImageUrl = (image) => {
   if (!image) return null
   if (typeof image === 'string') return image
   if (image.url) {
-    // Si la URL empieza con /uploads/, concatenar con el host de la API
+    // Si la URL empieza con /uploads/, concatenar con el host base (sin /api)
     if (image.url.startsWith('/uploads/')) {
       return `${STRAPI_URL.replace('/api', '')}${image.url}`
     }
@@ -35,7 +35,9 @@ export const getStrapiImageUrl = (image) => {
  */
 const fetchStrapi = async (endpoint, options = {}) => {
   try {
-    const url = `${STRAPI_URL}${endpoint}`
+    // Limpiar endpoint para evitar doble /api/
+    const cleanEndpoint = endpoint.startsWith('/') ? endpoint : `/${endpoint}`
+    const url = `${STRAPI_URL}${cleanEndpoint}`
     const response = await fetch(url, {
       ...options,
       headers: {
