@@ -3,7 +3,7 @@
  * Handles all API calls to Strapi CMS backend
  */
 
-const STRAPI_URL = import.meta.env.VITE_API_URL || 'http://localhost:1337'
+const STRAPI_URL = import.meta.env.VITE_API_URL || 'http://localhost:1337/api'
 const PREVIEW_SERVER_URL = import.meta.env.VITE_PREVIEW_SERVER_URL || 'http://localhost:3001'
 
 /**
@@ -62,7 +62,7 @@ const fetchStrapi = async (endpoint, options = {}) => {
  */
 export const getHero = async () => {
   try {
-    const data = await fetchStrapi('/api/hero?populate=*')
+    const data = await fetchStrapi('/hero?populate=*')
     // Hero no existe, devolver null para usar fallback
     return null
   } catch {
@@ -77,7 +77,7 @@ export const getHero = async () => {
  */
 export const getJourneys = async () => {
   try {
-    const data = await fetchStrapi('/api/journeys?populate=*&sort=order:asc')
+    const data = await fetchStrapi('/journeys?populate=*&sort=order:asc')
     // Defensa de datos: comprobar si data existe antes de mapear
     if (!data.data || !Array.isArray(data.data)) {
       return []
@@ -104,7 +104,7 @@ export const getJourneys = async () => {
  */
 export const getPartners = async () => {
   try {
-    const data = await fetchStrapi('/api/partners?populate=*&sort=order:asc')
+    const data = await fetchStrapi('/partners?populate=*&sort=order:asc')
     // Defensa de datos: comprobar si data existe antes de mapear
     if (!data.data || !Array.isArray(data.data)) {
       return []
@@ -126,7 +126,7 @@ export const getPartners = async () => {
  */
 export const getGuides = async () => {
   try {
-    const data = await fetchStrapi('/api/guides?populate=*&sort=order:asc')
+    const data = await fetchStrapi('/guides?populate=*&sort=order:asc')
     // Defensa de datos: comprobar si data existe antes de mapear
     if (!data.data || !Array.isArray(data.data)) {
       return []
@@ -148,7 +148,7 @@ export const getGuides = async () => {
  */
 export const getCampConfig = async () => {
   try {
-    const data = await fetchStrapi('/api/camp-config?populate=*')
+    const data = await fetchStrapi('/camp-config?populate=*')
     // Strapi 5: datos en la raíz, sin .attributes
     return data.data || {}
   } catch (error) {
