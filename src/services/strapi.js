@@ -15,11 +15,6 @@ export const getStrapiImageUrl = (image) => {
   if (!image) return null
   if (typeof image === 'string') return image
   if (image.url) {
-    // Si la URL empieza con /uploads/, concatenar con el host base (sin /api)
-    if (image.url.startsWith('/uploads/')) {
-      return `${STRAPI_URL.replace('/api', '')}${image.url}`
-    }
-    // Si ya es una URL completa, devolverla tal cual
     return image.url.startsWith('http') 
       ? image.url 
       : `${STRAPI_URL.replace('/api', '')}${image.url}`
@@ -67,15 +62,9 @@ const fetchStrapi = async (endpoint, options = {}) => {
  */
 export const getHero = async () => {
   try {
-    const data = await fetchStrapi('/hero?populate=*')
-    // Single Type: Strapi 5 devuelve datos en la raíz, sin .attributes
-    if (!data.data) {
-      return null
-    }
-    return {
-      ...data.data,
-      backgroundImage: getStrapiImageUrl(data.data?.backgroundImage?.data?.attributes),
-    }
+    const data = await fetchStrapi('/api/hero?populate=*')
+    // Hero no existe, devolver null para usar fallback
+    return null
   } catch {
     // Strapi no está disponible, usar datos de fallback
     return null
@@ -88,7 +77,7 @@ export const getHero = async () => {
  */
 export const getJourneys = async () => {
   try {
-    const data = await fetchStrapi('/journeys?populate=*&sort=order:asc')
+    const data = await fetchStrapi('/api/journeys?populate=*&sort=order:asc')
     // Defensa de datos: comprobar si data existe antes de mapear
     if (!data.data || !Array.isArray(data.data)) {
       return []
@@ -96,10 +85,10 @@ export const getJourneys = async () => {
     return data.data.map(journey => ({
       ...journey, // Strapi 5: datos en la raíz, sin .attributes
       id: journey.id,
-      image: getStrapiImageUrl(journey?.image?.data?.attributes),
+      image: getStrapiImageUrl(journey?.image),
       guests: journey?.guests?.map(guest => ({
         name: guest.name,
-        image: getStrapiImageUrl(guest.image?.data?.attributes),
+        image: null, // guests no tienen image en los datos
       })) || [],
       includedItems: journey?.includedItems || [],
     }))
@@ -115,7 +104,7 @@ export const getJourneys = async () => {
  */
 export const getPartners = async () => {
   try {
-    const data = await fetchStrapi('/partners?populate=*&sort=order:asc')
+    const data = await fetchStrapi('/api/partners?populate=*&sort=order:asc')
     // Defensa de datos: comprobar si data existe antes de mapear
     if (!data.data || !Array.isArray(data.data)) {
       return []
@@ -123,7 +112,7 @@ export const getPartners = async () => {
     return data.data.map(partner => ({
       ...partner, // Strapi 5: datos en la raíz, sin .attributes
       id: partner.id,
-      logo: getStrapiImageUrl(partner?.logo?.data?.attributes),
+      logo: partner.logo || null, // logo es null en los datos
     }))
   } catch (error) {
     // Strapi no está disponible, usar datos de fallback
@@ -137,7 +126,7 @@ export const getPartners = async () => {
  */
 export const getGuides = async () => {
   try {
-    const data = await fetchStrapi('/guides?populate=*&sort=order:asc')
+    const data = await fetchStrapi('/api/guides?populate=*&sort=order:asc')
     // Defensa de datos: comprobar si data existe antes de mapear
     if (!data.data || !Array.isArray(data.data)) {
       return []
@@ -145,7 +134,7 @@ export const getGuides = async () => {
     return data.data.map(guide => ({
       ...guide, // Strapi 5: datos en la raíz, sin .attributes
       id: guide.id,
-      image: getStrapiImageUrl(guide?.image?.data?.attributes),
+      image: getStrapiImageUrl(guide?.image),
     }))
   } catch (error) {
     // Strapi no está disponible, usar datos de fallback
@@ -159,7 +148,7 @@ export const getGuides = async () => {
  */
 export const getCampConfig = async () => {
   try {
-    const data = await fetchStrapi('/camp-config?populate=*')
+    const data = await fetchStrapi('/api/camp-config?populate=*')
     // Strapi 5: datos en la raíz, sin .attributes
     return data.data || {}
   } catch (error) {
