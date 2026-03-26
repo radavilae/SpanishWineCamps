@@ -66,13 +66,13 @@ const fetchStrapi = async (endpoint, options = {}) => {
 export const getHero = async () => {
   try {
     const data = await fetchStrapi('/hero?populate=*')
-    // Single Type: Strapi devuelve un objeto único, no un array
+    // Single Type: Strapi 5 devuelve datos en la raíz, sin .attributes
     if (!data.data) {
       return null
     }
     return {
-      ...data.data.attributes,
-      backgroundImage: getStrapiImageUrl(data.data.attributes?.backgroundImage?.data?.attributes),
+      ...data.data,
+      backgroundImage: getStrapiImageUrl(data.data?.backgroundImage?.data?.attributes),
     }
   } catch {
     // Strapi no está disponible, usar datos de fallback
@@ -92,14 +92,14 @@ export const getJourneys = async () => {
       return []
     }
     return data.data.map(journey => ({
-      ...journey.attributes,
+      ...journey, // Strapi 5: datos en la raíz, sin .attributes
       id: journey.id,
-      image: getStrapiImageUrl(journey.attributes?.image?.data?.attributes),
-      guests: journey.attributes?.guests?.map(guest => ({
+      image: getStrapiImageUrl(journey?.image?.data?.attributes),
+      guests: journey?.guests?.map(guest => ({
         name: guest.name,
         image: getStrapiImageUrl(guest.image?.data?.attributes),
       })) || [],
-      includedItems: journey.attributes?.includedItems || [],
+      includedItems: journey?.includedItems || [],
     }))
   } catch (error) {
     // Strapi no está disponible, usar datos de fallback
@@ -119,9 +119,9 @@ export const getPartners = async () => {
       return []
     }
     return data.data.map(partner => ({
-      ...partner.attributes,
+      ...partner, // Strapi 5: datos en la raíz, sin .attributes
       id: partner.id,
-      logo: getStrapiImageUrl(partner.attributes?.logo?.data?.attributes),
+      logo: getStrapiImageUrl(partner?.logo?.data?.attributes),
     }))
   } catch (error) {
     // Strapi no está disponible, usar datos de fallback
@@ -141,9 +141,9 @@ export const getGuides = async () => {
       return []
     }
     return data.data.map(guide => ({
-      ...guide.attributes,
+      ...guide, // Strapi 5: datos en la raíz, sin .attributes
       id: guide.id,
-      image: getStrapiImageUrl(guide.attributes?.image?.data?.attributes),
+      image: getStrapiImageUrl(guide?.image?.data?.attributes),
     }))
   } catch (error) {
     // Strapi no está disponible, usar datos de fallback
@@ -158,7 +158,8 @@ export const getGuides = async () => {
 export const getCampConfig = async () => {
   try {
     const data = await fetchStrapi('/camp-config?populate=*')
-    return data.data?.attributes || {}
+    // Strapi 5: datos en la raíz, sin .attributes
+    return data.data || {}
   } catch (error) {
     // Strapi no está disponible, usar valores por defecto
     return {
