@@ -187,6 +187,10 @@ let updateCallbacks = []
 export const initPreviewServer = (callback) => {
   if (callback) updateCallbacks.push(callback)
 
+  // Deshabilitar preview server temporalmente para evitar errores CORS
+  console.log('⚠️ Preview Server deshabilitado temporalmente')
+  return
+  
   // Load socket.io dynamically
   import('socket.io-client').then(({ io }) => {
     socket = io(PREVIEW_SERVER_URL)
