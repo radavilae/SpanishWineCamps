@@ -118,7 +118,7 @@ export const getPartners = async () => {
  */
 export const getGuides = async () => {
   try {
-    const data = await fetchStrapi('/guides?populate=*&sort=order:asc')
+    const data = await fetchStrapi('/guide?populate=*&sort=order:asc')
     return data.data?.map(guide => ({
       ...guide.attributes,
       id: guide.id,
