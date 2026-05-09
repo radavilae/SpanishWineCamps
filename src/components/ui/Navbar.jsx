@@ -24,8 +24,8 @@ const Navbar = ({ activeSection, onScrollToSection }) => {
     { id: 'the-difference', label: 'The Difference' },
     { id: 'journeys', label: 'Journeys' },
     { id: 'regions', label: 'Regions' },
-    { id: 'guides', label: 'The Makers' },
-    { id: 'contact', label: 'Who We Are' }
+    { id: 'the-makers', label: 'The Makers' },
+    { id: 'who-we-are', label: 'Who We Are' }
   ]
 
   return (
@@ -58,7 +58,7 @@ const Navbar = ({ activeSection, onScrollToSection }) => {
           </li>
         ))}
         <li className={styles.navItem}>
-          <button className={styles.signUpButton} onClick={() => onScrollToSection('contact')}>
+          <button className={styles.signUpButton} onClick={() => onScrollToSection('who-we-are')}>
             Sign Up
           </button>
         </li>
