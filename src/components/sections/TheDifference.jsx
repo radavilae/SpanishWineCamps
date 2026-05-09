@@ -14,7 +14,7 @@ const TheDifference = () => {
             <div className={styles.imageColumn}>
               <div className={styles.imageContainer}>
                 <img 
-                  src="/src/assets/images/hero-vineyard.jpg" 
+                  src="/hero-vineyard.jpg" 
                   alt="Wine Journey Experience" 
                   className={styles.journeyImage}
                 />

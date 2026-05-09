@@ -91,7 +91,7 @@ const Journeys = () => {
               <div className={styles.journeyCard}>
                 <div className={styles.cardImage}>
                   <img 
-                    src="/src/assets/images/hero-vineyard.jpg" 
+                    src="/hero-vineyard.jpg" 
                     alt="Catalunya Wine Journey" 
                   />
                   <div className={styles.featuredBadge}>FEATURED</div>
