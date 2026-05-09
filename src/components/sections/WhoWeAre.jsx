@@ -6,17 +6,17 @@ const WhoWeAre = () => {
       name: 'Victor Costas',
       initials: 'VC',
       role: 'Co-Founder & Wine Educator',
-      background: 'Rioja Wine Academy Educator & Professional Sommelier',
-      expertise: 'Deep knowledge of Spanish viticulture and wine science',
-      specialties: ['Wine Education', 'Sommelier Expertise', 'Viticulture Science']
+      background: 'Rioja Wine Academy Educator',
+      expertise: 'An official Rioja Wine Academy Educator and a professional sommelier, Victor brings the technical soul to the team. His deep knowledge of Spanish viticulture—from the complex soils of Galicia to the unique gypsum-rich terrains of Penedès—allows him to translate the science of winemaking into a story anyone can appreciate.',
+      specialties: []
     },
     {
       name: 'Atair Barros',
       initials: 'AB',
       role: 'Co-Founder & Experience Curator',
       background: 'High-end hospitality specialist',
-      expertise: 'Finding hidden gems and exclusive wine experiences',
-      specialties: ['Hospitality', 'Exclusive Experiences', 'Hidden Gems Discovery']
+      expertise: 'With a background rooted in high-end hospitality and a relentless passion for discovery, Atair makes sure Spanish Wine Camps become more than a regular experience. His expertise lies in finding the "unfindable"—the small-batch producers and hidden gems that haven\'t yet reached the mainstream.',
+      specialties: []
     }
   ]
 
@@ -124,9 +124,11 @@ const WhoWeAre = () => {
               </div>
               <nav className={styles.footerNav}>
                 <a href="#home" className={styles.footerLink}>Home</a>
+                <a href="#the-difference" className={styles.footerLink}>The Difference</a>
                 <a href="#journeys" className={styles.footerLink}>Journeys</a>
                 <a href="#regions" className={styles.footerLink}>Regions</a>
-                <a href="#who-we-are" className={styles.footerLink}>Contact</a>
+                <a href="#the-makers" className={styles.footerLink}>The Makers</a>
+                <a href="#who-we-are" className={styles.footerLink}>Who We Are</a>
               </nav>
               <div className={styles.footerCopyright}>
                 2026 Spanish Wine Camp
