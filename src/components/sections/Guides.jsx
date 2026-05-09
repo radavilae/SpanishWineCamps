@@ -18,7 +18,7 @@ const Guides = () => {
           <div className={styles.makersList}>
             <div className={styles.makerCard}>
               <div className={styles.makerImage}>
-                <img src="/images/recaredo.jpg" alt="Recaredo" className={styles.guideImage} />
+                <div className={styles.guideImage} style={{ backgroundColor: '#333333' }} />
               </div>
               <h3 className={styles.makerName}>Recaredo</h3>
               <p className={styles.makerBio}>
@@ -28,7 +28,7 @@ const Guides = () => {
             </div>
             <div className={styles.makerCard}>
               <div className={styles.makerImage}>
-                <img src="/images/nuria.jpg" alt="Nuria Renom" className={styles.guideImage} />
+                <div className={styles.guideImage} style={{ backgroundColor: '#333333' }} />
               </div>
               <h3 className={styles.makerName}>Nuria Renom</h3>
               <p className={styles.makerBio}>
@@ -38,7 +38,7 @@ const Guides = () => {
             </div>
             <div className={styles.makerCard}>
               <div className={styles.makerImage}>
-                <img src="/images/joan-rubio.jpg" alt="Joan Rubió" className={`${styles.guideImage} ${styles.joanRubioImage}`} />
+                <div className={styles.guideImage} style={{ backgroundColor: '#333333' }} />
               </div>
               <h3 className={styles.makerName}>Joan Rubió</h3>
               <p className={styles.makerBio}>
@@ -48,7 +48,7 @@ const Guides = () => {
             </div>
             <div className={styles.makerCard}>
               <div className={styles.makerImage}>
-                <img src="/images/Partida-Creus.jpg" alt="Partida Creus" className={styles.guideImage} />
+                <div className={styles.guideImage} style={{ backgroundColor: '#333333' }} />
               </div>
               <h3 className={styles.makerName}>Partida Creus</h3>
               <p className={styles.makerBio}>
@@ -58,7 +58,7 @@ const Guides = () => {
             </div>
             <div className={styles.makerCard}>
               <div className={styles.makerImage}>
-                <img src="/images/closlentiscus.png" alt="Clos Lentiscus" className={styles.guideImage} />
+                <div className={styles.guideImage} style={{ backgroundColor: '#333333' }} />
               </div>
               <h3 className={styles.makerName}>Clos Lentiscus</h3>
               <p className={styles.makerBio}>
@@ -68,7 +68,7 @@ const Guides = () => {
             </div>
             <div className={styles.makerCard}>
               <div className={styles.makerImage}>
-                <img src="/images/alvaro-palacios.jpg" alt="Álvaro Palacios" className={styles.guideImage} />
+                <div className={styles.guideImage} style={{ backgroundColor: '#333333' }} />
               </div>
               <h3 className={styles.makerName}>Álvaro Palacios</h3>
               <p className={styles.makerBio}>
@@ -78,7 +78,7 @@ const Guides = () => {
             </div>
             <div className={styles.makerCard}>
               <div className={styles.makerImage}>
-                <img src="/images/closmorgador.jpg" alt="Clos Mogador" className={styles.guideImage} />
+                <div className={styles.guideImage} style={{ backgroundColor: '#333333' }} />
               </div>
               <h3 className={styles.makerName}>Clos Mogador</h3>
               <p className={styles.makerBio}>
@@ -88,7 +88,7 @@ const Guides = () => {
             </div>
             <div className={styles.makerCard}>
               <div className={styles.makerImage}>
-                <img src="/images/joandanguera.png" alt="Joan d'Anguera" className={styles.guideImage} />
+                <div className={styles.guideImage} style={{ backgroundColor: '#333333' }} />
               </div>
               <h3 className={styles.makerName}>Joan d&apos;Anguera</h3>
               <p className={styles.makerBio}>

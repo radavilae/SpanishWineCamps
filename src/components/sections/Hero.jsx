@@ -18,15 +18,15 @@ const Hero = ({ onScrollToSection, onOpenRegistration, campData }) => {
         id: journey.sectionId || journey.id,
         sectionId: journey.sectionId || journey.id,
         title: journey.title,
-        image: journey.image
+        image: null
       }))
     }
     return [
-      { id: 'catalunya-priorat', sectionId: 'catalunya-priorat', title: 'Catalunya Priorat Revolution II', image: '/images/fotopaginados.jpg' },
-      { id: 'catalunya-roussellon', sectionId: 'catalunya-roussellon', title: 'Catalunya/Rousellón Revolution III', image: '/images/fotopaginacuatro.jpeg' },
-      { id: 'new-visions-rioja', sectionId: 'new-visions-rioja', title: 'New Visions of la Rioja', image: '/images/fotopaginacinco.jpg' },
-      { id: 'bierzo-terroirs', sectionId: 'bierzo-terroirs', title: 'Bierzo, Crossroad of Terroirs', image: '/images/fotopaginaseis.jpg' },
-      { id: 'ungrafited-canarias', sectionId: 'ungrafited-canarias', title: 'Ungrafited, Unrivaled Canarias', image: '/images/fotopaginasiete.jpg' }
+      { id: 'catalunya-priorat', sectionId: 'catalunya-priorat', title: 'Catalunya Priorat Revolution II', image: null },
+      { id: 'catalunya-roussellon', sectionId: 'catalunya-roussellon', title: 'Catalunya/Rousellón Revolution III', image: null },
+      { id: 'new-visions-rioja', sectionId: 'new-visions-rioja', title: 'New Visions of la Rioja', image: null },
+      { id: 'bierzo-terroirs', sectionId: 'bierzo-terroirs', title: 'Bierzo, Crossroad of Terroirs', image: null },
+      { id: 'ungrafited-canarias', sectionId: 'ungrafited-canarias', title: 'Ungrafited, Unrivaled Canarias', image: null }
     ]
   }, [journeys])
 

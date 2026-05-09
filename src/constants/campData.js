@@ -17,9 +17,10 @@ export const CAMP_CONFIG = {
  * Centralized section management for consistent navigation
  */
 export const NAVIGATION_SECTIONS = [
-  'hero',
-  'why-travel', 
-  'catalunya-priorat',
+  'home',
+  'the-difference', 
+  'journeys', 
+  'regions',
   'guides',
   'contact'
 ]

@@ -7,14 +7,14 @@ const Footer = ({ onSubscribe, isSubscribed }) => {
       id: 'victor-costas',
       name: 'Victor Costas',
       role: 'Rioja Wine Academy Educator & Sommelier',
-      photo: '/images/fotovictor.jpg',
+      photo: null,
       bio: 'An official Rioja Wine Academy Educator and a professional sommelier, Victor brings the technical soul to the team. His deep knowledge of Spanish viticulture—from the complex soils of Galicia to the unique gypsum-rich terrains of Penedès—allows him to translate the science of winemaking into a story anyone can appreciate.'
     },
     {
       id: 'atair-barros',
       name: 'Atair Barros',
       role: 'Co-Founder',
-      photo: '/images/fotoatair.jpg',
+      photo: null,
       bio: 'With a background rooted in high-end hospitality and a relentless passion for discovery, Atair makes sure Spanish Wine Camps become more than a regular experience. His expertise lies in finding the "unfindable"—the small-batch producers and hidden gems that haven\'t yet reached the mainstream.'
     }
   ]

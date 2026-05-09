@@ -1,271 +1,240 @@
-import { useMemo, useState } from 'react'
-import { useJourneys } from '../../hooks/useStrapiData'
 import styles from './Journeys.module.css'
+import { useState } from 'react'
 
-const Journeys = ({ onOpenRegistration }) => {
-  const [selectedJourney, setSelectedJourney] = useState(null)
-  const [showMap, setShowMap] = useState(false)
-  const [activeMapId, setActiveMapId] = useState(null)
-  const { journeys: strapiJourneys, loading } = useJourneys()
+const Journeys = () => {
+  const [selectedDay, setSelectedDay] = useState(null)
 
-  // Fallback journeys if Strapi is not available
-  const fallbackJourneys = [
-    {
-      id: 1,
-      sectionId: 'catalunya-priorat',
-      title: 'Catalunya Revolution',
-      image: '/images/fotopaginados.jpg',
-      date: 'Join our Wine Camp',
-      description: 'Two days on the chalky, sun-drenched Mediterranean slopes, tasting the region\'s most interesting producers.',
-      guests: [
-        { name: 'Name', image: '/images/foto 2.jpeg' },
-        { name: 'Name', image: '/images/foto 3.jpg' },
-        { name: 'Name', image: '/images/foto 4.jpg' },
-        { name: 'Name', image: '/images/foto 5.jpg' }
+  const dayDetails = {
+    1: {
+      title: "Sparkling Paradise",
+      location: "Day 1 · Penedès",
+      overnight: "Night in Vilafranca",
+      region: "Penedès",
+      visits: "4 experiences",
+      experiences: [
+        "Recaredo + Celler Credo",
+        "Mambo Taberna",
+        "Joan Rubió + Nuria Renom",
+        "Cena Guapa"
       ]
     },
-        {
-      id: 3,
-      sectionId: 'new-visions-rioja',
-      title: 'New Visions of la Rioja',
-      image: '/images/fotopaginacinco.jpg',
-      date: 'Coming Soon',
-      description: 'Discover the authenticity and fierce independence of a generation reclaiming their landscape, one biodynamic vine at a time.',
-      guests: [
-        { name: 'Name', image: '/images/foto 2.jpeg' },
-        { name: 'Name', image: '/images/foto 3.jpg' },
-        { name: 'Name', image: '/images/foto 4.jpg' },
-        { name: 'Name', image: '/images/foto 5.jpg' }
+    2: {
+      title: "Natural Penedès",
+      location: "Day 2 · Penedès",
+      overnight: "Night in Vilafranca",
+      region: "Penedès",
+      visits: "3 experiences",
+      experiences: [
+        "Celler Pardas",
+        "Julià Heritage",
+        "Dinner at Can Boneta"
       ]
     },
-    {
-      id: 4,
-      sectionId: 'bierzo-terroirs',
-      title: 'Bierzo, Crossroad of Terroirs',
-      image: '/images/fotopaginaseis.jpg',
-      date: 'Coming Soon',
-      description: 'From the granite slopes of Gredos to the salt-laced fog of the Atlantic coast, experience intimate, ethical, and intense wine experiences.',
-      guests: [
-        { name: 'Name', image: '/images/foto 2.jpeg' },
-        { name: 'Name', image: '/images/foto 3.jpg' },
-        { name: 'Name', image: '/images/foto 4.jpg' },
-        { name: 'Name', image: '/images/foto 5.jpg' }
+    3: {
+      title: "Conca de Barberà",
+      location: "Day 3 · Conca de Barberà",
+      overnight: "Night in Montblanc",
+      region: "Conca de Barberà",
+      visits: "4 experiences",
+      experiences: [
+        "Cava Origen",
+        "Mas Foraster",
+        "Celler del Masroig",
+        "Winery Lunch"
       ]
     },
-    {
-      id: 5,
-      sectionId: 'ungrafited-canarias',
-      title: 'Ungrafited, Unrivaled Canarias',
-      image: '/images/fotopaginasiete.jpg',
-      date: 'Coming Soon',
-      description: 'These are intimate, ethical, intense, and unlike any other wine experience of their kind. Space is limited.',
-      guests: [
-        { name: 'Name', image: '/images/foto 2.jpeg' },
-        { name: 'Name', image: '/images/foto 3.jpg' },
-        { name: 'Name', image: '/images/foto 4.jpg' },
-        { name: 'Name', image: '/images/foto 5.jpg' }
+    4: {
+      title: "Priorat",
+      location: "Day 4 · Priorat",
+      overnight: "Night in Falset",
+      region: "Priorat",
+      visits: "3 experiences",
+      experiences: [
+        "Clos Mogador",
+        "Sangre de Terra",
+        "Priorat Dinner"
+      ]
+    },
+    5: {
+      title: "Priorat",
+      location: "Day 5 · Priorat",
+      overnight: "Departure",
+      region: "Priorat",
+      visits: "2 experiences",
+      experiences: [
+        "Scala Dei",
+        "Farewell Lunch"
       ]
     }
-  ]
-
-  // Use Strapi journeys if available, otherwise use fallback
-  const journeys = loading || !strapiJourneys || strapiJourneys.length === 0 
-    ? fallbackJourneys 
-    : strapiJourneys.map(journey => ({
-        ...journey,
-        date: journey.dateText || (journey.date ? new Date(journey.date).toLocaleDateString() : 'Coming Soon'),
-        guests: journey.guests || [],
-        includedItems: journey.includedItems || [
-          { title: 'Accommodation in boutique hotels & casa rurales', description: '' },
-          { title: 'All meals paired with local wines', description: '' },
-          { title: 'Dinners at gastronomic restaurants aligned with producer profiles', description: '' },
-          { title: 'Guided tours of vineyards, cellars & barrel rooms', description: '' },
-          { title: 'Private tastings & masterclasses with winemakers', description: '' },
-          { title: 'All transportation during the journey', description: '' },
-        ],
-      }))
-
-  const mapLocations = useMemo(() => (
-    journeys.map(journey => ({
-      id: journey.sectionId || journey.id,
-      title: journey.title,
-      query: journey.mapQuery || journey.location || `${journey.title} Spain`,
-    }))
-  ), [journeys])
-
-  const activeMap = useMemo(() => {
-    if (!mapLocations.length) return null
-    return mapLocations.find(location => location.id === activeMapId) || mapLocations[0]
-  }, [activeMapId, mapLocations])
-
-  const handleJourneyClick = (journey) => {
-    setSelectedJourney(journey)
   }
 
-  const handleCloseIncluded = () => {
-    setSelectedJourney(null)
+  const openDayModal = (dayNumber) => {
+    setSelectedDay(dayDetails[dayNumber])
+  }
+
+  const closeModal = () => {
+    setSelectedDay(null)
   }
 
   return (
-    <>
-      {journeys.map((journey) => (
-        <section 
-          key={journey.id}
-          id={journey.sectionId}
-          className={`${styles.journeySection} ${!journey.image ? styles.noImage : ''} ${journey.image ? styles.cinematic : ''}`}
-          style={journey.image ? { 
-            backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.6) 55%, rgba(0, 0, 0, 0.2) 100%), url("${journey.image}")`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            backgroundColor: '#000000',
-            backgroundAttachment: 'fixed'
-          } : { backgroundColor: '#000000' }}
-        >
-          <div className={styles.journeyOverlay}>
-            <div className={styles.journeyContent}>
-              <div className={styles.journeyHeader}>
-                <h3 className={styles.journeyTitle}>{journey.title}</h3>
-                {journey.date === 'Join our Wine Camp' ? (
-                  <button 
-                    className={`${styles.journeyDate} ${styles.joinWineCamp} ${styles.joinButton}`}
-                    onClick={onOpenRegistration}
-                  >
-                    {journey.date}
-                  </button>
-                ) : (
-                  <span className={styles.journeyDate}>{journey.date}</span>
-                )}
-              </div>
-              <p className={styles.journeyDescription}>{journey.description}</p>
-              <div className={styles.journeyActions}>
-                <button 
-                  className={styles.itineraryButton}
-                  onClick={() => handleJourneyClick(journey)}
-                >
-                  What's Included
-                </button>
-                <button
-                  className={styles.mapButton}
-                  onClick={() => {
-                    setActiveMapId(journey.sectionId || journey.id)
-                    setShowMap(true)
-                  }}
-                  type="button"
-                >
-                  MAP
-                </button>
-              </div>
-            </div>
+    <section id="journeys" className={styles.journeys}>
+      <div className="responsive-container">
+        <div className={styles.content}>
+          <div className={styles.header}>
+            <h1 className={styles.sectionTitle}>Journeys</h1>
+            <p className={styles.sectionSubtitle}>Discover Our Wine Tours</p>
           </div>
-        </section>
-      ))}
-      <div className={styles.journeysBottomSpacer} aria-hidden="true" />
 
-      {/* What's Included Modal */}
-      {selectedJourney && (
-        <div className={styles.includedModal} onClick={handleCloseIncluded}>
-          <div className={styles.includedModalContent} onClick={(e) => e.stopPropagation()}>
-            <button 
-              className={styles.closeButton}
-              onClick={handleCloseIncluded}
-              aria-label="Close"
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M18 6L6 18M6 6l12 12"/>
-              </svg>
-            </button>
-            <h3 className={styles.modalJourneyTitle}>{selectedJourney.title}</h3>
-            {selectedJourney.price && (
-              <div className={styles.journeyPrice}>
-                <span className={styles.priceLabel}>Price:</span>
-                <span className={styles.priceValue}>
-                  {selectedJourney.price} {selectedJourney.priceCurrency || 'EUR'}
-                </span>
-              </div>
-            )}
-            <h4 className={styles.includedTitle}>What's Included</h4>
-            <div className={styles.includedItems}>
-              {selectedJourney.includedItems && selectedJourney.includedItems.length > 0 ? (
-                selectedJourney.includedItems.map((item, index) => (
-                  <div key={index} className={styles.includedItem}>
-                    <h5>{item.title}</h5>
-                    <p>{item.description}</p>
-                  </div>
-                ))
-              ) : (
-                <>
-                  <div className={styles.includedItem}>
-                    <h5>Accommodation in boutique hotels & casa rurales</h5>
-                    <p></p>
-                  </div>
-                  <div className={styles.includedItem}>
-                    <h5>All meals paired with local wines</h5>
-                    <p></p>
-                  </div>
-                  <div className={styles.includedItem}>
-                    <h5>Dinners at gastronomic restaurants aligned with producer profiles</h5>
-                    <p></p>
-                  </div>
-                  <div className={styles.includedItem}>
-                    <h5>Guided tours of vineyards, cellars & barrel rooms</h5>
-                    <p></p>
-                  </div>
-                  <div className={styles.includedItem}>
-                    <h5>Private tastings & masterclasses with winemakers</h5>
-                    <p></p>
-                  </div>
-                  <div className={styles.includedItem}>
-                    <h5>All transportation during the journey</h5>
-                    <p></p>
-                  </div>
-                </>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
-      {showMap && (
-        <div className={styles.mapModal} onClick={() => setShowMap(false)}>
-          <div className={styles.mapModalContent} onClick={(event) => event.stopPropagation()}>
-            <div className={styles.mapHeader}>
-              <h3 className={styles.mapTitle}>Camp Locations</h3>
-              <button
-                type="button"
-                className={styles.mapClose}
-                onClick={() => setShowMap(false)}
-              >
-                Close
-              </button>
-            </div>
-            <div className={styles.mapLayout}>
-              <div className={styles.mapList}>
-                {mapLocations.map(location => (
-                  <button
-                    key={location.id}
-                    type="button"
-                    className={`${styles.mapListButton} ${activeMap?.id === location.id ? styles.mapListButtonActive : ''}`}
-                    onClick={() => setActiveMapId(location.id)}
-                  >
-                    {location.title}
-                  </button>
-                ))}
-              </div>
-              <div className={styles.mapFrame}>
-                {activeMap && (
-                  <iframe
-                    title={`Map for ${activeMap.title}`}
-                    src={`https://www.google.com/maps?q=${encodeURIComponent(activeMap.query)}&output=embed`}
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
+          <div className={styles.journeysGrid}>
+            {/* Featured Journey */}
+            <div className={styles.featuredJourney}>
+              <div className={styles.journeyCard}>
+                <div className={styles.cardImage}>
+                  <img 
+                    src="/src/assets/images/hero-vineyard.jpg" 
+                    alt="Catalunya Wine Journey" 
                   />
-                )}
+                  <div className={styles.featuredBadge}>FEATURED</div>
+                </div>
+                <div className={styles.cardContent}>
+                  <h3 className={styles.journeyTitle}>Catalunya Revolution</h3>
+                  <p className={styles.journeyRegion}>Catalonia's Heartland</p>
+                  <p className={styles.journeyDuration}>5 Days</p>
+                  <p className={styles.journeyDescription}>
+                    Embark on an exclusive journey through the rugged landscapes of Catalonia, where tradition meets the avant-garde. From the prestigious "Corpinnat" sparkling houses of Penedès to the ancient slate terraces of Priorat, this 5-day tour offers a deep dive into the world's most exciting wine frontier.
+                  </p>
+                  
+                  <div className={styles.itinerarySection}>
+                    <h4 className={styles.itineraryTitle}>The Itinerary</h4>
+                    <p className={styles.itinerarySubtitle}>Five days of discovery through Catalonia's most exciting wine territories</p>
+                    
+                    <div className={styles.dayButtons}>
+                      <button className={styles.dayButton} onClick={() => openDayModal(1)}>
+                        <span className={styles.dayNumber}>Day 1</span>
+                        <span className={styles.dayTitle}>Sparkling Paradise</span>
+                      </button>
+                      <button className={styles.dayButton} onClick={() => openDayModal(2)}>
+                        <span className={styles.dayNumber}>Day 2</span>
+                        <span className={styles.dayTitle}>Natural Penedès</span>
+                      </button>
+                      <button className={styles.dayButton} onClick={() => openDayModal(3)}>
+                        <span className={styles.dayNumber}>Day 3</span>
+                        <span className={styles.dayTitle}>Conca de Barberà</span>
+                      </button>
+                      <button className={styles.dayButton} onClick={() => openDayModal(4)}>
+                        <span className={styles.dayNumber}>Day 4</span>
+                        <span className={styles.dayTitle}>Priorat</span>
+                      </button>
+                      <button className={styles.dayButton} onClick={() => openDayModal(5)}>
+                        <span className={styles.dayNumber}>Day 5</span>
+                        <span className={styles.dayTitle}>Priorat</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
+            </div>
+
+            {/* Additional Journeys */}
+            <div className={styles.additionalJourneys}>
+              {/* Future journeys can be added here */}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Day Details Modal */}
+      {selectedDay && (
+        <div className={styles.modalOverlay} onClick={closeModal}>
+          <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+            <button className={styles.closeButton} onClick={closeModal}>×</button>
+            
+            <div className={styles.modalHeader}>
+              <h2 className={styles.modalTitle}>{selectedDay.title}</h2>
+              <p className={styles.modalLocation}>{selectedDay.location}</p>
+            </div>
+
+            <div className={styles.modalBody}>
+              <div className={styles.modalSection}>
+                <h3 className={styles.modalSectionTitle}>Experiences & Visits</h3>
+                <div className={styles.experienceList}>
+                  {selectedDay.experiences.map((experience, index) => (
+                    <div key={index} className={styles.experienceItem}>
+                      <span className={styles.experienceNumber}>{index + 1}</span>
+                      <span className={styles.experienceName}>{experience}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className={styles.modalInfo}>
+                <div className={styles.infoItem}>
+                  <span className={styles.infoIcon}>📍</span>
+                  <div>
+                    <p className={styles.infoLabel}>Overnight</p>
+                    <p className={styles.infoValue}>{selectedDay.overnight}</p>
+                  </div>
+                </div>
+
+                <div className={styles.infoItem}>
+                  <span className={styles.infoIcon}>🍇</span>
+                  <div>
+                    <p className={styles.infoLabel}>Region</p>
+                    <p className={styles.infoValue}>{selectedDay.region}</p>
+                  </div>
+                </div>
+
+                <div className={styles.infoItem}>
+                  <span className={styles.infoIcon}>🗓</span>
+                  <div>
+                    <p className={styles.infoLabel}>Visits</p>
+                    <p className={styles.infoValue}>{selectedDay.visits}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className={styles.modalSection}>
+                <h3 className={styles.modalSectionTitle}>What's Included</h3>
+                <p className={styles.modalSectionSubtitle}>Everything you need for an unforgettable journey</p>
+                
+                <div className={styles.includedList}>
+                  <div className={styles.includedItem}>
+                    <span className={styles.includedIcon}>🏡</span>
+                    <span className={styles.includedText}>Accommodation in boutique hotels & casa rurales</span>
+                  </div>
+                  <div className={styles.includedItem}>
+                    <span className={styles.includedIcon}>🍷</span>
+                    <span className={styles.includedText}>All meals paired with local wines</span>
+                  </div>
+                  <div className={styles.includedItem}>
+                    <span className={styles.includedIcon}>🍽</span>
+                    <span className={styles.includedText}>Dinners at gastronomic restaurants aligned with producer profiles</span>
+                  </div>
+                  <div className={styles.includedItem}>
+                    <span className={styles.includedIcon}>🍇</span>
+                    <span className={styles.includedText}>Guided tours of vineyards, cellars & barrel rooms</span>
+                  </div>
+                  <div className={styles.includedItem}>
+                    <span className={styles.includedIcon}>🥂</span>
+                    <span className={styles.includedText}>Private tastings & masterclasses with winemakers</span>
+                  </div>
+                  <div className={styles.includedItem}>
+                    <span className={styles.includedIcon}>🚐</span>
+                    <span className={styles.includedText}>All transportation during the journey</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className={styles.modalFooter}>
+              <button className={styles.navButton} onClick={closeModal}>←</button>
+              <span className={styles.pagination}>1 / 5</span>
+              <button className={styles.navButton}>→</button>
             </div>
           </div>
         </div>
       )}
-    </>
+    </section>
   )
 }
 

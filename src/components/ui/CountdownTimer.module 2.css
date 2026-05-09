@@ -1,0 +1,175 @@
+/* Container for the entire timer layout */
+.timerContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  position: relative;
+  z-index: 3;
+}
+
+/* Text container below timer */
+.textContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 400px;
+  gap: 2rem;
+}
+
+.countdownTimer {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 3;
+}
+
+.countdownTimer.active {
+  animation: pulse 2s infinite;
+}
+
+.countdownTimer.expired {
+  opacity: 0.6;
+}
+
+.timeUnit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 50px;
+}
+
+.timeValue {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1;
+  font-family: 'Courier New', monospace;
+  transition: all 0.3s ease;
+  display: inline-block;
+  min-width: 2ch;
+  text-align: center;
+}
+
+.timeValue:hover {
+  transform: scale(1.05);
+  color: #22c55e;
+}
+
+/* Special styling for seconds to show real-time updates */
+.secondsUnit {
+  position: relative;
+}
+
+.secondsValue {
+  animation: tick 1s infinite;
+  color: #22c55e !important;
+  font-weight: 700;
+}
+
+@keyframes tick {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Pulse animation for active countdown */
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.timeLabel {
+  font-size: 0.7rem;
+  color: #cccccc;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 0.2rem;
+}
+
+/* Left text styling */
+.leftText {
+  font-size: 1.5rem;
+  color: #ffffff;
+  font-weight: 700;
+  text-align: center;
+  white-space: nowrap;
+  opacity: 0.9;
+}
+
+/* Right text styling */
+.rightText {
+  font-size: 1.5rem;
+  color: #ffffff;
+  font-weight: 700;
+  text-align: center;
+  white-space: nowrap;
+  opacity: 0.9;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .textContainer {
+    max-width: 300px;
+    gap: 1rem;
+  }
+  
+  .leftText,
+  .rightText {
+    font-size: 0.8rem;
+  }
+  
+  .countdownTimer {
+    gap: 0.8rem;
+  }
+
+  .timeValue {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .timerContainer {
+    gap: 0.8rem;
+  }
+  
+  .textContainer {
+    flex-direction: column;
+    gap: 0.5rem;
+    max-width: 200px;
+  }
+  
+  .leftText,
+  .rightText {
+    font-size: 0.7rem;
+    text-align: center;
+  }
+  
+  .countdownTimer {
+    gap: 0.6rem;
+  }
+
+  .timeValue {
+    font-size: 1.3rem;
+  }
+
+  .timeLabel {
+    font-size: 0.6rem;
+  }
+}

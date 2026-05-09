@@ -1,165 +1,29 @@
 /**
- * Main App Component
- * Refactored for better maintainability and clean code principles
+ * Main App Component - Simplified Architecture
  */
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import './App.css'
 
-// Component imports - organized by type
+// Component imports
 import Navbar from './components/ui/Navbar'
-import RegistrationModal from './components/ui/RegistrationModal'
-import Hero from './components/sections/Hero'
-import WhyTravel from './components/sections/WhyTravel'
+
+// Section components
+import Home from './components/sections/Home'
+import TheDifference from './components/sections/TheDifference'
 import Journeys from './components/sections/Journeys'
-import Guides from './components/sections/Guides'
-import Footer from './components/sections/Footer'
-import Partners from './components/sections/Partners'
+import Regions from './components/sections/Regions'
+import TheMakers from './components/sections/TheMakers'
+import WhoWeAre from './components/sections/WhoWeAre'
 
 // Utility imports
 import { useScrollNavigation } from './hooks/useScrollNavigation'
-import { useLocalStorage } from './hooks/useLocalStorage'
-import { getSubscribers, getRegistrations, addRegistration } from './utils/storage'
-import { CAMP_CONFIG } from './constants/campData'
-import { useStrapiData } from './hooks/useStrapiData'
-
-// Mobile optimization imports
-import { 
-  preloadCriticalResources, 
-  lazyLoadImages, 
-  optimizeViewport,
-  getConnectionType,
-  isMobileDevice 
-} from './utils/mobilePerformance'
 
 /**
- * Main App component with improved structure and error handling
- * Follows clean code principles with clear separation of concerns
+ * Main App component with simplified structure
  */
 function App() {
-  // State management with descriptive names
-  const [isRegistrationModalOpen, setIsRegistrationModalOpen] = useState(false)
-  const [currentUserSubscribed, setCurrentUserSubscribed] = useState(false)
-  
-  // Custom hooks for better logic separation
+  // Custom hook for navigation
   const { activeSection, scrollToSection } = useScrollNavigation()
-  const [subscribers, setSubscribers] = useLocalStorage(CAMP_CONFIG.STORAGE_KEYS.SUBSCRIBERS, [])
-  const [registrations, setRegistrations] = useLocalStorage(CAMP_CONFIG.STORAGE_KEYS.REGISTRATIONS, [])
-
-  // Fetch Strapi CMS data
-  const { data: strapiData } = useStrapiData()
-
-  // Camp data configuration - use Strapi config if available, otherwise fallback to constants
-  const campConfig = strapiData?.campConfig || {
-    launchDateOffsetDays: CAMP_CONFIG.LAUNCH_DATE_OFFSET_DAYS,
-    defaultMaxParticipants: CAMP_CONFIG.MAX_PARTICIPANTS,
-    defaultCurrentParticipants: CAMP_CONFIG.CURRENT_PARTICIPANTS,
-  }
-  
-  const campData = {
-    launchDate: new Date(Date.now() + (campConfig.launchDateOffsetDays || CAMP_CONFIG.LAUNCH_DATE_OFFSET_DAYS) * 24 * 60 * 60 * 1000).toISOString(),
-    currentParticipants: campConfig.defaultCurrentParticipants || CAMP_CONFIG.CURRENT_PARTICIPANTS,
-    maxParticipants: campConfig.defaultMaxParticipants || CAMP_CONFIG.MAX_PARTICIPANTS
-  }
-
-  // Load initial data from localStorage on component mount
-  useEffect(() => {
-    const loadInitialData = () => {
-      try {
-        const savedSubscribers = getSubscribers()
-        const savedRegistrations = getRegistrations()
-        
-        setSubscribers(savedSubscribers)
-        setRegistrations(savedRegistrations)
-      } catch (error) {
-        console.error('Error loading initial data:', error)
-      }
-    }
-
-    loadInitialData()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []) // Solo ejecutar una vez al montar el componente
-
-  // Mobile optimization setup
-  useEffect(() => {
-    const setupMobileOptimizations = () => {
-      try {
-        // Optimizar viewport para móviles
-        optimizeViewport()
-        
-        // Detectar si es móvil
-        const isMobile = isMobileDevice()
-        const connectionType = getConnectionType()
-        
-        if (isMobile) {
-          // Preload recursos críticos solo en conexiones rápidas
-          if (connectionType === '4g' || connectionType === '5g') {
-            preloadCriticalResources([
-              { url: '/images/home-1.jpg', type: 'image' },
-              { url: '/images/foto2.jpeg', type: 'image' },
-              { url: '/images/foto 3.jpg', type: 'image' }
-            ], connectionType)
-          }
-          
-          // Lazy load de imágenes no críticas
-          lazyLoadImages('img[data-src]', {
-            rootMargin: '50px 0px',
-            threshold: 0.1
-          })
-        }
-      } catch (error) {
-        console.error('Error setting up mobile optimizations:', error)
-      }
-    }
-
-    setupMobileOptimizations()
-  }, [])
-
-  /**
-   * Handle subscription with error handling
-   * @param {string} email - Subscriber email
-   */
-  const handleSubscribe = (email) => {
-    try {
-    setSubscribers(prev => [...prev, email])
-    setCurrentUserSubscribed(true)
-    } catch (error) {
-      console.error('Error handling subscription:', error)
-    }
-  }
-
-  /**
-   * Handle registration submission with validation
-   * @param {Object} registrationData - Registration form data
-   */
-  const handleRegistrationSubmit = (registrationData) => {
-    try {
-      const success = addRegistration(registrationData)
-      if (success) {
-        setRegistrations(prev => [...prev, registrationData])
-        setIsRegistrationModalOpen(false)
-      } else {
-        console.error('Failed to save registration')
-      }
-    } catch (error) {
-      console.error('Error handling registration:', error)
-    }
-  }
-
-  /**
-   * Handle opening registration modal
-   * Centralized modal state management
-   */
-  const handleOpenRegistration = () => {
-    setIsRegistrationModalOpen(true)
-  }
-
-  /**
-   * Handle closing registration modal
-   * Centralized modal state management
-   */
-  const handleCloseRegistration = () => {
-    setIsRegistrationModalOpen(false)
-  }
 
   /**
    * Handle navigation
@@ -178,32 +42,17 @@ function App() {
       />
 
       {/* Main Content Sections */}
-      <Hero 
-        onScrollToSection={scrollToSection}
-        onOpenRegistration={handleOpenRegistration}
-        campData={campData}
-      />
-
-      <WhyTravel />
-
-      <Journeys 
-        onOpenRegistration={handleOpenRegistration}
-      />
-
-      <Guides />
-
-      <div className="guides-footer-spacer" aria-hidden="true" />
-
-      <Footer />
-
-      <Partners />
-
-      {/* Registration Modal */}
-      <RegistrationModal 
-        isOpen={isRegistrationModalOpen}
-        onClose={handleCloseRegistration}
-        onSubmit={handleRegistrationSubmit}
-      />
+      <Home />
+      
+      <TheDifference />
+      
+      <Journeys />
+      
+      <Regions />
+      
+      <TheMakers />
+      
+      <WhoWeAre />
     </div>
   )
 }

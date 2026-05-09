@@ -7,13 +7,13 @@
   min-height: 100vh;
   display: flex;
   align-items: center;
-  background-color: #0a0a0a;
+  background-color: #ffffff;
   margin: 0;
   padding: 0;
 }
 
 .includedBg4 {
-  background-image: url('/images/foto 4.jpg');
+  background-color: #ffffff;
   /* Responsive background positioning */
   background-size: cover;
   background-position: center center;

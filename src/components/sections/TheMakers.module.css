@@ -1,0 +1,269 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;500;600&display=swap');
+
+.theMakers {
+  min-height: 100vh;
+  background: #ffffff;
+  padding: 80px 0;
+  position: relative;
+}
+
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Cabecera de sección */
+.sectionHeader {
+  text-align: center;
+  padding: 4rem 0;
+}
+
+.sectionLabel {
+  font-family: 'Raleway', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  color: #c9963a;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  margin-bottom: 1rem;
+}
+
+.sectionTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 60px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 2rem;
+  line-height: 1.1;
+}
+
+.italic {
+  font-style: italic;
+  color: #c9963a;
+}
+
+.sectionDescription {
+  font-family: 'Raleway', sans-serif;
+  font-size: 16px;
+  color: #1a1a1a;
+  max-width: 600px;
+  margin: 0 auto 3rem;
+  line-height: 1.8;
+  text-align: center;
+}
+
+.divider {
+  width: 60px;
+  height: 2px;
+  background: #c9963a;
+  margin: 0 auto;
+}
+
+/* Grid principal de productores */
+.producersGrid {
+  margin-bottom: 4rem;
+}
+
+.gridContainer {
+  border: 1px solid #e0ddd8;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.producerRow {
+  display: flex;
+  border-bottom: 1px solid #e0ddd8;
+}
+
+.producerRow:last-child {
+  border-bottom: none;
+}
+
+.producerCell {
+  flex: 1;
+  padding: 24px 28px;
+  border-right: 1px solid #e0ddd8;
+  transition: background-color 0.2s ease;
+}
+
+.producerCell:hover {
+  background-color: #fafafa;
+}
+
+.producerCell:last-child {
+  border-right: none;
+}
+
+.producerContent {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.avatar {
+  width: 52px;
+  height: 52px;
+  background: #ffffff;
+  border: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: #888;
+  flex-shrink: 0;
+}
+
+.producerInfo {
+  flex: 1;
+}
+
+.producerName {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 8px 0;
+  line-height: 1.2;
+}
+
+.producerTags {
+  font-family: 'Raleway', sans-serif;
+  font-size: 12px;
+  color: #888;
+  line-height: 1.4;
+}
+
+.tag {
+  font-size: 12px;
+  color: #888;
+}
+
+.expandButton {
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 18px;
+  font-weight: 300;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.expandButton:hover {
+  background-color: #f0f0f0;
+  color: #1a1a1a;
+}
+
+/* Sección "Also Featured" */
+.featuredSection {
+  margin-top: 60px;
+}
+
+.featuredTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: #1a1a1a;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.featuredGrid {
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+.featuredCard {
+  flex: 1;
+  border: 1px solid #ddd;
+  background: #ffffff;
+  padding: 16px;
+  border-radius: 2px;
+  transition: all 0.2s ease;
+}
+
+.featuredCard:hover {
+  border-color: #c9963a;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.featuredName {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 8px 0;
+  line-height: 1.3;
+}
+
+.featuredDesc {
+  font-family: 'Raleway', sans-serif;
+  font-size: 12px;
+  color: #888;
+  margin: 0;
+  line-height: 1.4;
+  font-style: italic;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sectionTitle {
+    font-size: 48px;
+  }
+  
+  .sectionDescription {
+    font-size: 15px;
+  }
+  
+  .producerRow {
+    flex-direction: column;
+  }
+  
+  .producerCell {
+    border-right: none;
+    border-bottom: 1px solid #e0ddd8;
+  }
+  
+  .producerCell:last-child {
+    border-bottom: none;
+  }
+  
+  .featuredGrid {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .featuredCard {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sectionTitle {
+    font-size: 36px;
+  }
+  
+  .producerContent {
+    gap: 12px;
+  }
+  
+  .avatar {
+    width: 44px;
+    height: 44px;
+    font-size: 16px;
+  }
+  
+  .producerName {
+    font-size: 18px;
+  }
+  
+  .producerTags {
+    font-size: 11px;
+  }
+}

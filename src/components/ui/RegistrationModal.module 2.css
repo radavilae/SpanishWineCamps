@@ -1,0 +1,181 @@
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 2000;
+}
+
+.modal {
+  width: 100%;
+  max-width: 700px;
+  background: #0a0a0a;
+  border: 1px solid #333;
+  border-radius: 10px;
+  padding: 1.5rem;
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.modalHeader h3 {
+  font-weight: 400;
+  color: #ffffff;
+}
+
+.modalClose {
+  background: transparent;
+  color: #ccc;
+  border: 1px solid #444;
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modalClose:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.modalForm .formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.formField {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.formField label {
+  color: #ccc;
+  font-size: 0.9rem;
+}
+
+.formField input,
+.formField select,
+.formField textarea {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid #333;
+  color: #fff;
+  border-radius: 8px;
+  padding: 0.8rem 0.9rem;
+  font-family: inherit;
+}
+
+.formField input:focus,
+.formField select:focus,
+.formField textarea:focus {
+  outline: none;
+  border-color: #555;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.formError {
+  color: #ef4444;
+  margin-top: 0.25rem;
+  font-size: 0.9rem;
+}
+
+.modalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.primaryButton {
+  background: #ffffff;
+  color: #000000;
+  border: none;
+  border-radius: 8px;
+  padding: 0.8rem 1.2rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.primaryButton:hover:not(:disabled) {
+  background: #e0e0e0;
+  transform: translateY(-1px);
+}
+
+.primaryButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.secondaryButton {
+  background: transparent;
+  color: #fff;
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 0.8rem 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.secondaryButton:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #666;
+}
+
+.modalSuccess {
+  text-align: center;
+  padding: 1rem 0.5rem;
+}
+
+.modalSuccess .successIcon {
+  color: #22c55e;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.modalSuccess h4 {
+  color: #ffffff;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.modalSuccess p {
+  color: #cccccc;
+  margin-bottom: 1.5rem;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .modal {
+    padding: 1rem;
+    margin: 0.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .modalForm .formRow {
+    grid-template-columns: 1fr;
+  }
+  
+  .modalActions {
+    flex-direction: column;
+  }
+  
+  .primaryButton,
+  .secondaryButton {
+    width: 100%;
+  }
+}

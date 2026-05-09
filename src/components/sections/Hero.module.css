@@ -5,22 +5,12 @@
   padding: 0;
   padding-top: 80px; /* Space for fixed navbar */
   margin: 0;
-  background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+  background: #ffffff;
   position: relative;
-  /* Responsive background image system */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: scroll; /* Mobile: no parallax */
 }
 
 .heroBg1 {
-  background-image: url('/images/HOME-BANNER.png');
-  /* Responsive background positioning */
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: scroll;
+  background: #ffffff;
 }
 
 .heroOverlay {

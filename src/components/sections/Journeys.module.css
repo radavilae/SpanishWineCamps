@@ -1,1054 +1,674 @@
-/* ===== JOURNEYS: ESTRUCTURA BASE ===== */
-.journeySection {
-  /* Seccion principal con imagen de fondo */
-  position: relative;
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&display=swap');
+
+.journeys {
   min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  background-color: #0b1f4b;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  background: #ffffff;
+  padding: 100px 0;
 }
 
-.journeysBottomSpacer {
-  height: 2rem;
-  background: #000000;
-  width: 100%;
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
 }
 
-/* Degradado superior: suaviza el inicio de la foto */
-.journeySection::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 420px;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.85) 40%, rgba(0, 0, 0, 0.35) 80%, rgba(0, 0, 0, 0) 100%);
-  pointer-events: none;
-  z-index: 2;
+.header {
+  text-align: center;
+  margin-bottom: 4rem;
 }
 
-/* Barrido de luz suave: da dinamismo sin distraer */
-.journeySection::after {
-  content: '';
-  position: absolute;
-  top: -20%;
-  left: -20%;
-  width: 60%;
-  height: 60%;
-  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0) 60%);
-  pointer-events: none;
-  z-index: 1;
-  animation: journeySweep 18s ease-in-out infinite;
+.sectionTitle {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 1rem;
+  font-family: 'Cormorant Garamond', serif;
 }
 
-@keyframes journeySweep {
-  0% {
-    transform: translate(0, 0);
-    opacity: 0.5;
-  }
-  50% {
-    transform: translate(40vw, 25vh);
-    opacity: 0.8;
-  }
-  100% {
-    transform: translate(0, 0);
-    opacity: 0.5;
-  }
+.sectionSubtitle {
+  font-size: 1.2rem;
+  color: #666666;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
 }
 
-
-
-
-.journeySection.noImage {
-  background: #000000;
-  background-attachment: scroll;
+.journeysGrid {
+  display: grid;
+  gap: 3rem;
 }
 
-/* Force background image update for specific sections */
-#catalunya-roussellon {
-  background-image: url('/images/fotopaginacuatro.jpeg') !important;
-  background-size: cover !important;
-  background-position: center !important;
-  background-repeat: no-repeat !important;
-  background-attachment: fixed !important;
+.featuredJourney {
+  margin-bottom: 4rem;
 }
 
-/* Adjust image position/scale for Catalunya Priorat */
-#catalunya-priorat {
-  background-position: center 20% !important;
-  background-size: 220% 220% !important;
-  margin-top: 0;
-}
-
-/* Cinematic effect - Letterboxing */
-.journeySection.cinematic {
-  position: relative;
+.journeyCard {
+  background: #ffffff;
+  border-radius: 16px;
   overflow: hidden;
-}
-
-.journeySection.cinematic::before,
-.journeySection.cinematic::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: 0;
-  background: transparent;
-  z-index: 10;
-  pointer-events: none;
-}
-
-/* Remove cinematic black bands for Catalunya Priorat */
-#catalunya-priorat.cinematic::before,
-#catalunya-priorat.cinematic::after {
-  height: 0;
-  background: transparent;
-}
-
-.journeySection.cinematic::before {
-  top: 0;
-}
-
-.journeySection.cinematic::after {
-  bottom: 0;
-}
-
-.journeyOverlay {
-  /* Capa que alinea el contenido encima de la foto */
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: transparent;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-  padding-top: 80px; /* Alineación con HOME - espacio para navbar */
-  z-index: 1;
-}
-
-/* Degradado inferior: suaviza el final de la foto */
-.journeyOverlay::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 220px;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 70%, rgba(0, 0, 0, 0.8) 90%, rgba(0, 0, 0, 1) 100%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.journeyContent {
-  position: relative;
-  z-index: 2;
-  max-width: 900px;
-  width: 100%;
-  text-align: center;
-  color: #ffffff;
-  padding-left: 2rem;
-  padding-right: 2rem;
-  font-family: 'Playfair Display', 'Cormorant Garamond', 'Georgia', serif;
-}
-
-.journeyHeader {
-  margin-bottom: 1.5rem;
-  background: transparent;
-  padding: 1.25rem 1rem;
-  display: block;
-  position: relative;
-  z-index: 2;
-  text-align: center;
-}
-
-
-.journeyTitle {
-  font-size: 4.2rem;
-  font-weight: 300;
-  color: #ffffff;
-  margin: 0 0 0.8rem 0;
-  line-height: 1.2;
-  letter-spacing: 2px;
-  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9);
-  text-transform: none;
-  text-align: center;
-  font-family: 'Playfair Display', 'Cormorant Garamond', 'Georgia', serif;
-}
-
-/* Bajar el margen superior del título de Catalunya Priorat */
-#catalunya-priorat .journeyHeader {
-  margin-top: 3rem;
-}
-
-.journeyDate {
-  display: inline-block;
-  font-size: 1rem;
-  color: #ffffff;
-  font-weight: 500;
-  letter-spacing: 0.5px;
-  text-shadow: none;
-  font-family: 'Montserrat', Arial, sans-serif;
-  background: linear-gradient(135deg, #3b82f6, #2563eb);
-  padding: 0.4rem 1rem;
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
-  text-transform: uppercase;
-  margin-bottom: 0.8rem;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Special style for Join our Wine Camp */
-.journeyDate.joinWineCamp {
-  background: linear-gradient(135deg, #dc2626, #b91c1c);
-  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
-  border-color: rgba(255, 255, 255, 0.3);
-}
-
-/* Button styles for Join our Wine Camp */
-.journeyDate.joinButton {
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border: 2px solid rgba(255, 255, 255, 0.4);
-}
-
-.journeyDate.joinButton:hover {
-  background: linear-gradient(135deg, #b91c1c, #991b1b);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(220, 38, 38, 0.4);
-  border-color: rgba(255, 255, 255, 0.6);
-}
-
-.journeyDate.joinButton:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.3);
-}
-
-.journeyDescription {
-  font-size: 1.3rem;
-  line-height: 1.8;
-  color: #ffffff;
-  margin-bottom: 2rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-  max-width: 800px;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.guestsSection {
-  display: flex;
-  gap: 2rem;
-  margin-bottom: 3rem;
-  flex-wrap: wrap;
-}
-
-.guestCircle {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-}
-
-.guestImage {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  background-color: #000000;
-  border: 3px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.guestImage:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
-  border-color: rgba(255, 255, 255, 0.5);
+.journeyCard:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
 }
 
-.guestName {
-  font-size: 1rem;
-  color: #ffffff;
-  text-align: center;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-  margin: 0;
-  font-weight: 300;
-  letter-spacing: 1px;
-}
-
-.journeyActions {
-  display: flex;
-  gap: 1.5rem;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 0;
-}
-
-.inquireButton,
-.itineraryButton {
-  padding: 1.2rem 2.5rem;
-  font-size: 1rem;
-  font-weight: 400;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border: 2px solid rgba(255, 255, 255, 0.5);
-  background: transparent;
-  color: #ffffff;
-}
-
-.mapButton {
-  padding: 1.2rem 2.5rem;
-  font-size: 1rem;
-  font-weight: 400;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border: 2px solid rgba(255, 255, 255, 0.5);
-  background: transparent;
-  color: #ffffff;
-}
-
-.inquireButton {
-  background: #ffffff;
-  color: #000000;
-  border-color: #ffffff;
-}
-
-.inquireButton:hover {
-  background: rgba(255, 255, 255, 0.9);
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
-}
-
-.itineraryButton:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.8);
-  transform: translateY(-3px);
-}
-
-.mapButton:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.8);
-  transform: translateY(-3px);
-}
-
-/* Map modal */
-.mapModal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.9);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  padding: 2rem;
-  animation: fadeIn 0.3s ease;
-}
-
-.mapModalContent {
-  background: rgba(0, 0, 0, 0.95);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
-  padding: 2rem;
-  max-width: 900px;
-  width: 100%;
-  max-height: 90vh;
-  overflow: hidden;
+.cardImage {
   position: relative;
-  animation: slideUp 0.3s ease;
-  backdrop-filter: blur(20px);
-}
-
-.mapHeader {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 1rem;
-}
-
-.mapTitle {
-  margin: 0;
-  font-size: 1.1rem;
-  letter-spacing: 0.2rem;
-  text-transform: uppercase;
-  color: #ffffff;
-}
-
-.mapClose {
-  background: transparent;
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  padding: 0.4rem 0.8rem;
-  border-radius: 999px;
-  cursor: pointer;
-  font-size: 0.85rem;
-  letter-spacing: 0.08rem;
-  text-transform: uppercase;
-}
-
-.mapLayout {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 1.5rem;
-}
-
-.mapList {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  max-height: 60vh;
-  overflow-y: auto;
-}
-
-.mapListButton {
-  background: transparent;
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 0.6rem 0.8rem;
-  text-align: left;
-  cursor: pointer;
-  border-radius: 8px;
-  font-size: 0.85rem;
-  transition: all 0.2s ease;
-}
-
-.mapListButtonActive {
-  border-color: rgba(255, 255, 255, 0.7);
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.mapFrame {
-  width: 100%;
-  min-height: 320px;
-  border-radius: 10px;
+  height: 400px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.mapFrame iframe {
+.cardImage img {
   width: 100%;
   height: 100%;
-  border: 0;
+  object-fit: cover;
+  transition: transform 0.3s ease;
 }
 
-@media (max-width: 768px) {
-  .mapLayout {
-    grid-template-columns: 1fr;
-  }
-
-  .mapFrame {
-    min-height: 240px;
-  }
+.journeyCard:hover .cardImage img {
+  transform: scale(1.05);
 }
 
-/* What's Included Modal */
-.includedModal {
+.featuredBadge {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  background: hsl(42, 78%, 52%);
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.cardContent {
+  padding: 2.5rem;
+}
+
+.journeyTitle {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #000000;
+  margin-bottom: 0.5rem;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.journeyRegion {
+  font-size: 1.1rem;
+  color: hsl(42, 78%, 52%);
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.journeyDuration {
+  font-size: 1rem;
+  color: #666666;
+  margin-bottom: 1.5rem;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.journeyDescription {
+  font-size: 1.1rem;
+  color: #666666;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.itinerarySection {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #e5e5e5;
+}
+
+.itineraryTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #000000;
+  margin-bottom: 0.5rem;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.itinerarySubtitle {
+  font-size: 1rem;
+  color: #666666;
+  margin-bottom: 1.5rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+}
+
+.dayButtons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.dayButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.5rem 1rem;
+  border: 2px solid hsl(42, 78%, 52%);
+  background: #ffffff;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.dayButton:hover {
+  background: hsl(42, 78%, 52%);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.dayButton:hover .dayNumber,
+.dayButton:hover .dayTitle {
+  color: #ffffff;
+}
+
+.dayNumber {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: hsl(42, 78%, 52%);
+  font-family: 'Cormorant Garamond', serif;
+  transition: color 0.3s ease;
+}
+
+.dayTitle {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #000000;
+  font-family: 'Cormorant Garamond', serif;
+  text-align: center;
+  transition: color 0.3s ease;
+}
+
+/* What's Included Section */
+.whatsIncluded {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid #e5e5e5;
+}
+
+.includedTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #000000;
+  margin-bottom: 0.5rem;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.includedSubtitle {
+  font-size: 1rem;
+  color: #666666;
+  margin-bottom: 2rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+}
+
+.includedList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.includedItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: #f9f9f9;
+  border-radius: 12px;
+  border-left: 3px solid hsl(42, 78%, 52%);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.includedItem:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.includedIcon {
+  font-size: 1.8rem;
+  min-width: 40px;
+  text-align: center;
+  line-height: 1;
+}
+
+.includedText {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #000000;
+  line-height: 1.4;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+/* Modal Styles */
+.modalOverlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(0, 0, 0, 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
   padding: 2rem;
-  animation: fadeIn 0.3s ease;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.includedModalContent {
-  background: rgba(0, 0, 0, 0.95);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
-  padding: 3rem;
-  max-width: 600px;
+.modalContent {
+  background: #ffffff;
+  border-radius: 16px;
+  max-width: 800px;
   width: 100%;
   max-height: 90vh;
   overflow-y: auto;
   position: relative;
-  animation: slideUp 0.3s ease;
-  backdrop-filter: blur(20px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: modalSlideIn 0.3s ease;
 }
 
-@keyframes slideUp {
+@keyframes modalSlideIn {
   from {
-    transform: translateY(50px);
     opacity: 0;
+    transform: translateY(-20px);
   }
   to {
-    transform: translateY(0);
     opacity: 1;
+    transform: translateY(0);
   }
 }
 
 .closeButton {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #ffffff;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #666666;
   width: 40px;
   height: 40px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
   transition: all 0.3s ease;
+  font-family: 'Cormorant Garamond', serif;
 }
 
 .closeButton:hover {
-  background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.4);
-  transform: rotate(90deg);
+  background: #f5f5f5;
+  color: #000000;
 }
 
-.closeButton svg {
-  width: 20px;
-  height: 20px;
-}
-
-.modalJourneyTitle {
-  font-size: 2rem;
-  font-weight: 300;
-  color: #ffffff;
+.modalHeader {
+  padding: 3rem 3rem 2rem;
   text-align: center;
-  margin-bottom: 2rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-  letter-spacing: 0.5px;
+  border-bottom: 1px solid #e5e5e5;
 }
 
-.includedTitle {
-  font-size: 1.3rem;
+.modalTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 0.5rem;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.modalLocation {
+  font-size: 1.2rem;
+  color: hsl(42, 78%, 52%);
+  font-weight: 600;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.modalBody {
+  padding: 2rem 3rem;
+}
+
+.modalSection {
+  margin-bottom: 2rem;
+}
+
+.modalSectionTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #000000;
+  margin-bottom: 1.5rem;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.modalSectionSubtitle {
+  font-size: 1rem;
+  color: #666666;
+  margin-bottom: 2rem;
+  font-family: 'Cormorant Garamond', serif;
   font-weight: 400;
-  color: #ffffff;
-  text-align: center;
-  margin-bottom: 2rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
 
-.includedItems {
+.experienceList {
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 1rem;
 }
 
-.includedItem {
-  padding: 1.2rem;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+.experienceItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: #f9f9f9;
   border-radius: 8px;
-  transition: all 0.3s ease;
+  border-left: 3px solid hsl(42, 78%, 52%);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.includedItem:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.2);
-  transform: translateX(5px);
+.experienceItem:hover {
+  transform: translateX(10px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
 }
 
-.includedItem h5 {
+.experienceNumber {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: hsl(42, 78%, 52%);
+  min-width: 30px;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.experienceName {
   font-size: 1.1rem;
-  font-weight: 500;
+  font-weight: 600;
+  color: #000000;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.modalInfo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.infoItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.infoItem:hover {
+  transform: translateY(-5px);
+}
+
+.infoIcon {
+  font-size: 1.5rem;
+  min-width: 30px;
+}
+
+.infoLabel {
+  font-size: 0.9rem;
+  color: #666666;
+  margin-bottom: 0.25rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+}
+
+.infoValue {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #000000;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.modalFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 3rem;
+  border-top: 1px solid #e5e5e5;
+  background: #f9f9f9;
+  border-radius: 0 0 16px 16px;
+}
+
+.navButton {
+  background: hsl(42, 78%, 52%);
   color: #ffffff;
-  margin: 0 0 0.5rem 0;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
 }
 
-.includedItem p {
-  font-size: 0.95rem;
-  color: #cccccc;
-  margin: 0;
-  line-height: 1.6;
+.navButton:hover {
+  background: #000000;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Responsive styles */
+.pagination {
+  font-size: 1rem;
+  color: #666666;
+  font-weight: 600;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.additionalJourneys {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+/* Responsive adjustments */
 @media (max-width: 1024px) {
-  .journeySection {
-    background-attachment: scroll;
-    min-height: 90vh;
+  .journeysGrid {
+    gap: 2rem;
   }
-
-  .journeySection.cinematic::before,
-  .journeySection.cinematic::after {
-    height: 12%;
+  
+  .cardImage {
+    height: 350px;
   }
-
-  .journeyOverlay {
-    padding: 1.5rem;
-  }
-
-  .journeyContent {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
-
-  .journeyTitle {
-    font-size: 2.5rem;
-    letter-spacing: 1.5px;
-  }
-
-  .journeyDescription {
-    font-size: 1.1rem;
-    line-height: 1.7;
-  }
-
-  .guestsSection {
+  
+  .additionalJourneys {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
-    margin-bottom: 2rem;
-    justify-content: flex-start;
   }
-
-  .guestImage {
-    width: 100px;
-    height: 100px;
+  
+  .dayButtons {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   }
-
-  .guestName {
+  
+  .modalContent {
+    max-width: 700px;
+  }
+  
+  .modalHeader {
+    padding: 2rem 2rem 1.5rem;
+  }
+  
+  .modalBody {
+    padding: 1.5rem 2rem;
+  }
+  
+  .modalFooter {
+    padding: 1.5rem 2rem;
+  }
+  
+  .includedList {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+  
+  .includedItem {
+    padding: 1rem;
+  }
+  
+  .includedIcon {
+    font-size: 1.5rem;
+    min-width: 35px;
+  }
+  
+  .includedText {
     font-size: 0.9rem;
   }
 }
 
 @media (max-width: 768px) {
-  .journeySection {
-    min-height: 80vh;
-    background-attachment: scroll !important;
+  .journeys {
+    padding: 60px 0;
   }
-
-  .journeySection.cinematic::before,
-  .journeySection.cinematic::after {
-    height: 10%;
+  
+  .content {
+    padding: 0 1rem;
   }
-
-  .journeyOverlay {
-    padding: 1rem;
+  
+  .header {
+    margin-bottom: 3rem;
   }
-
-  .journeyContent {
-    max-width: 100%;
-    padding-left: 1rem;
-    padding-right: 1rem;
+  
+  .sectionTitle {
+    font-size: 2.5rem;
   }
-
-  .journeyTitle {
-    font-size: 2rem;
-    letter-spacing: 1px;
-    line-height: 1.2;
-  }
-
-  #catalunya-priorat .journeyHeader {
-    margin-top: 2rem;
-  }
-
-  .journeyDate {
+  
+  .sectionSubtitle {
     font-size: 1rem;
   }
-
-  .journeyDate.joinButton {
-    font-size: 0.9rem;
-    padding: 0.6rem 1.2rem;
+  
+  .featuredJourney {
+    margin-bottom: 3rem;
   }
-
-  .journeyDescription {
-    font-size: 1rem;
-    margin-bottom: 2rem;
-    line-height: 1.7;
+  
+  .cardImage {
+    height: 300px;
   }
-
-  .guestsSection {
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-    justify-content: center;
-  }
-
-  .guestImage {
-    width: 90px;
-    height: 90px;
-  }
-
-  .guestName {
-    font-size: 0.85rem;
-  }
-
-  .journeyActions {
-    flex-direction: column;
-    gap: 1rem;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .itineraryButton,
-  .mapButton {
-    width: 100%;
-    max-width: 300px;
-    padding: 1rem 2rem;
-    font-size: 0.9rem;
-  }
-
-  .journeyDate.joinButton {
-    width: 100%;
-    max-width: 300px;
-    padding: 1rem 2rem;
-    font-size: 0.9rem;
-  }
-
-  .includedModal {
-    padding: 1rem;
-  }
-
-  .includedModalContent {
+  
+  .cardContent {
     padding: 2rem;
-    max-width: 100%;
-    max-height: 85vh;
   }
-
-.modalJourneyTitle {
-  font-size: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.journeyPrice {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
-  padding: 1rem;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 8px;
-}
-
-.priceLabel {
-  font-size: 1rem;
-  color: #cccccc;
-}
-
-.priceValue {
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: #ffffff;
-}
-
-  .includedTitle {
-    font-size: 1.1rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .includedItems {
-    gap: 1rem;
-  }
-
-  .includedItem {
-    padding: 1rem;
-  }
-
-  .includedItem h5 {
-    font-size: 1rem;
-  }
-
-  .includedItem p {
-    font-size: 0.9rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .journeySection {
-    min-height: 70vh;
-    background-attachment: scroll !important;
-  }
-
-  .journeySection.cinematic::before,
-  .journeySection.cinematic::after {
-    height: 8%;
-  }
-
-  .journeyOverlay {
-    padding: 1rem 0.5rem 0.1rem 0.5rem;
-  }
-
-  .journeyContent {
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
-  }
-
+  
   .journeyTitle {
     font-size: 1.5rem;
-    margin-bottom: 0.8rem;
-    letter-spacing: 0.5px;
-    line-height: 1.2;
   }
-
-  #catalunya-priorat .journeyHeader {
-    margin-top: 1.5rem;
-  }
-
-  .journeyDate {
-    font-size: 0.9rem;
-  }
-
-  .journeyDate.joinButton {
-    font-size: 0.85rem;
-    padding: 0.5rem 1rem;
-    margin-bottom: 1rem;
-  }
-
+  
   .journeyDescription {
-    font-size: 0.95rem;
-    margin-bottom: 1.5rem;
-    line-height: 1.6;
-  }
-
-  .guestsSection {
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-    justify-content: center;
-  }
-
-  .guestImage {
-    width: 70px;
-    height: 70px;
-    border-width: 2px;
-  }
-
-  .guestName {
-    font-size: 0.75rem;
-  }
-
-  .journeyActions {
-    gap: 0.75rem;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .itineraryButton,
-  .mapButton {
-    padding: 0.9rem 1.5rem;
-    font-size: 0.85rem;
-    letter-spacing: 1px;
-  }
-
-  .journeyDate.joinButton {
-    padding: 0.9rem 1.5rem;
-    font-size: 0.85rem;
-    letter-spacing: 1px;
-  }
-
-  .includedModal {
-    padding: 0.5rem;
-  }
-
-  .includedModalContent {
-    padding: 1.5rem;
-    max-height: 90vh;
-  }
-
-  .closeButton {
-    width: 35px;
-    height: 35px;
-    top: 0.5rem;
-    right: 0.5rem;
-  }
-
-  .closeButton svg {
-    width: 18px;
-    height: 18px;
-  }
-
-  .modalJourneyTitle {
-    font-size: 1.3rem;
-    margin-bottom: 1.2rem;
-    padding-right: 2rem;
-  }
-
-  .includedTitle {
     font-size: 1rem;
-    margin-bottom: 1.2rem;
   }
-
-  .includedItems {
+  
+  .additionalJourneys {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .dayButtons {
+    grid-template-columns: repeat(2, 1fr);
     gap: 0.8rem;
   }
-
+  
+  .dayButton {
+    padding: 1rem 0.8rem;
+  }
+  
+  .dayNumber {
+    font-size: 1rem;
+  }
+  
+  .dayTitle {
+    font-size: 0.8rem;
+  }
+  
+  .modalOverlay {
+    padding: 1rem;
+  }
+  
+  .modalContent {
+    max-width: 100%;
+    max-height: 95vh;
+  }
+  
+  .modalHeader {
+    padding: 2rem 1.5rem 1.5rem;
+  }
+  
+  .modalTitle {
+    font-size: 2rem;
+  }
+  
+  .modalLocation {
+    font-size: 1rem;
+  }
+  
+  .modalBody {
+    padding: 1.5rem;
+  }
+  
+  .modalSectionTitle {
+    font-size: 1.3rem;
+  }
+  
+  .experienceItem {
+    padding: 0.8rem;
+  }
+  
+  .experienceNumber {
+    font-size: 1rem;
+  }
+  
+  .experienceName {
+    font-size: 1.2rem;
+  }
+  
+  .modalInfo {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .infoItem {
+    padding: 1rem;
+  }
+  
+  .modalFooter {
+    padding: 1.5rem;
+  }
+  
+  .navButton {
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+  }
+  
+  .includedList {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
   .includedItem {
-    padding: 0.9rem;
+    padding: 1rem;
   }
-
-  .includedItem h5 {
-    font-size: 0.95rem;
-  }
-
-  .includedItem p {
-    font-size: 0.85rem;
-  }
-}
-
-/* Mobile - No parallax */
-@media (max-width: 767px) {
-  .journeySection {
-    background-attachment: scroll !important;
-  }
-
-  #catalunya-roussellon {
-    background-attachment: scroll !important;
-  }
-}
-
-/* Tablet - Conditional parallax */
-@media (min-width: 768px) and (max-width: 1024px) {
-  .journeySection {
-    background-attachment: scroll;
-  }
-
-  #catalunya-roussellon {
-    background-attachment: scroll !important;
-  }
-}
-
-/* Desktop - Parallax effect */
-@media (min-width: 1025px) {
-  .journeySection {
-    background-attachment: fixed;
-  }
-
-  #catalunya-roussellon {
-    background-attachment: fixed !important;
-  }
-}
-
-/* Tablet Landscape */
-@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-  .journeySection {
-    min-height: 100vh;
-  }
-
-  .journeyTitle {
-    font-size: 2.8rem;
-  }
-
-  .journeyDate.joinButton {
-    font-size: 0.95rem;
-    padding: 0.5rem 1.1rem;
-  }
-
-  .guestsSection {
-    gap: 1.75rem;
-  }
-
-  .guestImage {
-    width: 110px;
-    height: 110px;
-  }
-}
-
-/* Large Desktop */
-@media (min-width: 1440px) {
-  .journeyContent {
-    max-width: 1000px;
-  }
-
-  .journeyTitle {
-    font-size: 4rem;
-  }
-
-  .journeyDescription {
+  
+  .includedIcon {
     font-size: 1.4rem;
+    min-width: 30px;
   }
-
-  .journeyDate.joinButton {
-    font-size: 1.1rem;
-    padding: 0.5rem 1.2rem;
-  }
-
-  .guestsSection {
-    gap: 2.5rem;
-  }
-
-  .guestImage {
-    width: 140px;
-    height: 140px;
-  }
-
-  .guestName {
-    font-size: 1.1rem;
+  
+  .includedText {
+    font-size: 0.9rem;
   }
 }
-
-/* Mobile Landscape */
-@media (max-width: 767px) and (orientation: landscape) {
-  .journeySection {
-    min-height: 100vh;
-  }
-
-  .journeyTitle {
-    font-size: 1.8rem;
-  }
-
-  .guestsSection {
-    gap: 1.25rem;
-  }
-
-  .guestImage {
-    width: 80px;
-    height: 80px;
-  }
-}
-
-/* High DPI displays */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  .journeySection {
-    background-size: cover;
-    background-position: center center;
-  }
-}
-
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .journeySection {
-    background-attachment: scroll;
-  }
-
-  .inquireButton,
-  .itineraryButton,
-  .mapButton {
-    transition: none;
-  }
-
-  .inquireButton:hover,
-  .itineraryButton:hover,
-  .mapButton:hover {
-    transform: none;
-  }
-}
-

@@ -21,29 +21,15 @@ const Navbar = ({ activeSection, onScrollToSection }) => {
   }
 
   const navItems = [
-    { id: 'the-difference', label: 'The Difference' },
-    { id: 'journeys', label: 'Journeys' },
-    { id: 'regions', label: 'Regions' },
-    { id: 'guides', label: 'The Makers' },
-    { id: 'contact', label: 'Who We Are' }
+    { id: 'hero', label: 'Home' },
+    { id: 'why-travel', label: 'Travel Deeper' },
+    { id: 'catalunya-priorat', label: 'Journeys' },
+    { id: 'guides', label: 'Guides' },
+    { id: 'contact', label: 'About Us' }
   ]
 
   return (
     <nav className={styles.navbar} role="navigation" aria-label="Main navigation">
-      <div className={styles.navBrand}>
-        <button 
-          className={styles.brandButton}
-          onClick={() => onScrollToSection('home')}
-          aria-label="Go to home"
-        >
-          <div className={styles.brandContainer}>
-            <span className={styles.brandMain}>
-              <span style={{ color: 'hsl(42, 78%, 52%)', fontStyle: 'italic' }}>Spanish</span> Wine Camps
-            </span>
-            <span className={styles.brandSub}>Immersion Journeys</span>
-          </div>
-        </button>
-      </div>
       <ul className={styles.navList}>
         {navItems.map((item) => (
           <li key={item.id} className={styles.navItem}>
@@ -57,11 +43,6 @@ const Navbar = ({ activeSection, onScrollToSection }) => {
             </a>
           </li>
         ))}
-        <li className={styles.navItem}>
-          <button className={styles.signUpButton} onClick={() => onScrollToSection('contact')}>
-            Sign Up
-          </button>
-        </li>
       </ul>
     </nav>
   )

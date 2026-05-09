@@ -7,7 +7,7 @@
   min-height: 200vh;
   display: flex;
   align-items: center;
-  background-color: #000000;
+  background-color: #ffffff;
   margin: 4rem 0;
   padding: 16rem 0;
 }
@@ -15,7 +15,7 @@
 /* Visible top fade for transition from Journeys */
 
 .guidesBg5 {
-  background-color: #000000;
+  background-color: #ffffff;
   /* Responsive background positioning */
   background-size: cover;
   background-position: center center;
