@@ -169,7 +169,7 @@ const Journeys = () => {
 
               <div className={styles.modalInfo}>
                 <div className={styles.infoItem}>
-                  <span className={styles.infoIcon}>📍</span>
+                  <span className={styles.infoIcon}>•</span>
                   <div>
                     <p className={styles.infoLabel}>Overnight</p>
                     <p className={styles.infoValue}>{selectedDay.overnight}</p>
@@ -177,7 +177,7 @@ const Journeys = () => {
                 </div>
 
                 <div className={styles.infoItem}>
-                  <span className={styles.infoIcon}>🍇</span>
+                  <span className={styles.infoIcon}>•</span>
                   <div>
                     <p className={styles.infoLabel}>Region</p>
                     <p className={styles.infoValue}>{selectedDay.region}</p>
@@ -185,7 +185,7 @@ const Journeys = () => {
                 </div>
 
                 <div className={styles.infoItem}>
-                  <span className={styles.infoIcon}>🗓</span>
+                  <span className={styles.infoIcon}>•</span>
                   <div>
                     <p className={styles.infoLabel}>Visits</p>
                     <p className={styles.infoValue}>{selectedDay.visits}</p>
@@ -199,27 +199,27 @@ const Journeys = () => {
                 
                 <div className={styles.includedList}>
                   <div className={styles.includedItem}>
-                    <span className={styles.includedIcon}>🏡</span>
+                    <span className={styles.includedIcon}>•</span>
                     <span className={styles.includedText}>Accommodation in boutique hotels & casa rurales</span>
                   </div>
                   <div className={styles.includedItem}>
-                    <span className={styles.includedIcon}>🍷</span>
+                    <span className={styles.includedIcon}>•</span>
                     <span className={styles.includedText}>All meals paired with local wines</span>
                   </div>
                   <div className={styles.includedItem}>
-                    <span className={styles.includedIcon}>🍽</span>
+                    <span className={styles.includedIcon}>•</span>
                     <span className={styles.includedText}>Dinners at gastronomic restaurants aligned with producer profiles</span>
                   </div>
                   <div className={styles.includedItem}>
-                    <span className={styles.includedIcon}>🍇</span>
+                    <span className={styles.includedIcon}>•</span>
                     <span className={styles.includedText}>Guided tours of vineyards, cellars & barrel rooms</span>
                   </div>
                   <div className={styles.includedItem}>
-                    <span className={styles.includedIcon}>🥂</span>
+                    <span className={styles.includedIcon}>•</span>
                     <span className={styles.includedText}>Private tastings & masterclasses with winemakers</span>
                   </div>
                   <div className={styles.includedItem}>
-                    <span className={styles.includedIcon}>🚐</span>
+                    <span className={styles.includedIcon}>•</span>
                     <span className={styles.includedText}>All transportation during the journey</span>
                   </div>
                 </div>
