@@ -48,48 +48,35 @@
 .mainTitle {
   font-size: 1.8rem;
   font-weight: 400;
-  color: #ffffff;
-  margin-bottom: 0.5rem;
-  text-transform: uppercase;
-  letter-spacing: 2px;
   line-height: 1.2;
-  font-family: 'Cormorant Garamond', serif;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
 }
 
-.brandName {
-  font-size: 4rem;
-  font-weight: 600;
-  color: #ffffff;
+.subtitle {
+  font-size: 1.2rem;
+  font-weight: 300;
+  line-height: 1.3;
   margin-bottom: 2rem;
-  text-transform: none;
-  letter-spacing: 3px;
-  line-height: 1.1;
-  font-family: 'Cormorant Garamond', serif;
+  color: #ffffff;
+  opacity: 0.9;
 }
 
 .description {
-  font-size: 1.3rem;
-  color: rgba(255, 255, 255, 0.9);
-  margin-bottom: 1.5rem;
+  font-size: 1rem;
   line-height: 1.6;
-  font-weight: 400;
-  font-family: 'Cormorant Garamond', serif;
-}
-
-.tagline {
-  font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 2rem;
-  line-height: 1.5;
-  font-weight: 300;
-  font-family: 'Cormorant Garamond', serif;
-}
-
-.buttons {
-  display: flex;
-  gap: 2rem;
-  justify-content: center;
   margin-bottom: 3rem;
+  color: #ffffff;
+  opacity: 0.85;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
   flex-wrap: wrap;
 }
 
@@ -97,8 +84,8 @@
   background: hsl(42, 78%, 52%);
   color: #000000;
   border: none;
-  padding: 1rem 2.5rem;
-  font-size: 1rem;
+  padding: 0.75rem 2rem;
+  font-size: 0.9rem;
   font-weight: 500;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -106,6 +93,8 @@
   transition: all 0.3s ease;
   border-radius: 4px;
   font-family: 'Cormorant Garamond', serif;
+  text-decoration: none;
+  display: inline-block;
 }
 
 .primaryButton:hover {
@@ -116,9 +105,9 @@
 .secondaryButton {
   background: transparent;
   color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  padding: 1rem 2.5rem;
-  font-size: 1rem;
+  border: 1px solid #ffffff;
+  padding: 0.75rem 2rem;
+  font-size: 0.9rem;
   font-weight: 500;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -126,83 +115,193 @@
   transition: all 0.3s ease;
   border-radius: 4px;
   font-family: 'Cormorant Garamond', serif;
+  text-decoration: none;
+  display: inline-block;
 }
 
 .secondaryButton:hover {
   background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.8);
   transform: translateY(-2px);
 }
 
-.exploreJourneys {
-  text-align: center;
-  margin-top: 2rem;
-}
-
-.exploreText {
-  font-size: 1rem;
-  color: #999999;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  cursor: pointer;
-  transition: color 0.3s ease;
-  position: relative;
-  display: inline-block;
-  font-family: 'Cormorant Garamond', serif;
-}
-
-.exploreText:hover {
-  color: #000000;
-}
-
-.exploreText::after {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background: #000000;
-  transition: width 0.3s ease;
-}
-
-.exploreText:hover::after {
-  width: 100%;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
+/* Responsive Design */
+@media (max-width: 1024px) {
   .home {
-    padding: 60px 0;
+    padding: 100px 0 80px;
   }
-  
+
+  .content {
+    padding: 0 1.5rem;
+  }
+
+  .heroContent {
+    max-width: 800px;
+  }
+
   .mainTitle {
-    font-size: 1.4rem;
-    letter-spacing: 1.5px;
+    font-size: 1.6rem;
   }
-  
-  .brandName {
-    font-size: 2.5rem;
-    letter-spacing: 2px;
-  }
-  
-  .description {
+
+  .subtitle {
     font-size: 1.1rem;
   }
-  
-  .tagline {
-    font-size: 1rem;
+
+  .description {
+    font-size: 0.95rem;
   }
-  
-  .buttons {
+}
+
+@media (max-width: 768px) {
+  .home {
+    padding: 120px 0 60px;
+    min-height: 90vh;
+  }
+
+  .content {
+    padding: 0 1rem;
+  }
+
+  .heroContent {
+    max-width: 100%;
+  }
+
+  .mainTitle {
+    font-size: 1.4rem;
+    line-height: 1.3;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .description {
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+  }
+
+  .buttonContainer {
     flex-direction: column;
     align-items: center;
     gap: 1rem;
   }
-  
+
   .primaryButton,
   .secondaryButton {
     width: 100%;
-    max-width: 300px;
+    max-width: 280px;
+    padding: 0.875rem 1.5rem;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .home {
+    padding: 140px 0 40px;
+    min-height: 85vh;
+  }
+
+  .content {
+    padding: 0 0.75rem;
+  }
+
+  .mainTitle {
+    font-size: 1.2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .description {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin-bottom: 1.75rem;
+  }
+
+  .buttonContainer {
+    gap: 0.75rem;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    max-width: 250px;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .home {
+    padding: 160px 0 30px;
+    min-height: 80vh;
+  }
+
+  .mainTitle {
+    font-size: 1.1rem;
+  }
+
+  .subtitle {
+    font-size: 0.85rem;
+  }
+
+  .description {
+    font-size: 0.8rem;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    max-width: 220px;
+    padding: 0.7rem 1rem;
+    font-size: 0.75rem;
+  }
+}
+
+/* Mobile Landscape */
+@media (max-width: 767px) and (orientation: landscape) {
+  .home {
+    padding: 80px 0 40px;
+    min-height: 100vh;
+  }
+
+  .mainTitle {
+    font-size: 1.3rem;
+  }
+
+  .subtitle {
+    font-size: 0.95rem;
+  }
+
+  .description {
+    font-size: 0.85rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .buttonContainer {
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    width: auto;
+    max-width: none;
+  }
+}
+
+/* Tablet Portrait */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+  .home {
+    padding: 110px 0 70px;
+  }
+
+  .mainTitle {
+    font-size: 1.5rem;
+  }
+
+  .subtitle {
+    font-size: 1.05rem;
   }
 }

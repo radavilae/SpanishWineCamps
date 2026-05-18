@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&display=swap');
 
 .theMakers {
   min-height: 100vh;
   background: #ffffff;
-  padding: 80px 0;
+  padding: 100px 0;
   position: relative;
 }
 
@@ -20,18 +20,18 @@
 }
 
 .sectionLabel {
-  font-family: 'Raleway', sans-serif;
-  font-size: 11px;
-  font-weight: 500;
-  color: #c9963a;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: hsl(42, 78%, 52%);
   text-transform: uppercase;
   letter-spacing: 4px;
   margin-bottom: 1rem;
 }
 
 .sectionTitle {
-  font-family: 'Playfair Display', serif;
-  font-size: 60px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3.5rem;
   font-weight: 700;
   color: #1a1a1a;
   margin-bottom: 2rem;
@@ -40,24 +40,396 @@
 
 .italic {
   font-style: italic;
-  color: #c9963a;
+  color: hsl(42, 78%, 52%);
 }
 
 .sectionDescription {
-  font-family: 'Raleway', sans-serif;
-  font-size: 16px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
   color: #1a1a1a;
   max-width: 600px;
-  margin: 0 auto 3rem;
-  line-height: 1.8;
-  text-align: center;
+  margin: 0 auto 4rem;
+  line-height: 1.6;
 }
 
-.divider {
+/* Grid de Makers */
+.makersGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3rem;
+  margin-bottom: 4rem;
+}
+
+.makerCard {
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.makerCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+}
+
+.makerImage {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  background: #f8f8f8;
+}
+
+.makerContent {
+  padding: 2rem;
+}
+
+.makerName {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #000000;
+  margin-bottom: 0.5rem;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.makerRole {
+  font-size: 1rem;
+  color: hsl(42, 78%, 52%);
+  margin-bottom: 1rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+}
+
+.makerBio {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #333333;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+/* Sección de Features */
+.featuresSection {
+  margin-top: 4rem;
+  padding: 4rem 0;
+  background: #f8f8f8;
+  border-radius: 16px;
+}
+
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 0 2rem;
+}
+
+.featureCard {
+  text-align: center;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+.featureCard:hover {
+  transform: translateY(-2px);
+}
+
+.featureIcon {
   width: 60px;
-  height: 2px;
-  background: #c9963a;
-  margin: 0 auto;
+  height: 60px;
+  background: hsl(42, 78%, 52%);
+  border-radius: 50%;
+  margin: 0 auto 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: #000000;
+}
+
+.featureTitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #000000;
+  margin-bottom: 1rem;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.featureDescription {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #333333;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .theMakers {
+    padding: 80px 0;
+  }
+
+  .content {
+    padding: 0 1.5rem;
+  }
+
+  .sectionTitle {
+    font-size: 3rem;
+  }
+
+  .makersGrid {
+    gap: 2.5rem;
+  }
+
+  .makerContent {
+    padding: 1.5rem;
+  }
+
+  .makerName {
+    font-size: 1.3rem;
+  }
+
+  .featuresGrid {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .theMakers {
+    padding: 60px 0;
+  }
+
+  .content {
+    padding: 0 1rem;
+  }
+
+  .sectionHeader {
+    padding: 3rem 0;
+  }
+
+  .sectionLabel {
+    font-size: 0.7rem;
+  }
+
+  .sectionTitle {
+    font-size: 2.5rem;
+  }
+
+  .sectionDescription {
+    font-size: 0.9rem;
+    margin-bottom: 3rem;
+  }
+
+  .makersGrid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .makerImage {
+    height: 200px;
+  }
+
+  .makerContent {
+    padding: 1.25rem;
+  }
+
+  .makerName {
+    font-size: 1.2rem;
+  }
+
+  .makerRole {
+    font-size: 0.9rem;
+  }
+
+  .makerBio {
+    font-size: 0.85rem;
+  }
+
+  .featuresSection {
+    margin-top: 3rem;
+    padding: 3rem 0;
+  }
+
+  .featuresGrid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    padding: 0 1rem;
+  }
+
+  .featureCard {
+    padding: 1.5rem;
+  }
+
+  .featureIcon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.3rem;
+  }
+
+  .featureTitle {
+    font-size: 1.1rem;
+  }
+
+  .featureDescription {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .theMakers {
+    padding: 40px 0;
+  }
+
+  .content {
+    padding: 0 0.75rem;
+  }
+
+  .sectionHeader {
+    padding: 2rem 0;
+  }
+
+  .sectionLabel {
+    font-size: 0.6rem;
+    letter-spacing: 2px;
+  }
+
+  .sectionTitle {
+    font-size: 2rem;
+  }
+
+  .sectionDescription {
+    font-size: 0.85rem;
+    margin-bottom: 2rem;
+  }
+
+  .makersGrid {
+    gap: 1.5rem;
+  }
+
+  .makerImage {
+    height: 180px;
+  }
+
+  .makerContent {
+    padding: 1rem;
+  }
+
+  .makerName {
+    font-size: 1.1rem;
+  }
+
+  .makerRole {
+    font-size: 0.85rem;
+  }
+
+  .makerBio {
+    font-size: 0.8rem;
+  }
+
+  .featuresSection {
+    margin-top: 2rem;
+    padding: 2rem 0;
+  }
+
+  .featuresGrid {
+    gap: 1rem;
+  }
+
+  .featureCard {
+    padding: 1.25rem;
+  }
+
+  .featureIcon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
+  }
+
+  .featureTitle {
+    font-size: 1rem;
+  }
+
+  .featureDescription {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .theMakers {
+    padding: 30px 0;
+  }
+
+  .sectionTitle {
+    font-size: 1.8rem;
+  }
+
+  .makerImage {
+    height: 160px;
+  }
+
+  .makerName {
+    font-size: 1rem;
+  }
+
+  .featureCard {
+    padding: 1rem;
+  }
+
+  .featureTitle {
+    font-size: 0.95rem;
+  }
+
+  .featureDescription {
+    font-size: 0.75rem;
+  }
+}
+
+/* Mobile Landscape */
+@media (max-width: 767px) and (orientation: landscape) {
+  .theMakers {
+    padding: 50px 0;
+  }
+
+  .sectionHeader {
+    padding: 2rem 0;
+  }
+
+  .makersGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .makerImage {
+    height: 150px;
+  }
+
+  .featuresGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+/* Tablet Portrait */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+  .theMakers {
+    padding: 70px 0;
+  }
+
+  .sectionTitle {
+    font-size: 2.8rem;
+  }
+
+  .makersGrid {
+    gap: 2rem;
+  }
+
+  .makerImage {
+    height: 220px;
+  }
+
+  .featuresGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 /* Grid principal de productores */

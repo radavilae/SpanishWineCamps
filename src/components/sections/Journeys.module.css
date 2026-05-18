@@ -50,6 +50,543 @@
 }
 
 .journeyCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+}
+
+.journeyLayout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.journeyImage {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.journeyContent {
+  padding: 2rem;
+}
+
+.journeyBadge {
+  display: inline-block;
+  background: hsl(42, 78%, 52%);
+  color: #000000;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.journeyTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 1rem;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.journeySubtitle {
+  font-size: 1.1rem;
+  color: #666666;
+  margin-bottom: 1.5rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+}
+
+.journeyDescription {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #333333;
+  margin-bottom: 2rem;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.journeyDuration {
+  font-size: 0.9rem;
+  color: #666666;
+  margin-bottom: 2rem;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.itineraryButtons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.dayButton {
+  background: #f8f8f8;
+  border: 1px solid #e0e0e0;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Cormorant Garamond', serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.dayButton:hover {
+  background: hsl(42, 78%, 52%);
+  color: #000000;
+  border-color: hsl(42, 78%, 52%);
+}
+
+.dayButton.active {
+  background: hsl(42, 78%, 52%);
+  color: #000000;
+  border-color: hsl(42, 78%, 52%);
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+.modal.open {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modalContent {
+  background: #ffffff;
+  border-radius: 16px;
+  max-width: 800px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  margin: 2rem;
+}
+
+.modalClose {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #666666;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.modalClose:hover {
+  background: #f0f0f0;
+  color: #000000;
+}
+
+.modalHeader {
+  padding: 2rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.modalTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #000000;
+  margin-bottom: 0.5rem;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.modalSubtitle {
+  font-size: 1rem;
+  color: #666666;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.modalBody {
+  padding: 2rem;
+}
+
+.modalSection {
+  margin-bottom: 2rem;
+}
+
+.modalSection h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #000000;
+  margin-bottom: 1rem;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.modalSection p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #333333;
+  margin-bottom: 1rem;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.modalSection ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.modalSection li {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #333333;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.modalSection li:last-child {
+  border-bottom: none;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .journeys {
+    padding: 80px 0;
+  }
+
+  .content {
+    padding: 0 1.5rem;
+  }
+
+  .header {
+    margin-bottom: 3rem;
+  }
+
+  .sectionTitle {
+    font-size: 2.5rem;
+  }
+
+  .sectionSubtitle {
+    font-size: 1.1rem;
+  }
+
+  .journeysGrid {
+    gap: 2.5rem;
+  }
+
+  .featuredJourney {
+    margin-bottom: 3rem;
+  }
+
+  .journeyLayout {
+    gap: 2rem;
+  }
+
+  .journeyImage {
+    height: 350px;
+  }
+
+  .journeyTitle {
+    font-size: 2rem;
+  }
+
+  .journeyContent {
+    padding: 1.5rem;
+  }
+
+  .modalContent {
+    width: 95%;
+    margin: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .journeys {
+    padding: 60px 0;
+  }
+
+  .content {
+    padding: 0 1rem;
+  }
+
+  .header {
+    margin-bottom: 2.5rem;
+  }
+
+  .sectionTitle {
+    font-size: 2rem;
+  }
+
+  .sectionSubtitle {
+    font-size: 1rem;
+  }
+
+  .journeysGrid {
+    gap: 2rem;
+  }
+
+  .featuredJourney {
+    margin-bottom: 2.5rem;
+  }
+
+  .journeyLayout {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .journeyImage {
+    height: 280px;
+  }
+
+  .journeyContent {
+    padding: 1.25rem;
+  }
+
+  .journeyTitle {
+    font-size: 1.8rem;
+  }
+
+  .journeySubtitle {
+    font-size: 1rem;
+  }
+
+  .journeyDescription {
+    font-size: 0.95rem;
+  }
+
+  .journeyDuration {
+    font-size: 0.85rem;
+  }
+
+  .itineraryButtons {
+    gap: 0.75rem;
+  }
+
+  .dayButton {
+    padding: 0.6rem 0.875rem;
+    font-size: 0.8rem;
+  }
+
+  .modalContent {
+    width: 98%;
+    margin: 0.5rem;
+    max-height: 95vh;
+  }
+
+  .modalHeader {
+    padding: 1.5rem;
+  }
+
+  .modalBody {
+    padding: 1.5rem;
+  }
+
+  .modalTitle {
+    font-size: 1.3rem;
+  }
+
+  .modalSubtitle {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .journeys {
+    padding: 40px 0;
+  }
+
+  .content {
+    padding: 0 0.75rem;
+  }
+
+  .header {
+    margin-bottom: 2rem;
+  }
+
+  .sectionTitle {
+    font-size: 1.8rem;
+  }
+
+  .sectionSubtitle {
+    font-size: 0.9rem;
+  }
+
+  .journeysGrid {
+    gap: 1.5rem;
+  }
+
+  .featuredJourney {
+    margin-bottom: 2rem;
+  }
+
+  .journeyImage {
+    height: 220px;
+  }
+
+  .journeyContent {
+    padding: 1rem;
+  }
+
+  .journeyBadge {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.875rem;
+  }
+
+  .journeyTitle {
+    font-size: 1.5rem;
+  }
+
+  .journeySubtitle {
+    font-size: 0.9rem;
+  }
+
+  .journeyDescription {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .journeyDuration {
+    font-size: 0.8rem;
+  }
+
+  .itineraryButtons {
+    gap: 0.5rem;
+  }
+
+  .dayButton {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+  }
+
+  .modalContent {
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+    max-height: 100vh;
+  }
+
+  .modalHeader {
+    padding: 1rem;
+  }
+
+  .modalBody {
+    padding: 1rem;
+  }
+
+  .modalTitle {
+    font-size: 1.2rem;
+  }
+
+  .modalSubtitle {
+    font-size: 0.85rem;
+  }
+
+  .modalClose {
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 35px;
+    height: 35px;
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .journeys {
+    padding: 30px 0;
+  }
+
+  .sectionTitle {
+    font-size: 1.6rem;
+  }
+
+  .journeyImage {
+    height: 200px;
+  }
+
+  .journeyTitle {
+    font-size: 1.3rem;
+  }
+
+  .journeyDescription {
+    font-size: 0.85rem;
+  }
+
+  .dayButton {
+    padding: 0.4rem 0.625rem;
+    font-size: 0.7rem;
+  }
+}
+
+/* Mobile Landscape */
+@media (max-width: 767px) and (orientation: landscape) {
+  .journeys {
+    padding: 50px 0;
+  }
+
+  .journeyLayout {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .journeyImage {
+    height: 200px;
+  }
+
+  .journeyContent {
+    padding: 1rem;
+  }
+
+  .journeyTitle {
+    font-size: 1.4rem;
+  }
+
+  .modalContent {
+    width: 95%;
+    margin: 1rem auto;
+    border-radius: 16px;
+  }
+}
+
+/* Tablet Portrait */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+  .journeys {
+    padding: 70px 0;
+  }
+
+  .sectionTitle {
+    font-size: 2.2rem;
+  }
+
+  .journeyLayout {
+    gap: 1.75rem;
+  }
+
+  .journeyImage {
+    height: 320px;
+  }
+
+  .journeyTitle {
+    font-size: 1.9rem;
+  }
+}
+
+.journeyCard:hover {
   transform: translateY(-10px);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
 }

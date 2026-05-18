@@ -2,6 +2,7 @@
  * Navigation Bar Component
  * Horizontal navigation bar for desktop layout
  */
+import { useState } from 'react'
 import styles from './Navbar.module.css'
 
 /**
@@ -10,6 +11,8 @@ import styles from './Navbar.module.css'
  * @param {Function} onScrollToSection - Navigation callback
  */
 const Navbar = ({ activeSection, onScrollToSection }) => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+
   /**
    * Handle navigation with proper event handling
    * @param {Event} event - Click event
@@ -18,6 +21,11 @@ const Navbar = ({ activeSection, onScrollToSection }) => {
   const handleNavigation = (event, sectionId) => {
     event.preventDefault()
     onScrollToSection(sectionId)
+    setIsMobileMenuOpen(false)
+  }
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen)
   }
 
   const navItems = [
@@ -44,6 +52,20 @@ const Navbar = ({ activeSection, onScrollToSection }) => {
           </div>
         </button>
       </div>
+      
+      {/* Mobile Menu Toggle */}
+      <button 
+        className={styles.mobileMenuToggle}
+        onClick={toggleMobileMenu}
+        aria-label="Toggle mobile menu"
+        aria-expanded={isMobileMenuOpen}
+      >
+        <span className={`${styles.hamburgerLine} ${isMobileMenuOpen ? styles.active : ''}`}></span>
+        <span className={`${styles.hamburgerLine} ${isMobileMenuOpen ? styles.active : ''}`}></span>
+        <span className={`${styles.hamburgerLine} ${isMobileMenuOpen ? styles.active : ''}`}></span>
+      </button>
+
+      {/* Desktop Navigation */}
       <ul className={styles.navList}>
         {navItems.map((item) => (
           <li key={item.id} className={styles.navItem}>
@@ -63,6 +85,29 @@ const Navbar = ({ activeSection, onScrollToSection }) => {
           </button>
         </li>
       </ul>
+
+      {/* Mobile Navigation */}
+      <div className={`${styles.mobileMenu} ${isMobileMenuOpen ? styles.open : ''}`}>
+        <ul className={styles.mobileNavList}>
+          {navItems.map((item) => (
+            <li key={item.id} className={styles.mobileNavItem}>
+              <a
+                href={`#${item.id}`}
+                onClick={(e) => handleNavigation(e, item.id)}
+                className={`${styles.mobileNavLink} ${activeSection === item.id ? styles.active : ''}`}
+                aria-current={activeSection === item.id ? 'page' : undefined}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
+          <li className={styles.mobileNavItem}>
+            <button className={styles.mobileSignUpButton} onClick={() => onScrollToSection('who-we-are')}>
+              Sign Up
+            </button>
+          </li>
+        </ul>
+      </div>
     </nav>
   )
 }
