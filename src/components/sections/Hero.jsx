@@ -2,33 +2,23 @@ import { useCallback, useMemo, useState } from 'react'
 import TouchGestures from '../ui/TouchGestures'
 import useMobileOptimization from '../../hooks/useMobileOptimization'
 import CountdownTimer from '../ui/CountdownTimer'
-import { useHero, useJourneys } from '../../hooks/useStrapiData'
+import heroData from '../../data/hero.json'
+import journeysData from '../../data/journeys.json'
 import styles from './Hero.module.css'
 
 const Hero = ({ onScrollToSection, onOpenRegistration, campData }) => {
   const { isMobile, optimizeScroll } = useMobileOptimization()
-  const { hero, loading } = useHero()
-  const { journeys } = useJourneys()
   const [showJourneyPreview, setShowJourneyPreview] = useState(false)
-  const nextCampLabel = hero?.nextCampLabel || 'Next Wine Camp: Catalunya Revolution'
+  const nextCampLabel = heroData.nextCampLabel
 
   const previewJourneys = useMemo(() => {
-    if (journeys && journeys.length) {
-      return journeys.map(journey => ({
-        id: journey.sectionId || journey.id,
-        sectionId: journey.sectionId || journey.id,
-        title: journey.title,
-        image: null
-      }))
-    }
-    return [
-      { id: 'catalunya-priorat', sectionId: 'catalunya-priorat', title: 'Catalunya Priorat Revolution II', image: null },
-      { id: 'catalunya-roussellon', sectionId: 'catalunya-roussellon', title: 'Catalunya/Rousellón Revolution III', image: null },
-      { id: 'new-visions-rioja', sectionId: 'new-visions-rioja', title: 'New Visions of la Rioja', image: null },
-      { id: 'bierzo-terroirs', sectionId: 'bierzo-terroirs', title: 'Bierzo, Crossroad of Terroirs', image: null },
-      { id: 'ungrafited-canarias', sectionId: 'ungrafited-canarias', title: 'Ungrafited, Unrivaled Canarias', image: null }
-    ]
-  }, [journeys])
+    return journeysData.map(journey => ({
+      id: journey.sectionId || journey.id,
+      sectionId: journey.sectionId || journey.id,
+      title: journey.title,
+      image: journey.image
+    }))
+  }, [])
 
   // Gestos táctiles para navegación
   const handleSwipeUp = useCallback(() => {
@@ -58,46 +48,42 @@ const Hero = ({ onScrollToSection, onOpenRegistration, campData }) => {
       <section id="hero" className={`${styles.hero} ${styles.heroBg1} section`}>
         <div className={styles.heroOverlay}>
         <div className="section-content">
-          {loading ? (
-            <p className="text-white text-center">Loading...</p>
-          ) : (
-            <div className="flex flex-col items-center text-center gap-lg">
-              <p className="text-lg">{hero?.title || 'Wine Immersion Journeys'}</p>
-              <h1 className={`${styles.mainTitle} text-white`}>Spanish Wine Camps</h1>
-              <div className="flex flex-col gap-md text-white max-w-4xl">
-                <p className="text-lg">
-                  {hero?.subtitle || 'Journey alongside vignerons, cellar masters, and the singular new voices of Spanish winemaking'}
-                </p>
-                <p className="text-lg">
-                  Created with professional rigor and unparalleled access, Spanish Wine Camps moves beyond the classical tourist route, bringing small, intimate groups together to discover Spain through its most defiant and delicious wines.
-                </p>
-              </div>
-              <div className={`flex flex-col flex-row-tablet gap-md justify-center items-center ${styles.heroButtonsRow}`}>
+          <div className="flex flex-col items-center text-center gap-lg">
+            <p className="text-lg">{heroData.title}</p>
+            <h1 className={`${styles.mainTitle} text-white`}>Spanish Wine Camps</h1>
+            <div className="flex flex-col gap-md text-white max-w-4xl">
+              <p className="text-lg">
+                {heroData.subtitle}
+              </p>
+              <p className="text-lg">
+                Created with professional rigor and unparalleled access, Spanish Wine Camps moves beyond the classical tourist route, bringing small, intimate groups together to discover Spain through its most defiant and delicious wines.
+              </p>
+            </div>
+            <div className={`flex flex-col flex-row-tablet gap-md justify-center items-center ${styles.heroButtonsRow}`}>
+              <button
+                className={`touch-button btn-secondary mobile-p-lg ${styles.heroSecondaryButton}`}
+                onClick={() => setShowJourneyPreview(true)}
+                type="button"
+              >
+                {heroData.secondaryButtonText}
+              </button>
+              <div className={styles.heroPrimaryWrapper}>
+                <span className={styles.heroPrimaryBadge}>{nextCampLabel}</span>
                 <button
-                  className={`touch-button btn-secondary mobile-p-lg ${styles.heroSecondaryButton}`}
-                  onClick={() => setShowJourneyPreview(true)}
                   type="button"
+                  className={styles.heroPrimaryButton}
+                  onClick={onOpenRegistration}
                 >
-                  {hero?.secondaryButtonText || 'Explore Journeys'}
+                  {heroData.ctaText}
                 </button>
-                <div className={styles.heroPrimaryWrapper}>
-                  <span className={styles.heroPrimaryBadge}>{nextCampLabel}</span>
-                  <button
-                    type="button"
-                    className={styles.heroPrimaryButton}
-                    onClick={onOpenRegistration}
-                  >
-                    {hero?.ctaText || 'Sign Up'}
-                  </button>
-                  {campData?.launchDate && (
-                    <div className={styles.heroCountdown}>
-                      <CountdownTimer targetDate={campData.launchDate} />
-                    </div>
-                  )}
-                </div>
+                {campData?.launchDate && (
+                  <div className={styles.heroCountdown}>
+                    <CountdownTimer targetDate={campData.launchDate} />
+                  </div>
+                )}
               </div>
             </div>
-          )}
+          </div>
         </div>
         </div>
       </section>

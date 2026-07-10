@@ -1,0 +1,155 @@
+.authContainer {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: auto;
+  padding: 1rem 0;
+  background: transparent;
+}
+
+.authBox {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: none;
+  padding: 1rem;
+  width: 100%;
+  max-width: 100%;
+}
+
+.tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.tab {
+  flex: 1;
+  padding: 1rem;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+}
+
+.tab:hover {
+  color: #333;
+}
+
+.tab.active {
+  color: #d4622a;
+  border-bottom-color: #d4622a;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.input {
+  padding: 0.75rem 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.input:focus {
+  border-color: #d4622a;
+  box-shadow: 0 0 0 3px rgba(212, 98, 42, 0.1);
+}
+
+.error {
+  padding: 0.75rem;
+  background: #fee;
+  color: #c33;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  border: 1px solid #fcc;
+}
+
+.submitButton {
+  padding: 0.875rem 1.5rem;
+  background: #d4622a;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 0.5rem;
+}
+
+.submitButton:hover:not(:disabled) {
+  background: #b85222;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(212, 98, 42, 0.3);
+}
+
+.submitButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.confirmationMessage {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.confirmationIcon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  font-size: 2.5rem;
+  color: #ffffff;
+  font-weight: bold;
+  box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3);
+}
+
+.confirmationTitle {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #333;
+  margin: 0 0 1rem 0;
+}
+
+.confirmationText {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.6;
+  margin: 0 0 0.75rem 0;
+}
+
+.confirmationSubtext {
+  font-size: 0.875rem;
+  color: #888;
+  line-height: 1.5;
+  margin: 0 0 2rem 0;
+}

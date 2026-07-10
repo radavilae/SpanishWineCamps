@@ -1,9 +1,7 @@
-import { useGuides } from '../../hooks/useStrapiData'
+import guidesData from '../../data/guides.json'
 import styles from './Guides.module.css'
 
 const Guides = () => {
-  const { guides, loading } = useGuides()
-
   return (
     <section id="guides" className={`${styles.guides} ${styles.guidesBg5} section`}>
         <div className={styles.sectionOverlay}>
@@ -97,11 +95,9 @@ const Guides = () => {
               <p className={styles.makerTags}>7th Generation · Biodynamic · Burgundian Style</p>
             </div>
           </div>
-          {loading ? (
-            <p className="text-white text-center">Loading...</p>
-          ) : guides && guides.length > 0 ? (
+          {guidesData && guidesData.length > 0 ? (
             <div className={styles.guidesGrid}>
-              {guides.map((guide) => (
+              {guidesData.map((guide) => (
                 <div key={guide.id} className={styles.guideCard}>
                   {guide.image && (
                     <img

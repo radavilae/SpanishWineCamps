@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Recaredo",
+    "bio": "Widely considered the gold standard of sparkling wine in Spain, producing \"Corpinnat\" wines that rival the finest Champagnes. Masters of long aging (often over 10 years) with strict biodynamic farming. Every bottle is disgorged by hand.",
+    "title": "Corpinnat · Biodynamic · 10+ Year Aging",
+    "image": null
+  },
+  {
+    "id": 2,
+    "name": "Nuria Renom",
+    "bio": "A rockstar of the Spanish natural wine world. A former sommelier turned nomad winemaker, she produces tiny batches that are as charismatic as she is. Electric, experimental, and alive.",
+    "title": "Natural Wine · Minimal Intervention · Cult Producer",
+    "image": null
+  },
+  {
+    "id": 3,
+    "name": "Joan Rubió",
+    "bio": "Often called a \"whisperer of the vines.\" Former technical director at Recaredo, his wines are masterclasses in structure and elegance. Working with skin contact and ancestral methods.",
+    "title": "Orange Wines · Ancestral Method · Elegant",
+    "image": null
+  }
+]

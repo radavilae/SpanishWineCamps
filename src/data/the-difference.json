@@ -1,0 +1,20 @@
+{
+  "sectionTitle": "The Difference",
+  "mainTitle": "Venture into the Vine",
+  "subtitle": "Every wine has a story. We bring you the hand-picked vineyards and their winemakers, the hidden cellars, and the dramatic landscapes.",
+  "image": "/hero-vineyard.jpg",
+  "features": [
+    {
+      "title": "Boutique & Intimate",
+      "description": "Only small groups, never more than 12 guests. Personal connections, not crowds."
+    },
+    {
+      "title": "Authentic & Immersive",
+      "description": "From vine to bottle, full access to producers, solo barrel rooms, tastings not open to the general public."
+    },
+    {
+      "title": "Story-led Travel",
+      "description": "Learned guides, regional experts, winemaking families, tasting traditions passed down generations."
+    }
+  ]
+}

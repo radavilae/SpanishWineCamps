@@ -4,6 +4,10 @@
  */
 import { useState } from 'react'
 import styles from './Navbar.module.css'
+import { useAuth } from '../../contexts/AuthContext'
+import Modal from './Modal'
+import AuthForm from '../auth/AuthForm'
+import Profile from '../auth/Profile'
 
 /**
  * Horizontal navigation bar
@@ -12,6 +16,10 @@ import styles from './Navbar.module.css'
  */
 const Navbar = ({ activeSection, onScrollToSection }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
+  const [authMode, setAuthMode] = useState('login')
+  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false)
+  const { user } = useAuth()
 
   /**
    * Handle navigation with proper event handling
@@ -39,7 +47,7 @@ const Navbar = ({ activeSection, onScrollToSection }) => {
   return (
     <nav className={styles.navbar} role="navigation" aria-label="Main navigation">
       <div className={styles.navBrand}>
-        <button 
+        <button
           className={styles.brandButton}
           onClick={() => onScrollToSection('home')}
           aria-label="Go to home"
@@ -52,9 +60,9 @@ const Navbar = ({ activeSection, onScrollToSection }) => {
           </div>
         </button>
       </div>
-      
+
       {/* Mobile Menu Toggle */}
-      <button 
+      <button
         className={styles.mobileMenuToggle}
         onClick={toggleMobileMenu}
         aria-label="Toggle mobile menu"
@@ -79,11 +87,26 @@ const Navbar = ({ activeSection, onScrollToSection }) => {
             </a>
           </li>
         ))}
-        <li className={styles.navItem}>
-          <button className={styles.signUpButton} onClick={() => onScrollToSection('who-we-are')}>
-            Sign Up
-          </button>
-        </li>
+        {user ? (
+          <li className={styles.navItem}>
+            <button className={styles.authButton} onClick={() => setIsProfileModalOpen(true)}>
+              Mi Perfil
+            </button>
+          </li>
+        ) : (
+          <>
+            <li className={styles.navItem}>
+              <button className={styles.authButton} onClick={() => { setAuthMode('login'); setIsAuthModalOpen(true) }}>
+                Login
+              </button>
+            </li>
+            <li className={styles.navItem}>
+              <button className={styles.signUpButton} onClick={() => { setAuthMode('signup'); setIsAuthModalOpen(true) }}>
+                Sign Up
+              </button>
+            </li>
+          </>
+        )}
       </ul>
 
       {/* Mobile Navigation */}
@@ -101,13 +124,38 @@ const Navbar = ({ activeSection, onScrollToSection }) => {
               </a>
             </li>
           ))}
-          <li className={styles.mobileNavItem}>
-            <button className={styles.mobileSignUpButton} onClick={() => onScrollToSection('who-we-are')}>
-              Sign Up
-            </button>
-          </li>
+          {user ? (
+            <li className={styles.mobileNavItem}>
+              <button className={styles.mobileAuthButton} onClick={() => setIsProfileModalOpen(true)}>
+                Mi Perfil
+              </button>
+            </li>
+          ) : (
+            <>
+              <li className={styles.mobileNavItem}>
+                <button className={styles.mobileAuthButton} onClick={() => { setAuthMode('login'); setIsAuthModalOpen(true) }}>
+                  Login
+                </button>
+              </li>
+              <li className={styles.mobileNavItem}>
+                <button className={styles.mobileSignUpButton} onClick={() => { setAuthMode('signup'); setIsAuthModalOpen(true) }}>
+                  Sign Up
+                </button>
+              </li>
+            </>
+          )}
         </ul>
       </div>
+
+      {/* Auth Modal */}
+      <Modal isOpen={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)}>
+        <AuthForm defaultMode={authMode} />
+      </Modal>
+
+      {/* Profile Modal */}
+      <Modal isOpen={isProfileModalOpen} onClose={() => setIsProfileModalOpen(false)} title="Mi Perfil">
+        <Profile />
+      </Modal>
     </nav>
   )
 }

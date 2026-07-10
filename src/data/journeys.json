@@ -1,0 +1,32 @@
+[
+  {
+    "id": "catalunya-priorat",
+    "sectionId": "catalunya-priorat",
+    "title": "Catalunya Priorat Revolution II",
+    "image": null
+  },
+  {
+    "id": "catalunya-roussellon",
+    "sectionId": "catalunya-roussellon",
+    "title": "Catalunya/Rousellón Revolution III",
+    "image": null
+  },
+  {
+    "id": "new-visions-rioja",
+    "sectionId": "new-visions-rioja",
+    "title": "New Visions of la Rioja",
+    "image": null
+  },
+  {
+    "id": "bierzo-terroirs",
+    "sectionId": "bierzo-terroirs",
+    "title": "Bierzo, Crossroad of Terroirs",
+    "image": null
+  },
+  {
+    "id": "ungrafited-canarias",
+    "sectionId": "ungrafited-canarias",
+    "title": "Ungrafited, Unrivaled Canarias",
+    "image": null
+  }
+]

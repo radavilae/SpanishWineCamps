@@ -136,6 +136,49 @@
   transform: translateY(-2px);
 }
 
+.authButton {
+  background: transparent;
+  color: #000000;
+  border: 1px solid #000000;
+  padding: 0.5rem 1.5rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.authButton:hover {
+  background: #000000;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.mobileAuthButton {
+  background: transparent;
+  color: #000000;
+  border: 1px solid #000000;
+  padding: 0.75rem 2rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+  font-family: 'Cormorant Garamond', serif;
+  margin: 0.5rem 1rem;
+}
+
+.mobileAuthButton:hover {
+  background: #000000;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
 /* Mobile Menu Toggle */
 .mobileMenuToggle {
   display: none;

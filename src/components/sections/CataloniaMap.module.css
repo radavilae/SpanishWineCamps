@@ -1,0 +1,350 @@
+.mapWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 520px;
+  background: #f4efe6;
+  overflow: hidden;
+}
+
+.mapFrame {
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  padding: 1.25rem;
+  background:
+    linear-gradient(135deg, #faf7f2 0%, #ede6d8 100%);
+  border-right: 1px solid rgba(139, 115, 85, 0.15);
+}
+
+.mapInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 480px;
+  border: 2px solid #8b7355;
+  outline: 1px solid rgba(196, 165, 116, 0.6);
+  outline-offset: 4px;
+  box-shadow:
+    inset 0 0 40px rgba(139, 115, 85, 0.08),
+    0 8px 32px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+  background: #e8e0d4;
+}
+
+.mapImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  filter: saturate(1.05) contrast(1.02);
+  user-select: none;
+}
+
+.mapVignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at center, transparent 55%, rgba(44, 38, 30, 0.18) 100%),
+    linear-gradient(to bottom, rgba(244, 239, 230, 0.15) 0%, transparent 8%, transparent 92%, rgba(44, 38, 30, 0.1) 100%);
+}
+
+.markersLayer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.mapPin {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  pointer-events: auto;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  transition: z-index 0s;
+}
+
+.mapPin:hover,
+.mapPinActive {
+  z-index: 10;
+}
+
+.pinRing {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 36px;
+  height: 36px;
+  transform: translate(-50%, -50%);
+  border: 2px solid hsl(42, 78%, 52%);
+  border-radius: 50%;
+  animation: pinRingPulse 2.2s ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes pinRingPulse {
+  0% {
+    opacity: 0.85;
+    transform: translate(-50%, -50%) scale(0.6);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.8);
+  }
+}
+
+.pinDot {
+  width: 12px;
+  height: 12px;
+  background: #2c3e50;
+  border: 2.5px solid #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.mapPin:hover .pinDot {
+  transform: scale(1.15);
+  background: #3d5166;
+}
+
+.mapPinActive .pinDot {
+  width: 14px;
+  height: 14px;
+  background: linear-gradient(135deg, hsl(42, 78%, 52%), #d4622a);
+  border-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(212, 98, 42, 0.35), 0 3px 12px rgba(0, 0, 0, 0.3);
+}
+
+.pinLabel {
+  margin-top: 6px;
+  padding: 3px 8px;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(139, 115, 85, 0.25);
+  border-radius: 3px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: #2c3e50;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.mapPin:hover .pinLabel {
+  background: #ffffff;
+  border-color: rgba(212, 98, 42, 0.4);
+}
+
+.pinLabelActive {
+  background: rgba(212, 98, 42, 0.12);
+  border-color: #d4622a;
+  color: #8b4513;
+  font-weight: 700;
+}
+
+.cityPin {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.cityDot {
+  width: 8px;
+  height: 8px;
+  background: #c0392b;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+}
+
+.cityLabel {
+  margin-top: 5px;
+  padding: 2px 7px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 2px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #555;
+  white-space: nowrap;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.compassRose {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 56px;
+  height: 56px;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.15));
+  pointer-events: none;
+}
+
+.compassLabel {
+  font-family: 'Raleway', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  fill: #2c3e50;
+}
+
+.scaleBar {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  pointer-events: none;
+}
+
+.scaleLine {
+  width: 72px;
+  height: 4px;
+  background: linear-gradient(to right, #2c3e50 0%, #2c3e50 48%, transparent 48%, transparent 52%, #2c3e50 52%, #2c3e50 100%);
+  border-top: 2px solid #2c3e50;
+  border-bottom: 1px solid #2c3e50;
+  box-shadow: 0 1px 3px rgba(255, 255, 255, 0.5);
+}
+
+.scaleBar span {
+  font-family: 'Raleway', sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #2c3e50;
+  text-shadow: 0 0 4px rgba(255, 255, 255, 0.9);
+}
+
+.mapLegend {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(8px);
+  padding: 0.875rem 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(139, 115, 85, 0.2);
+  z-index: 5;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-family: 'Raleway', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.legendDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;
+}
+
+.legendSelected {
+  background: linear-gradient(135deg, hsl(42, 78%, 52%), #d4622a);
+}
+
+.legendDefault {
+  background: #2c3e50;
+}
+
+.legendCity {
+  background: #c0392b;
+}
+
+.attribution {
+  position: absolute;
+  bottom: 0.35rem;
+  right: 0.5rem;
+  margin: 0;
+  font-family: 'Raleway', sans-serif;
+  font-size: 8px;
+  color: rgba(44, 62, 80, 0.55);
+  z-index: 5;
+}
+
+.attribution a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .mapWrapper {
+    min-height: 380px;
+  }
+
+  .mapFrame {
+    padding: 0.75rem;
+  }
+
+  .mapInner {
+    min-height: 340px;
+  }
+
+  .compassRose {
+    width: 44px;
+    height: 44px;
+    top: 0.625rem;
+    right: 0.625rem;
+  }
+
+  .mapLegend {
+    bottom: 0.75rem;
+    left: 0.75rem;
+    padding: 0.625rem 0.75rem;
+  }
+
+  .pinLabel {
+    font-size: 8px;
+    padding: 2px 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mapWrapper {
+    min-height: 300px;
+  }
+
+  .mapInner {
+    min-height: 280px;
+  }
+
+  .scaleBar {
+    display: none;
+  }
+
+  .attribution {
+    font-size: 7px;
+  }
+}

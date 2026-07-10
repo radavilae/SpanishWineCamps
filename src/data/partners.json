@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "name": "BODEGAS RIOJANAS",
+    "website": "https://www.bodegasriojanas.com",
+    "description": "Bodega histórica fundada en 1890",
+    "logo": null
+  },
+  {
+    "id": 2,
+    "name": "Marqués de Riscal",
+    "website": "https://www.marquesderiscal.com",
+    "description": "Bodega prestigiosa de La Rioja",
+    "logo": null
+  }
+]

@@ -1,29 +1,9 @@
 import styles from './WhoWeAre.module.css'
+import whoWeAreData from '../../data/who-we-are.json'
 
 const WhoWeAre = () => {
-  const founders = [
-    {
-      name: 'Victor Costas',
-      initials: 'VC',
-      role: 'Co-Founder & Wine Educator',
-      background: 'Rioja Wine Academy Educator',
-      expertise: 'An official Rioja Wine Academy Educator and a professional sommelier, Victor brings the technical soul to the team. His deep knowledge of Spanish viticulture—from the complex soils of Galicia to the unique gypsum-rich terrains of Penedès—allows him to translate the science of winemaking into a story anyone can appreciate.',
-      specialties: []
-    },
-    {
-      name: 'Atair Barros',
-      initials: 'AB',
-      role: 'Co-Founder & Experience Curator',
-      background: 'High-end hospitality specialist',
-      expertise: 'With a background rooted in high-end hospitality and a relentless passion for discovery, Atair makes sure Spanish Wine Camps become more than a regular experience. His expertise lies in finding the "unfindable"—the small-batch producers and hidden gems that haven\'t yet reached the mainstream.',
-      specialties: []
-    }
-  ]
-
-  const story = {
-    title: 'Our Story',
-    content: 'Born from a passion for authentic Spanish wine culture, Spanish Wine Camps bridges the gap between curious wine lovers and the dedicated artisans who craft Spain\'s most remarkable wines. We believe that the best way to understand wine is through the people who make it, the places where it grows, and the stories that give it meaning.'
-  }
+  const founders = whoWeAreData.founders
+  const story = whoWeAreData.story
 
   return (
     <section id="who-we-are" className={styles.whoWeAre}>
@@ -31,12 +11,12 @@ const WhoWeAre = () => {
         <div className={styles.content}>
           {/* Cabecera de sección */}
           <div className={styles.sectionHeader}>
-            <div className={styles.sectionLabel}>WHO WE ARE</div>
+            <div className={styles.sectionLabel}>{whoWeAreData.sectionLabel}</div>
             <h2 className={styles.sectionTitle}>
-              The <span className={styles.italic}>Passionate</span> Team
+              The <span className={styles.italic}>{whoWeAreData.sectionTitleAdjective}</span> {whoWeAreData.sectionTitleNoun}
             </h2>
             <p className={styles.sectionDescription}>
-              Meet the founders and visionaries behind Spanish Wine Camps, dedicated to bringing you authentic wine experiences through deep connections with Spain's most remarkable wine regions and producers.
+              {whoWeAreData.sectionDescription}
             </p>
             <div className={styles.divider}></div>
           </div>

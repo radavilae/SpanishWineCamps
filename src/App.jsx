@@ -18,6 +18,9 @@ import WhoWeAre from './components/sections/WhoWeAre'
 // Utility imports
 import { useScrollNavigation } from './hooks/useScrollNavigation'
 
+// Auth imports
+import { AuthProvider } from './contexts/AuthContext'
+
 /**
  * Main App component with simplified structure
  */
@@ -34,26 +37,28 @@ function App() {
   }
 
   return (
-    <div className="app">
-      {/* Navigation Bar */}
-      <Navbar 
-        activeSection={activeSection}
-        onScrollToSection={handleNavigation}
-      />
+    <AuthProvider>
+      <div className="app">
+        {/* Navigation Bar */}
+        <Navbar
+          activeSection={activeSection}
+          onScrollToSection={handleNavigation}
+        />
 
-      {/* Main Content Sections */}
-      <Home />
-      
-      <TheDifference />
-      
-      <Journeys />
-      
-      <Regions />
-      
-      <TheMakers />
-      
-      <WhoWeAre />
-    </div>
+        {/* Main Content Sections */}
+        <Home />
+
+        <TheDifference />
+
+        <Journeys />
+
+        <Regions />
+
+        <TheMakers />
+
+        <WhoWeAre />
+      </div>
+    </AuthProvider>
   )
 }
 

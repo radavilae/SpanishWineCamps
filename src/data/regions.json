@@ -1,0 +1,47 @@
+[
+  {
+    "id": "penedes",
+    "label": "Penedès",
+    "description": "Catalonia's heartland and the birthplace of Cava. Home to revolutionary winemakers championing Xarel·lo and ancestral methods.",
+    "features": ["Xarel·lo Revival", "Mètode Ancestral", "Biodynamic Vineyards"],
+    "producers": ["Recaredo", "Joan Rubió", "Nuria Renom", "Mas Candí", "Partida Creus"],
+    "lat": 41.334,
+    "lng": 1.699
+  },
+  {
+    "id": "priorat",
+    "label": "Priorat",
+    "description": "Dramatic slate terraces producing powerful, mineral Garnacha and Cariñena from century-old vines.",
+    "features": ["Llicorella Slate", "Old Vines", "Minimal Intervention"],
+    "producers": ["Clos Mogador", "Álvaro Palacios", "Terroir al Límit", "Mas Doix", "Clos Erasmus"],
+    "lat": 41.193,
+    "lng": 0.769
+  },
+  {
+    "id": "montsant",
+    "label": "Montsant",
+    "description": "A hidden gem encircling Priorat, offering similar terroir at exceptional value with bold, expressive reds.",
+    "features": ["Value Wines", "Garnacha Blanca", "Natural Winemaking"],
+    "producers": ["Venus La Universal", "Acústic Celler", "Celler Capçanes", "Joan d'Anguera", "Orto Vins"],
+    "lat": 41.312,
+    "lng": 0.822
+  },
+  {
+    "id": "terra-alta",
+    "label": "Terra Alta",
+    "description": "Remote high-altitude plateau producing extraordinary Garnacha Blanca and increasingly celebrated reds.",
+    "features": ["Garnacha Blanca", "High Altitude", "Indigenous Varieties"],
+    "producers": ["Herència Altés", "Bàrbara Forés", "Edetària", "Celler Piñol", "Pagos de Híbera"],
+    "lat": 41.053,
+    "lng": 0.264
+  },
+  {
+    "id": "conca",
+    "label": "Conca de Barberà",
+    "description": "Cool limestone plateau, birthplace of Pinot Noir in Spain and source of exceptional Trepat rosé.",
+    "features": ["Trepat Variety", "Limestone Soils", "Cool Climate"],
+    "producers": ["Gramona", "Jané Ventura", "Carles Andreu", "Celler Mas Foraster", "Concavins"],
+    "lat": 41.452,
+    "lng": 1.141
+  }
+]

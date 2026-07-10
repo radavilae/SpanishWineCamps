@@ -1,23 +1,8 @@
-import { usePartners } from '../../hooks/useStrapiData'
+import partnersData from '../../data/partners.json'
 import styles from './Partners.module.css'
 
 const Partners = () => {
-  const { partners, loading } = usePartners()
-
-  if (loading) {
-    return (
-      <section id="partners" className={styles.partners}>
-        <div className="responsive-container">
-          <div className="flex flex-col items-center text-center gap-lg">
-            <h2 className="heading-2 text-white">Partners</h2>
-            <p className="text-gray-400">Loading...</p>
-          </div>
-        </div>
-      </section>
-    )
-  }
-
-  if (!partners || partners.length === 0) {
+  if (!partnersData || partnersData.length === 0) {
     return null
   }
 
@@ -27,7 +12,7 @@ const Partners = () => {
         <div className="flex flex-col items-center text-center gap-lg">
           <h2 className="heading-2 text-white">Partners</h2>
           <div className={styles.partnersGrid}>
-            {partners.map((partner) => (
+            {partnersData.map((partner) => (
               <div key={partner.id} className={styles.partnerItem}>
                 {partner.logo ? (
                   <a
