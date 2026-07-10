@@ -90,7 +90,7 @@ const Navbar = ({ activeSection, onScrollToSection }) => {
         {user ? (
           <li className={styles.navItem}>
             <button className={styles.authButton} onClick={() => setIsProfileModalOpen(true)}>
-              Mi Perfil
+              My Profile
             </button>
           </li>
         ) : (
@@ -127,7 +127,7 @@ const Navbar = ({ activeSection, onScrollToSection }) => {
           {user ? (
             <li className={styles.mobileNavItem}>
               <button className={styles.mobileAuthButton} onClick={() => setIsProfileModalOpen(true)}>
-                Mi Perfil
+                My Profile
               </button>
             </li>
           ) : (
@@ -153,7 +153,7 @@ const Navbar = ({ activeSection, onScrollToSection }) => {
       </Modal>
 
       {/* Profile Modal */}
-      <Modal isOpen={isProfileModalOpen} onClose={() => setIsProfileModalOpen(false)} title="Mi Perfil">
+      <Modal isOpen={isProfileModalOpen} onClose={() => setIsProfileModalOpen(false)} title="My Profile">
         <Profile />
       </Modal>
     </nav>

@@ -28,7 +28,7 @@ const AuthForm = ({ defaultMode = 'login' }) => {
       } else {
         // Validar que las contraseñas coincidan
         if (password !== confirmPassword) {
-          setError('Las contraseñas no coinciden')
+          setError('Passwords do not match')
           setLoading(false)
           return
         }
@@ -61,18 +61,18 @@ const AuthForm = ({ defaultMode = 'login' }) => {
         <div className={styles.authBox}>
           <div className={styles.confirmationMessage}>
             <div className={styles.confirmationIcon}>✓</div>
-            <h2 className={styles.confirmationTitle}>¡Registro Exitoso!</h2>
+            <h2 className={styles.confirmationTitle}>Registration Successful!</h2>
             <p className={styles.confirmationText}>
-              Por favor, revisa tu cuenta de correo electrónico y confirma tu dirección para activar tu cuenta.
+              Please check your email and confirm your address to activate your account.
             </p>
             <p className={styles.confirmationSubtext}>
-              Si no recibes el correo en unos minutos, revisa tu carpeta de spam.
+              If you don't receive the email within a few minutes, check your spam folder.
             </p>
             <button
               className={styles.submitButton}
               onClick={() => handleSwitchMode(true)}
             >
-              Ir a Iniciar Sesión
+              Go to Log In
             </button>
           </div>
         </div>
@@ -83,23 +83,10 @@ const AuthForm = ({ defaultMode = 'login' }) => {
   return (
     <div className={styles.authContainer}>
       <div className={styles.authBox}>
-        {/* Tabs */}
-        <div className={styles.tabs}>
-          <button
-            type="button"
-            className={`${styles.tab} ${isLogin ? styles.active : ''}`}
-            onClick={() => handleSwitchMode(true)}
-          >
-            Iniciar Sesión
-          </button>
-          <button
-            type="button"
-            className={`${styles.tab} ${!isLogin ? styles.active : ''}`}
-            onClick={() => handleSwitchMode(false)}
-          >
-            Registrarse
-          </button>
-        </div>
+        {/* Title */}
+        <h2 className={styles.formTitle}>
+          {isLogin ? 'Log In' : 'Sign Up'}
+        </h2>
 
         {/* Form */}
         <form onSubmit={handleSubmit} className={styles.form}>
@@ -114,13 +101,13 @@ const AuthForm = ({ defaultMode = 'login' }) => {
               onChange={(e) => setEmail(e.target.value)}
               className={styles.input}
               required
-              placeholder="tu@email.com"
+              placeholder="your@email.com"
             />
           </div>
 
           <div className={styles.formGroup}>
             <label htmlFor="password" className={styles.label}>
-              Contraseña
+              Password
             </label>
             <input
               id="password"
@@ -137,7 +124,7 @@ const AuthForm = ({ defaultMode = 'login' }) => {
           {!isLogin && (
             <div className={styles.formGroup}>
               <label htmlFor="confirmPassword" className={styles.label}>
-                Confirmar Contraseña
+                Confirm Password
               </label>
               <input
                 id="confirmPassword"
@@ -155,7 +142,7 @@ const AuthForm = ({ defaultMode = 'login' }) => {
           {error && <div className={styles.error}>{error}</div>}
 
           <button type="submit" className={styles.submitButton} disabled={loading}>
-            {loading ? 'Procesando...' : isLogin ? 'Iniciar Sesión' : 'Registrarse'}
+            {loading ? 'Processing...' : isLogin ? 'Log In' : 'Sign Up'}
           </button>
         </form>
       </div>
