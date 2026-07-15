@@ -1,8 +1,12 @@
+import { useState } from 'react'
 import { useAuth } from '../../contexts/AuthContext'
+import Modal from '../ui/Modal'
+import PaymentForm from '../payment/PaymentForm'
 import styles from './Profile.module.css'
 
 const Profile = () => {
   const { user, signOut } = useAuth()
+  const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false)
 
   if (!user) {
     return (
@@ -18,6 +22,11 @@ const Profile = () => {
     } catch (error) {
       console.error('Error signing out:', error.message)
     }
+  }
+
+  const handlePaymentSuccess = (paymentIntent) => {
+    console.log('Payment successful:', paymentIntent)
+    setIsPaymentModalOpen(false)
   }
 
   return (
@@ -83,11 +92,19 @@ const Profile = () => {
         </div>
 
         <div className={styles.actions}>
+          <button onClick={() => setIsPaymentModalOpen(true)} className={styles.paymentButton}>
+            Make Payment
+          </button>
           <button onClick={handleSignOut} className={styles.signOutButton}>
             Sign Out
           </button>
         </div>
       </div>
+
+      {/* Payment Modal */}
+      <Modal isOpen={isPaymentModalOpen} onClose={() => setIsPaymentModalOpen(false)} title="Make Payment">
+        <PaymentForm amount={100} onSuccess={handlePaymentSuccess} />
+      </Modal>
     </div>
   )
 }

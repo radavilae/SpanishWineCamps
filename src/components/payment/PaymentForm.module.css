@@ -1,0 +1,108 @@
+.paymentForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem;
+}
+
+.amountDisplay {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.amountLabel {
+  font-size: 1rem;
+  color: #666;
+  font-weight: 500;
+}
+
+.amountValue {
+  font-size: 1.5rem;
+  color: #333;
+  font-weight: 700;
+}
+
+.cardElement {
+  padding: 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: #ffffff;
+  transition: border-color 0.3s ease;
+}
+
+.cardElement:hover {
+  border-color: #d4622a;
+}
+
+.errorMessage {
+  padding: 0.75rem;
+  background: #fee;
+  border: 1px solid #fcc;
+  border-radius: 6px;
+  color: #c33;
+  font-size: 0.875rem;
+}
+
+.submitButton {
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #d4622a 0%, #b85222 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(212, 98, 42, 0.2);
+}
+
+.submitButton:hover:not(:disabled) {
+  background: linear-gradient(135deg, #b85222 0%, #a04a1e 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(212, 98, 42, 0.3);
+}
+
+.submitButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.successMessage {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.successIcon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  font-size: 2.5rem;
+  color: #ffffff;
+  font-weight: bold;
+  box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3);
+}
+
+.successTitle {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #333;
+  margin: 0 0 1rem 0;
+}
+
+.successText {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.6;
+  margin: 0;
+}

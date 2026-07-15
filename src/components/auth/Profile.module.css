@@ -64,9 +64,33 @@
 
 .actions {
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
+  gap: 1rem;
   padding-top: 1.5rem;
   border-top: 2px solid #e0e0e0;
+}
+
+.paymentButton {
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(76, 175, 80, 0.2);
+}
+
+.paymentButton:hover {
+  background: linear-gradient(135deg, #45a049 0%, #3d8b40 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 12px rgba(76, 175, 80, 0.3);
+}
+
+.paymentButton:active {
+  transform: translateY(0);
 }
 
 .signOutButton {
