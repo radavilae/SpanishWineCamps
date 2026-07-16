@@ -64,15 +64,21 @@ const PaymentForm = ({ amount = 100, onSuccess }) => {
         },
       })
 
+      console.log('PaymentIntent status:', paymentIntent?.status)
+      console.log('PaymentIntent:', paymentIntent)
+
       if (error) {
         setError(error.message)
         setProcessing(false)
-      } else if (paymentIntent.status === 'succeeded') {
+      } else if (paymentIntent && (paymentIntent.status === 'succeeded' || paymentIntent.status === 'processing')) {
         setSucceeded(true)
         setProcessing(false)
         if (onSuccess) {
           onSuccess(paymentIntent)
         }
+      } else {
+        setError('Payment processing. Please check your Stripe dashboard for status.')
+        setProcessing(false)
       }
     } catch (err) {
       setError(err.message)
@@ -85,7 +91,10 @@ const PaymentForm = ({ amount = 100, onSuccess }) => {
       <div className={styles.successMessage}>
         <div className={styles.successIcon}>✓</div>
         <h2 className={styles.successTitle}>Payment Successful!</h2>
-        <p className={styles.successText}>Thank you for your payment.</p>
+        <p className={styles.successText}>Your payment has been processed successfully. Thank you for your purchase!</p>
+        <button onClick={() => window.location.reload()} className={styles.continueButton}>
+          Continue
+        </button>
       </div>
     )
   }
