@@ -103,7 +103,7 @@ const Profile = () => {
 
       {/* Payment Modal */}
       <Modal isOpen={isPaymentModalOpen} onClose={() => setIsPaymentModalOpen(false)} title="Make Payment">
-        <PaymentForm amount={100} onSuccess={handlePaymentSuccess} />
+        <PaymentForm amount={1} onSuccess={handlePaymentSuccess} />
       </Modal>
     </div>
   )
